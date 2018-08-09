@@ -27,13 +27,7 @@
 			<input type="text" name="carga" class="form-control" placeholder="Carga Horária" required>
 		</div>
 		<div class="form-group">
-			<label for="curso">Curso</label>
-			<select name="curso" class="form-control">
-				<option>Selecione ></option>
-			</select>
-		</div>
-		<div class="form-group">
-			<label for="serie">Série</label>
+			<label for="serie">Curso e Série</label>
 			<select name="serie" class="form-control">
 				<?php
 					while($serie = mysqli_fetch_array($result)) {
