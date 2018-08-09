@@ -22,7 +22,10 @@
 			echo "	<td>" . $professor['pro_cod'] . "</td>";
 			echo "	<td>" . $professor['pro_nome'] . "</td>";
 			echo "	<td>" . $professor['pro_formacao'] . "</td>";
-			echo "	<td><a class='btn btn-warning' href='$url'>Informações</a></td>";
+			echo "	<td>
+						<a class='btn btn-warning' href='$url'>Informações</a>
+						<a class='btn btn-success' href='?pag=profdisc&id=" . $professor['pro_cod'] . "'>Disciplinas</a>
+					</td>";
 			echo "</tr>";
 		}
 	?>

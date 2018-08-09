@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Copa do Mundo</title>
+    <title>PDT</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -69,6 +69,9 @@
           }
           else if($link == 'cadturma'){
             include('restrito/cads/cad_turma.php');
+          }
+          else if($link == 'profdisc'){
+            include('restrito/operacoes/prof_disc.php');
           }
       	}
       ?>
