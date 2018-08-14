@@ -1,17 +1,11 @@
 <?php
 	require('conexao/conecta.php');
 
-	$sqlAux = "SELECT MAX(dis_cod) FROM disciplina";
-	$resultAux = mysqli_query($con, $sqlAux);
-	$aux = mysqli_fetch_array($resultAux);
-	$aux = $aux[0];
+	$disciplina = $_POST['addDisciplina'];
 
-	for($i = 0; $i < $aux; $i++) {
-		echo $i . "<br>";
-		$j = $i+1;
-		echo $teste = "disc" . $j;
-		echo $_POST[$teste];
-		//if(){}
-	}
+	$sql = "INSERT INTO professor_has_disciplina(pro_cod, dis_cod) VALUES ($id, $disciplina)";
 
+	mysqli_query($con, $sql) or die('Falha ao conectar professor à disciplina');
+
+	$mensagem = "Conectado com sucesso";
 ?>

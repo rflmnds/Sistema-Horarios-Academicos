@@ -41,7 +41,7 @@
 							}
 						}
 						else{*/
-							echo "'>Curso: " . $serie['cur_nome'] . " - Ano: " . $serie['ser_ano'] . "</option>";
+							echo "'>Curso: " . $serie['cur_nome'] . " - Ano: " . $serie['ser_ano'] . " - PPC: " . $serie['ppc_info'] . "</option>";
 						//}
 					}
 				?>
