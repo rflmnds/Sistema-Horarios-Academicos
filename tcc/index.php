@@ -38,6 +38,7 @@
           <td><a href="?pag=cadbloco" class="btn btn-success">Bloco</a></td>
           <td><a href="?pag=cadsala" class="btn btn-success">Sala</a></td>
           <td><a href="?pag=cadppc" class="btn btn-success">PPC</a></td>
+          <td><a href="?pag=cadserie" class="btn btn-success">Série</a></td>
           <td><a href="?pag=cadturma" class="btn btn-success">Turma</a></td>
         </tr>
       </table> 
@@ -72,6 +73,9 @@
           }
           else if($link == 'profdisc'){
             include('restrito/operacoes/prof_disc.php');
+          }
+          else if($link == 'discprof'){
+            include('restrito/operacoes/disc_prof.php');
           }
       	}
       ?>

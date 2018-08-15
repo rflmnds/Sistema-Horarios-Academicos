@@ -7,10 +7,10 @@
 	$sqlPD = "SELECT * FROM disciplina as d
 			INNER JOIN professor_has_disciplina as pd  ON d.dis_cod = pd.dis_cod
 			INNER JOIN professor as p ON  pd.pro_cod = p.pro_cod
-			WHERE p.pro_cod = $id";
+			WHERE d.dis_cod=$id";
 	$resultPD = mysqli_query($con, $sqlPD) or die("Falha ao buscar disciplinas do professor");
 
-	$sqlAdd = "SELECT * FROM disciplina";
+	$sqlAdd = "SELECT * FROM professor";
 	$resultAdd = mysqli_query($con, $sqlAdd) or die("Falha ao buscar disciplinas");
 
 	if(isset($_POST['submit'])) {
@@ -19,15 +19,15 @@
 
 ?>
 <div>
-	<h3>Disciplinas do professor</h3>
+	<h3>Professores da disciplina</h3>
 		<table class="table table-hover">
 			<tr>
-				<th>Disciplina</th>
+				<th>Professores</th>
 			</tr>
 			<?php
-				while($disciplinaProf = mysqli_fetch_array($resultPD)){
+				while($profDisciplina = mysqli_fetch_array($resultPD)){
 					echo "<tr>";
-					echo "	<td>" . $disciplinaProf['dis_nome'] . "</td>";
+					echo "	<td>" . $profDisciplina['pro_nome'] . "</td>";
 					echo "</tr>";
 				}
 			?>
@@ -35,10 +35,10 @@
 	<form name="form1" method="post">
 		<h4>Adicionar disciplina:</h4>
 		<div class="form-group">
-			<select name="addDisciplina" class="form-control">
+			<select name="addProf" class="form-control">
 				<?php
-					while($disciplina = mysqli_fetch_array($resultAdd)) {
-						echo "<option value='" . $disciplina['dis_cod'];
+					while($professor = mysqli_fetch_array($resultAdd)) {
+						echo "<option value='" . $professor['pro_cod'];
 						/*if(isset($_GET['id'])){
 							if($ppc['cur_cod'] == $curso['cur_cod']){
 								echo "' selected>" . $curso['cur_nome'] . "</option>";
@@ -48,7 +48,7 @@
 							}
 						}
 						else{*/
-							echo "'>" . $disciplina['dis_nome'] . "</option>";
+							echo "'>" . $professor['pro_nome'] . "</option>";
 						//}
 					}
 				?>
