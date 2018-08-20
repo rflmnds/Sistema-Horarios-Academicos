@@ -1,4 +1,15 @@
+<?php
+	require('conexao/conecta.php');
 
+	$mensagem = null;
+
+	$sql= "SELECT * FROM ppc as p INNER JOIN curso as c ON p.cur_cod = c.cur_cod";
+	$result = mysqli_query($con, $sql) or die ("Falha ao buscar ppc");
+
+	if(isset($_POST['nome'])){
+	 	require('restrito/acoes/acao_turma.php');
+	}
+?>
 
 <div>
 	<h1>Adicionar Turma:</h1>
@@ -14,10 +25,28 @@
 		<div class="form-group">
 			<label for="ppc">PPC</label>
 			<select name="ppc" class="form-control">
-				<option>Selecione ></option>
+				<?php 
+					while($ppc = mysqli_fetch_array($result)) {
+						echo "<option value='" . $ppc['ppc_cod'];
+						/*if(isset($_GET['id'])){
+							if($ppc['cur_cod'] == $curso['cur_cod']){
+								echo "' selected>" . $curso['cur_nome'] . "</option>";
+							}
+							else{
+								echo "'>" . $curso['cur_nome'] . "</option>";
+							}
+						}
+						else{*/
+							echo "'>" . $ppc['ppc_info'] . " - Curso: " . $ppc['cur_nome'] . "</option>";
+						//}
+					}
+				?>
 			</select>
 		</div>
 		<input type="submit" value="Salvar" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadturma'">
 	</form>
+
+	<p class="text-success"><?= $mensagem ?></p>
+
 </div>
