@@ -14,7 +14,7 @@
 	$resultAdd = mysqli_query($con, $sqlAdd) or die("Falha ao buscar disciplinas");
 
 	if(isset($_POST['submit'])) {
-		include('restrito/acoes/acao_pd.php');
+		include('restrito/acoes/acao_dp.php');
 	}
 
 ?>
