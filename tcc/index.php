@@ -77,6 +77,9 @@
           else if($link == 'discprof'){
             include('restrito/operacoes/disc_prof.php');
           }
+          else if($link == 'oferta'){
+            include('restrito/operacoes/oferta.php');
+          }
       	}
       ?>
       

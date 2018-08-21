@@ -30,7 +30,7 @@
 			echo "	<td>" . $turma['ppc_info'] . "</td>";
 			echo "	<td>	
 						<a class='btn btn-warning' href='$url'>Informações</a>
-						<a class='btn btn-success' href='?pag=discprof&id=" . $turma['tur_cod'] . "'>Oferta</a>
+						<a class='btn btn-success' href='?pag=oferta&id=" . $turma['tur_cod'] . "'>Oferta</a>
 					</td>";
 			echo "</tr>";
 		}
