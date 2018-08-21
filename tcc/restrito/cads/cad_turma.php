@@ -49,4 +49,5 @@
 
 	<p class="text-success"><?= $mensagem ?></p>
 
+	<?php include('restrito/grids/grid_turma.php') ?>
 </div>

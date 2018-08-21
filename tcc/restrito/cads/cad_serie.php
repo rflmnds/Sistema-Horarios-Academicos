@@ -46,7 +46,4 @@
 	</form>
 	
 	<p class="text-success"><?= $mensagem ?></p>
-
-	<h2>Séries:</h2>
-	<?php include('restrito/grids/grid_serie.php') ?>
 </div>
