@@ -81,6 +81,9 @@
             include('restrito/operacoes/oferta.php');
             echo "<script src='js/ajax/ajax_oferta.js'></script>";
           }
+          else if($link == 'turmaserie'){
+            include('restrito/operacoes/turma_serie.php');
+          }
       	}
       ?>
       
