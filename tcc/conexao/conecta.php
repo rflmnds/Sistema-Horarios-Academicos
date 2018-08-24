@@ -3,7 +3,7 @@
 	$server = 'localhost';
 	$user = 'root';
 	$pswd = '';
-	$db = 'db_pdt2';
+	$db = 'db_pdt';
 
 	// Conexão com o banco de dados: Instrução SQL
 	$con=mysqli_connect($server, $user, $pswd, $db);

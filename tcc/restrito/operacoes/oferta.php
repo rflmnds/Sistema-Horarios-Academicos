@@ -38,7 +38,8 @@
 		</div>
 		<div class="form-group">
 			<label for="disc">Disciplina</label>
-			<select name="serie" class="form-control">
+			<select name="disc" id="disc" class="form-control" multiple>
+				<option>teste</option>
 				<?php 
 					while($disciplina = mysqli_fetch_array($resultD)) {
 						echo "<option value='" . $disciplina['pd_cod'];
@@ -58,22 +59,12 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<input type="submit" value="Adicionar" class="btn btn-default" name="add">
-			<?php
-				if(isset($_POST['add'])){
-					add();
-				}
-
-				function add() {
-					echo "<table class='table table-hover'>";
-					echo "	<tr>";
-					echo "		<td>Teste";
-					echo "		</td>";
-					echo "	</tr>";
-					echo "</table>";
-				}
-			?>		
+			<input type="submit" value="Adicionar" class="btn btn-default" name="add" id="add">
 		</div>
+		<table class="table table-hover>
+			<tr id="added">
+			<tr>
+		</table>
 		<input type="submit" value="Salvar" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=oferta">
 	</form>

@@ -4,7 +4,7 @@
 	$sql = "SELECT * FROM turma as t 
 			INNER JOIN ppc as p ON t.ppc_cod = p.ppc_cod
 			INNER JOIN curso as c ON p.cur_cod = c.cur_cod";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar serie");
+	$result = mysqli_query($con, $sql) or die("Falha ao buscar turmas");
 
 ?>
 
