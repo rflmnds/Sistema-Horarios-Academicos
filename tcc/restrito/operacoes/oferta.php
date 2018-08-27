@@ -3,45 +3,40 @@
 
 	$id = $_GET['id'];
 
-	$sqlS = "SELECT * FROM serie as s 
-			INNER JOIN serie_has_turma as st ON s.ser_cod = st.ser_cod
-			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
-			WHERE t.tur_cod = $id";
+	$sqlS = "SELECT * FROM serie";
 	$resultS = mysqli_query($con, $sqlS);
-
-	$sqlCount = "SELECT COUNT(s.ser_cod) FROM serie as s 
-			INNER JOIN serie_has_turma as st ON s.ser_cod = st.ser_cod
-			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
-			WHERE t.tur_cod = $id";
-	$resultCount = mysqli_query($con, $sqlCount);
 
 	$sqlD = "SELECT * FROM professor_has_disciplina as pd 
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod ";
 	$resultD = mysqli_query($con, $sqlD);
+
+	if(isset($_POST['ano'])){
+		require('restrito/acoes/acao_oferta.php');
+	}	
 ?>
 
 <div>
 	<h2>Oferta:</h2>
 	<form name="form1" method="post">
 		<div class="form-group">
-			<table class="table">
-			<?php
-					while($serie = mysqli_fetch_array($resultS)){
-						$count = mysqli_fetch_array($resultCount);
-						$count[0];
-						if($count[0] == 0){
-							echo "<tr><td><h4 class='text-danger'>Turma não vinculada à nenhuma série</h4></td></tr>";
-						}
-						else{
-							echo "<tr>";
-							echo "	<th>Série:</th>";
-							echo "	<th>" . $serie['ser_ano'] . "</th>";
-							echo "</tr>";
-						}
-				}
-			?>
-			</table>
+			<label for="serie">Série</label>
+			<select name="serie" class="form-control">
+				<?php 
+					while($serie = mysqli_fetch_array($resultS)) {
+						echo "<option value='" . $serie['ser_cod'];
+						/*if(isset($_GET['id'])){
+							if($ppc['cur_cod'] == $curso['cur_cod']){
+								echo "' selected>" . $curso['cur_nome'] . "</option>";
+							}
+							else{
+								echo "'>" . $curso['cur_nome'] . "</option>";
+							}
+						else{*/
+							echo "'>Ano de entrada: " . $serie['ser_ano'] . "</option>";
+						//}
+					}
+				?>
 			</select>
 		</div>
 		<div class="form-group">
@@ -68,10 +63,10 @@
 		<div class="form-group">
 			<input type="submit" value="Adicionar" class="btn btn-default" name="add" id="add">
 		</div>
-		<table class="table table-hover">
-			<tr id="added">
-			<tr>
-		</table>
+		<div class="form-group">
+			<label for="ano">Ano</label>
+			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
+		</div>
 		<input type="submit" value="Salvar" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=oferta">
 	</form>
