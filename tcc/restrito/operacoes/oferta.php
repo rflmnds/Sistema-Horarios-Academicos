@@ -10,6 +10,10 @@
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod ";
 	$resultD = mysqli_query($con, $sqlD);
+
+	if(isset($_POST['ano'])){
+		require('restrito/acoes/acao_oferta.php');
+	}	
 ?>
 
 <div>
@@ -28,7 +32,6 @@
 							else{
 								echo "'>" . $curso['cur_nome'] . "</option>";
 							}
-						}
 						else{*/
 							echo "'>Ano de entrada: " . $serie['ser_ano'] . "</option>";
 						//}
@@ -39,7 +42,6 @@
 		<div class="form-group">
 			<label for="disc">Disciplina</label>
 			<select name="disc" id="disc" class="form-control" multiple>
-				<option>teste</option>
 				<?php 
 					while($disciplina = mysqli_fetch_array($resultD)) {
 						echo "<option value='" . $disciplina['pd_cod'];
@@ -61,10 +63,10 @@
 		<div class="form-group">
 			<input type="submit" value="Adicionar" class="btn btn-default" name="add" id="add">
 		</div>
-		<table class="table table-hover>
-			<tr id="added">
-			<tr>
-		</table>
+		<div class="form-group">
+			<label for="ano">Ano</label>
+			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
+		</div>
 		<input type="submit" value="Salvar" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=oferta">
 	</form>
