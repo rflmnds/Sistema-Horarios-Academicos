@@ -79,7 +79,7 @@
           }
           else if($link == 'oferta'){
             include('restrito/operacoes/oferta.php');
-            echo "<script src='js/ajax/ajax_oferta.js'></script>";
+            echo "<script src='js/ajax/ajax_oferta.js'</script>";
           }
       	}
       ?>
@@ -94,13 +94,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- <?php 
-      // if(isset($_GET['pag']))
-      //    $link = $_GET['pag'];
-          
-      //     if($link == 'cadcurso'){
-      //       include('restrito/cads/cad_curso.php');
-      //     }
-    ?> -->
   </body>
 </html>
