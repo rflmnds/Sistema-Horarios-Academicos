@@ -79,9 +79,13 @@
           }
           else if($link == 'oferta'){
             include('restrito/operacoes/oferta.php');
+<<<<<<< HEAD
           }
           else if($link == 'ofertateste'){
             include('restrito/operacoes/oferta_teste.php');
+=======
+            echo "<script src='js/ajax/ajax_oferta.js'</script>";
+>>>>>>> origin
           }
           else if($link == 'turmaserie'){
             include('restrito/operacoes/turma_serie.php');
@@ -98,10 +102,14 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+<<<<<<< HEAD
     <?php
       if($link == 'ofertateste'){
          echo "<script src='js/ajax/ajax_oferta.js'></script>";
        }
     ?>
+=======
+
+>>>>>>> origin
   </body>
 </html>
