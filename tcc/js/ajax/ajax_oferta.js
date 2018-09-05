@@ -1,18 +1,7 @@
 $('#add').click(function(){
 
-	var disc = $('#disc').val();
+	var disc = document.getElementById('disc');
 
-	$('#disc').changed(function()){
-		$.ajax({
-			method:"POST";
-			url: "ajax/ajax_oferta";
-			data: "{disc:" + disc + "}";
-			success: add;
-			fail: failAdd;
-		}
-
-		function add(disc){
-			$('#added').append($('<tr><td>Teste</td><tr>'));
-		}
-	}
-}
+	alert(disc.value);
+	$('#teste').append("<tr><td></td></tr>");
+});

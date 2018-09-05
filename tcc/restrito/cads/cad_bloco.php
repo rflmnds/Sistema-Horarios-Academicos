@@ -7,7 +7,18 @@
 	 	require('restrito/acoes/acao_bloco.php');
 	}
 
-	$ppc = null;
+	if(isset($_GET['id'])){
+		require('conexao/conecta.php');
+
+		$sql = "SELECT * FROM bloco where blo_cod = " . $_GET['id'];
+		$result = mysqli_query($con,$sql) or die('Falha ao buscar bloco');
+		$bloco = mysqli_fetch_array($result);
+
+		$desc = $bloco['blo_desc'];
+	}
+	else{
+		$desc = null;
+	}
 ?>
 
 
@@ -16,7 +27,7 @@
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Nome</label>
-			<input type="text" name="nome" class="form-control" placeholder="Nome do Bloco" required> 
+			<input type="text" name="nome" class="form-control" value="<?= $desc ?>" placeholder="Nome do Bloco" required> 
 		</div>
 		<input type="submit" value="Salvar" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadbloco'">

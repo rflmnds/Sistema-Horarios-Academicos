@@ -21,7 +21,7 @@
 
 			echo "	<td>" . $bloco['blo_cod'] . "</td>";
 			echo "	<td>" . $bloco['blo_desc'] . "</td>";
-			echo "	<td><a class='btn btn-warning' href='$url'>Informações</a></td>";
+			echo "	<td><a class='btn btn-warning' href='$url'>Editar</a></td>";
 			echo "</tr>";
 		}
 	?>

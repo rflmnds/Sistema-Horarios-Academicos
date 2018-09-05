@@ -21,14 +21,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">PDT</a>
+          <a class="navbar-brand" href="#">GerAcad</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class='<?= $active['home'] ?>'><a href="#">Home</a></li>
-            <li class='<?= $active['jogo'] ?>'><a href="?pag=cadppc">PPCs</a></li>
-            <li class='<?= $active['selecoes'] ?>'><a href="?pag=selecoes">Seleções</a></li>
-            <li class='<?= $active['jogadores'] ?>'><a href="?pag=jogadores">Jogadores</a></li>
+            <li class='<?= $active['jogo'] ?>'><a href="?pag=cadppc">PDT</a></li>
+            <li class='<?= $active['selecoes'] ?>'><a href="?pag=selecoes">Cadastros</a></li>
+            <li class='<?= $active['jogadores'] ?>'><a href="?pag=jogadores">Portal do professor</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

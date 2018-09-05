@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>PDT</title>
+    <title>GerAcad</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,9 @@
           }
           else if($link == 'oferta'){
             include('restrito/operacoes/oferta.php');
-            echo "<script src='js/ajax/ajax_oferta.js'></script>";
+          }
+          else if($link == 'ofertateste'){
+            include('restrito/operacoes/oferta_teste.php');
           }
           else if($link == 'turmaserie'){
             include('restrito/operacoes/turma_serie.php');
@@ -96,14 +98,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
-    <!-- <?php 
-      // if(isset($_GET['pag']))
-      //    $link = $_GET['pag'];
-          
-      //     if($link == 'cadcurso'){
-      //       include('restrito/cads/cad_curso.php');
-      //     }
-    ?> -->
+    <?php
+      if($link == 'ofertateste'){
+         echo "<script src='js/ajax/ajax_oferta.js'></script>";
+       }
+    ?>
   </body>
 </html>

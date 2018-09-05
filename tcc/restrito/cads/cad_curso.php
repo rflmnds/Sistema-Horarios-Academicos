@@ -4,6 +4,23 @@
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_curso.php');
 	}
+
+	if(isset($_GET['id'])){
+		require('conexao/conecta.php');
+
+		$sql = "SELECT * FROM curso where cur_cod = " . $_GET['id'];
+		$result = mysqli_query($con,$sql) or die('Falha ao buscar curso');
+		$curso = mysqli_fetch_array($result);
+
+		$nome = $curso['cur_nome'];
+		$carga = $curso['cur_hrtotal'];
+		$nivel = $curso['cur_nivel'];
+	}
+	else{
+		$nome = null;
+		$carga = null;
+		$nivel = null;
+	}
 ?>
 
 <div>
@@ -11,15 +28,15 @@
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Nome do Curso</label>
-			<input type="text" name="nome" class="form-control" placeholder="Nome do Curso" required>
+			<input type="text" name="nome" class="form-control" value="<?= $nome ?>" placeholder="Nome do Curso" required>
 		</div>
 		<div class="form-group">
 			<label for="hrtotal">Carga Horária Total</label>
-			<input type="text" name="hrtotal" class="form-control" placeholder="Carga Horária" required>
+			<input type="text" name="hrtotal" class="form-control" value="<?= $carga ?>" placeholder="Carga Horária" required>
 		</div>
 		<div class="form-group">
 			<label for="nivel">Categoria de Ensino</label>
-			<select multiple class="form-control" name="nivel">
+			<select class="form-control" name="nivel">
 				<option value="Ensino Superior">Ensino Superior</option>
 				<option value="Ensino Médio-Integrado">Ensino Médio-Integrado</option>
 				<option value="Ensino à Distância(EaD)">Ensino à Distância(EaD)</option>
