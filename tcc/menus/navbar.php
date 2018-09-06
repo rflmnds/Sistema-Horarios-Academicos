@@ -26,7 +26,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class='<?= $active['home'] ?>'><a href="#">Home</a></li>
-            <li class='<?= $active['jogo'] ?>'><a href="?pag=cadppc">PDT</a></li>
+            <li class='<?= $active['jogo'] ?>'><a href="?pag=horario">Horários</a></li>
             <li class='<?= $active['selecoes'] ?>'><a href="?pag=selecoes">Cadastros</a></li>
             <li class='<?= $active['jogadores'] ?>'><a href="?pag=jogadores">Portal do professor</a></li>
           </ul>
