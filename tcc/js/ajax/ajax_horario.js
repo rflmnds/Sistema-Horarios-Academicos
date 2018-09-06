@@ -1,12 +1,15 @@
-$('#turma').change(function(){
-	var turma = $('#turma').val();
-
+function buscar(turma) {
 	$.ajax({
-		type: "POST";
-		url: "restrito/acoes/script_horario.php";
-		data: {turma: turma};
+		method: "POST",
+		dataType: "html",
+		url: "restrito/acoes/script_horario.php",
+		data: {turma: turma},
 		success: function(msg){
-			$('horario').html(msg);
+			$('#horario').html(msg);
 		}
 	});
+}
+
+$('#turma').change(function(){
+	buscar($('#turma').val())
 });

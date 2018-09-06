@@ -102,8 +102,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <?php
-      if($link == 'turmaserie'){
-        echo "<script src='js/ajax/ajax_horario.js'></script>";
+      if($link == 'horario'){
+        echo "<script src='js/ajax/ajax_horario.js?newversion'></script>";
       }
     ?>
   </body>
