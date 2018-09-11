@@ -4,10 +4,10 @@
 	$turma = $_POST['turma'];
 
 	$sql = "SELECT * FROM horario as h
-	INNER JOIN oferta as o ON h.ofe_cod = o.ofe_cod
-	INNER JOIN serie_has_turma as st ON o.ser_cod = st.ser_cod
-	INNER JOIN turma as t ON st.tur_cod = t.tur_cod
-	WHERE ofe_cod = " . $turma;
+			INNER JOIN oferta as o ON h.ofe_cod = o.ofe_cod
+			INNER JOIN serie_has_turma as st ON o.ser_cod = st.ser_cod
+			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
+			WHERE ofe_cod = " . $turma;
 	$script = mysqli_query($con, $sql);
 ?>
 
