@@ -1,5 +1,10 @@
 <?php
+	require('conexao/conecta.php');
+
 	$mensagem = null;
+
+	$sql = $sql = "SELECT * FROM nivel";
+	$rNivel = mysqli_query($con,$sql) or die('Falha ao buscar nivel');
 
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_curso.php');
@@ -37,11 +42,26 @@
 		<div class="form-group">
 			<label for="nivel">Categoria de Ensino</label>
 			<select class="form-control" name="nivel">
-				<option value="Ensino Superior">Ensino Superior</option>
-				<option value="Ensino Médio-Integrado">Ensino Médio-Integrado</option>
-				<option value="Ensino à Distância(EaD)">Ensino à Distância(EaD)</option>
-				<option value="Pós-Graduação">Pós-Graduação</option>
+				<?php
+					while($nivel = mysqli_fetch_array($rNivel)) {
+						echo "<option value='" . $nivel['ser_cod'];
+						/*if(isset($_GET['id'])){
+							if($ppc['cur_cod'] == $curso['cur_cod']){
+								echo "' selected>" . $curso['cur_nome'] . "</option>";
+							}
+							else{
+								echo "'>" . $curso['cur_nome'] . "</option>";
+							}
+						}
+						else{*/
+							echo "'>" . $nivel['niv_desc'] . "</option>";
+						//}
+					}
+				?>
 			</select>
+		</div>
+		<div class="form-group">
+			<a href="?pag=cadnivel" class="btn btn-success">Acrescentar níveis</a>
 		</div>
 		<input type="submit" value="Salvar" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadcurso'">

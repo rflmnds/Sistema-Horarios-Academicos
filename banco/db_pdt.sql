@@ -139,7 +139,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`nivel`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`nivel` (
-  `niv_cod` INT NOT NULL,
+  `niv_cod` INT NOT NULL AUTO_INCREMENT,
   `niv_desc` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`niv_cod`))
 ENGINE = InnoDB;

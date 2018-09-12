@@ -5,7 +5,7 @@
 	
 	if(isset($_GET['id'])) {
 		$sql = "UPDATE bloco SET blo_desc = '$nome' WHERE blo_cod = " . $_GET['id'];
-		mysqli_query($con,$sql) or die('Falha ao alterar Produto');
+		mysqli_query($con,$sql) or die('Falha ao alterar bloco');
 		
 		$mensagem = "Bloco alterado com sucesso";
 	}
