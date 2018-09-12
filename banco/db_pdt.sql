@@ -21,7 +21,7 @@ USE `mydb` ;
 -- Table `mydb`.`tipo_usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`tipo_usuario` (
-  `tu_cod` INT NOT NULL,
+  `tu_cod` INT NOT NULL AUTO_INCREMENT,
   `tu_desc` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`tu_cod`))
 ENGINE = InnoDB;
@@ -31,7 +31,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
-  `usu_cod` INT NOT NULL,
+  `usu_cod` INT NOT NULL AUTO_INCREMENT,
   `usu_email` VARCHAR(45) NOT NULL,
   `usu_senha` VARCHAR(45) NOT NULL,
   `tu_cod` INT NOT NULL,
@@ -168,7 +168,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ppc` (
   `ppc_cod` INT NOT NULL AUTO_INCREMENT,
-  `ppc_info` INT NOT NULL,
+  `ppc_info` VARCHAR(45) NOT NULL,
   `cur_cod` INT NOT NULL,
   PRIMARY KEY (`ppc_cod`),
   INDEX `fk_ppc_curso1_idx` (`cur_cod` ASC),
@@ -258,11 +258,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`turma` (
   `tur_cod` INT NOT NULL AUTO_INCREMENT,
   `tur_nome` VARCHAR(45) NOT NULL,
   `tur_ano` VARCHAR(45) NOT NULL,
-  `ppc_ppc_cod` INT NOT NULL,
+  `ppc_cod` INT NOT NULL,
   PRIMARY KEY (`tur_cod`),
-  INDEX `fk_turma_ppc1_idx` (`ppc_ppc_cod` ASC),
+  INDEX `fk_turma_ppc1_idx` (`ppc_cod` ASC),
   CONSTRAINT `fk_turma_ppc1`
-    FOREIGN KEY (`ppc_ppc_cod`)
+    FOREIGN KEY (`ppc_cod`)
     REFERENCES `mydb`.`ppc` (`ppc_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -373,11 +373,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`horario` (
   `hor_status` VARCHAR(45) NOT NULL,
   `sal_cod` INT NOT NULL,
   `aula_cod` INT NOT NULL,
-  `ofe_id` INT NOT NULL,
+  `ofe_cod` INT NOT NULL,
   INDEX `fk_aula_sala1_idx` (`sal_cod` ASC),
   PRIMARY KEY (`hor_cod`),
   INDEX `fk_horário_aula1_idx` (`aula_cod` ASC),
-  INDEX `fk_horario_Oferta1_idx` (`ofe_id` ASC),
+  INDEX `fk_horario_Oferta1_idx` (`ofe_cod` ASC),
   CONSTRAINT `fk_aula_sala1`
     FOREIGN KEY (`sal_cod`)
     REFERENCES `mydb`.`sala` (`sal_cod`)
@@ -389,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`horario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_horario_Oferta1`
-    FOREIGN KEY (`ofe_id`)
+    FOREIGN KEY (`ofe_cod`)
     REFERENCES `mydb`.`oferta` (`ofe_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -446,9 +446,9 @@ ENGINE = InnoDB;
 -- Table `mydb`.`pde`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`pde` (
-  `pde_id` INT NOT NULL AUTO_INCREMENT,
+  `pde_cod` INT NOT NULL AUTO_INCREMENT,
   `pde_carga` INT NOT NULL,
-  `ofe_id` INT NOT NULL,
+  `ofe_cod` INT NOT NULL,
   `pde_conteudo` VARCHAR(150) NOT NULL,
   `pde_objetivos` VARCHAR(150) NOT NULL,
   `pde_ementa` VARCHAR(150) NOT NULL,
@@ -456,10 +456,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pde` (
   `pde_procedimentos` VARCHAR(150) NOT NULL,
   `pde_avaliacoes` VARCHAR(150) NULL DEFAULT NULL,
   `pde_referencias` VARCHAR(150) NOT NULL,
-  PRIMARY KEY (`pde_id`),
-  INDEX `fk_Plano_ensino_Oferta1_idx` (`ofe_id` ASC),
+  PRIMARY KEY (`pde_cod`),
+  INDEX `fk_Plano_ensino_Oferta1_idx` (`ofe_cod` ASC),
   CONSTRAINT `fk_Plano_ensino_Oferta1`
-    FOREIGN KEY (`ofe_id`)
+    FOREIGN KEY (`ofe_cod`)
     REFERENCES `mydb`.`oferta` (`ofe_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

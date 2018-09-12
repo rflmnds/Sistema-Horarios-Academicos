@@ -12,7 +12,7 @@
 		$mensagem = "Curso alterado com sucesso";
 	}
 	else {
-		echo $sql = "INSERT INTO curso(cur_nome, cur_hrtotal, niv_cod) VALUES ('$nome', $hrtotal, $nivel)";
+		$sql = "INSERT INTO curso(cur_nome, cur_hrtotal, niv_cod) VALUES ('$nome', $hrtotal, $nivel)";
 		mysqli_query($con,$sql) or die('Falha ao inserir Curso');
 
 		$mensagem = "Curso cadastrado com sucesso";

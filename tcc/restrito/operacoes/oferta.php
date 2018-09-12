@@ -3,7 +3,10 @@
 
 	$id = $_GET['id'];
 
-	$sqlS = "SELECT * FROM serie";
+	$sqlS = "SELECT * FROM serie as S 
+			INNER JOIN serie_has_turma as st ON s.ser_cod = st.ser_cod
+			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
+			WHERE t.tur_cod =" . $id; 
 	$resultS = mysqli_query($con, $sqlS);
 
 	$sqlD = "SELECT * FROM professor_has_disciplina as pd 

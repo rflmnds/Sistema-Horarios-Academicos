@@ -10,6 +10,10 @@
 			WHERE p.pro_cod = $id";
 	$resultPD = mysqli_query($con, $sqlPD) or die("Falha ao buscar disciplinas do professor");
 
+	$sql = "SELECT * FROM professor WHERE pro_cod = " . $id;
+	$result = mysqli_query($con, $sql) or die("Falha ao buscar nome do professor");
+	$professor = mysqli_fetch_array($result);
+
 	$sqlAdd = "SELECT * FROM disciplina";
 	$resultAdd = mysqli_query($con, $sqlAdd) or die("Falha ao buscar disciplinas");
 
@@ -19,7 +23,7 @@
 
 ?>
 <div>
-	<h3>Disciplinas do professor</h3>
+	<h3>Disciplinas do professor <?= $professor['pro_nome'] ?></h3>
 		<table class="table table-hover">
 			<tr>
 				<th>Disciplina</th>

@@ -10,6 +10,10 @@
 			WHERE d.dis_cod=$id";
 	$resultPD = mysqli_query($con, $sqlPD) or die("Falha ao buscar disciplinas do professor");
 
+	$sql = "SELECT * FROM disciplina WHERE dis_cod = " . $id;
+	$result = mysqli_query($con, $sql) or die("Falha ao buscar nome da disciplina");
+	$disciplina = mysqli_fetch_array($result);
+
 	$sqlAdd = "SELECT * FROM professor";
 	$resultAdd = mysqli_query($con, $sqlAdd) or die("Falha ao buscar disciplinas");
 
@@ -19,7 +23,7 @@
 
 ?>
 <div>
-	<h3>Professores da disciplina</h3>
+	<h3>Professores da disciplina "<?= $disciplina['dis_nome'] ?>"</h3>
 		<table class="table table-hover">
 			<tr>
 				<th>Professores</th>
