@@ -19,7 +19,7 @@
 
 		$nome = $curso['cur_nome'];
 		$carga = $curso['cur_hrtotal'];
-		$nivel = $curso['cur_nivel'];
+		$nivel = $curso['niv_cod'];
 	}
 	else{
 		$nome = null;
@@ -44,18 +44,18 @@
 			<select class="form-control" name="nivel">
 				<?php
 					while($nivel = mysqli_fetch_array($rNivel)) {
-						echo "<option value='" . $nivel['ser_cod'];
-						/*if(isset($_GET['id'])){
-							if($ppc['cur_cod'] == $curso['cur_cod']){
-								echo "' selected>" . $curso['cur_nome'] . "</option>";
+						echo "<option value='" . $nivel['niv_cod'];
+						if(isset($_GET['id'])){
+							if($curso['niv_cod'] == $nivel['niv_cod']){
+								echo "' selected>" . $nivel['niv_desc'] . "</option>";
 							}
 							else{
-								echo "'>" . $curso['cur_nome'] . "</option>";
+								echo "'>" . $nivel['niv_desc'] . "</option>";
 							}
 						}
-						else{*/
+						else{
 							echo "'>" . $nivel['niv_desc'] . "</option>";
-						//}
+						}
 					}
 				?>
 			</select>

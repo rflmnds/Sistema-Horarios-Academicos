@@ -12,7 +12,7 @@
 		$result = mysqli_query($con,$sql) or die('Falha ao buscar nivel');
 		$nivel = mysqli_fetch_array($result);
 
-		$desc = $nivel['cur_nome'];
+		$desc = $nivel['niv_desc'];
 	}
 	else{
 		$desc = null;

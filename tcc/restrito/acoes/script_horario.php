@@ -10,7 +10,7 @@
 			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
-			WHERE h.ofe_id = " . ($turma+3);
+			WHERE h.ofe_cod = " . $turma;
 	$script = mysqli_query($con, $sql) or die('Falha ao buscar horário de turma');
 ?>
 

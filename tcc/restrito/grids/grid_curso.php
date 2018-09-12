@@ -1,7 +1,7 @@
 <?php
 	require('conexao/conecta.php');
 
-	$sql = "SELECT * FROM curso";
+	$sql = "SELECT * FROM curso as c INNER JOIN nivel as n ON c.niv_cod = n.niv_cod";
 
 	$result = mysqli_query($con, $sql) or die("Falha ao buscar cursos");
 
@@ -23,7 +23,7 @@
 			echo "<tr>";
 			echo "	<td>" . $curso['cur_cod'] . "</td>";
 			echo "	<td>" . $curso['cur_nome'] . "</td>";
-			echo "	<td>" . $curso['cur_nivel'] . "</td>";
+			echo "	<td>" . $curso['niv_desc'] . "</td>";
 			echo "	<td>" . $curso['cur_hrtotal'] . "</td>";
 			echo "	<td><a class='btn btn-warning' href='$url'>Editar</a></td>";
 			echo "</tr>";

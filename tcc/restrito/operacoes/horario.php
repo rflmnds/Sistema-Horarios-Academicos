@@ -11,6 +11,7 @@
 	<form name="form1" method="post">
 		<div class="form-group">
 			<select name="turma" id="turma" class="form-control">
+				<option value="0">Selecione a Turma</option>
 				<?php 
 					while($turma = mysqli_fetch_array($result)) {
 						echo "<option value='" . $turma['tur_cod'];
