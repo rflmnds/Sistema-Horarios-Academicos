@@ -12,6 +12,7 @@
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			WHERE h.ofe_cod = " . $turma;
 	$script = mysqli_query($con, $sql) or die('Falha ao buscar horário de turma');
+	$qtd = mysqli_num_rows($script);
 ?>
 
 <table class="table table-hover">
@@ -25,10 +26,20 @@
 		<th>Sábado</th>
 	</tr>
 	<?php
-		while($horario = mysqli_fetch_array($script)){
-			echo "<tr>
-					<td>" . $horario['dis_nome'] ."</td>
-				</tr>";
+		if($qtd >= 1){
+			while($horario = mysqli_fetch_array($script)){
+				echo "<tr>
+						<td>" . $horario['dis_nome'] ."</td>
+					</tr>";
+			}
+		}
+		else{
+			for($i = 0; $i < 2; $i++){
+				echo "<tr>";
+				for($j = 0; $j < 7; $j++){
+					echo "<td><a class='btn btn-default'>Adicionar aula</a></td>";
+				}
+			}
 		}
 	?>
 </table>
