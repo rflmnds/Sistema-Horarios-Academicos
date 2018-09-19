@@ -26,21 +26,36 @@
 		<th>Sábado</th>
 	</tr>
 	<?php
-		if($qtd >= 1){
-			while($horario = mysqli_fetch_array($script)){
-				echo "<tr>
-						<td>" . $horario['dis_nome'] ."</td>
-					</tr>";
-			}
-		}
-		else{
-			for($i = 0; $i < 2; $i++){
-				echo "<tr>";
-				for($j = 0; $j < 7; $j++){
+		for($i = 0; $i < 2; $i++){
+			echo "<tr>";
+			for($j = 0; $j < 7; $j++){
+				if($qtd >= 1){
+					while($horario = mysqli_fetch_array($script)){
+						echo "<tr>
+								<td>" . $horario['dis_nome'] ."</td>
+						</tr>";
+					}
+				}
+				else{
 					echo "<td><a class='btn btn-default'>Adicionar aula</a></td>";
 				}
 			}
 		}
+		// if($qtd >= 1){
+		// 	while($horario = mysqli_fetch_array($script)){
+		// 		echo "<tr>
+		// 				<td>" . $horario['dis_nome'] ."</td>
+		// 			</tr>";
+		// 	}
+		// }
+		// else{
+		// 	for($i = 0; $i < 2; $i++){
+		// 		echo "<tr>";
+		// 		for($j = 0; $j < 7; $j++){
+		// 			echo "<td><a class='btn btn-default'>Adicionar aula</a></td>";
+		// 		}
+		// 	}
+		// }
 	?>
 </table>
 
