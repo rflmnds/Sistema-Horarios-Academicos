@@ -30,12 +30,12 @@
 		for($i = 1; $i <= 2; $i++){
 			echo "<tr>";
 			for($j = 1; $j <= 7; $j++){
-				$url = "?pag=addaula&ds=" . $j . "&hg=" . $i;
+				$url = "?pag=addaula&turma=" . $turma . "&ds=" . $j . "&period=" . $i;
 				echo "<td>";
 				$count = 0;
 				if($qtd >= 1){
 					while($horario = mysqli_fetch_array($script)){
-						if($horario['aula_turno'] == $i &&  $horario['ds_cod'] == $j){
+						if($horario['aula_period'] == $i &&  $horario['ds_cod'] == $j){
 							echo $horario['dis_nome'];
 							$count = 1;
 							break;
@@ -53,21 +53,5 @@
 			}
 			echo "</tr>";
 		}
-		// if($qtd >= 1){
-		// 	while($horario = mysqli_fetch_array($script)){
-		// 		echo "<tr>
-		// 				<td>" . $horario['dis_nome'] ."</td>
-		// 			</tr>";
-		// 	}
-		// }
-		// else{
-		// 	for($i = 0; $i < 2; $i++){
-		// 		echo "<tr>";
-		// 		for($j = 0; $j < 7; $j++){
-		// 			echo "<td><a class='btn btn-default'>Adicionar aula</a></td>";
-		// 		}
-		// 	}
-		// }
 	?>
 </table>
-
