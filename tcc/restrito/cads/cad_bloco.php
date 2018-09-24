@@ -23,7 +23,7 @@
 
 
 <div>
-	<h1>Adicionar Bloco:</h1>
+	<h1>Adicionar Bloco Local:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Nome</label>

@@ -9,7 +9,7 @@
 <table class="table table-hover">
 	<tr>
 		<th>Código</th>
-		<th>Nome do bloco</th>
+		<th>Nome do bloco local</th>
 		<th>Ações</th>
 	</tr>
 	<?php
