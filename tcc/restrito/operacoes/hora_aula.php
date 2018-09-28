@@ -12,6 +12,11 @@
 
 	$aula = mysqli_fetch_array($rAula);
 	$aula_cod = $aula['aula_cod'];
+
+	if($aula_cod == null){
+		die('Período não cadastrado');
+	}
+
 	$period = $aula['aula_period'];
 	$dsNome = $aula['ds_nome'];
 

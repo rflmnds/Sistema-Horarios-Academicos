@@ -14,7 +14,7 @@
 ?>
 
 <div>
-	<h1>Cadastrar PPC:</h1>
+	<h1>Cadastrar Matriz Curricular:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="info">Identificação</label>

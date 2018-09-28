@@ -6,7 +6,7 @@
 
 	$sql = "INSERT INTO ppc(ppc_info, cur_cod) VALUES ('$info', $curso)";
 
-	mysqli_query($con,$sql) or die('Falha ao cadastrar PPC');
+	mysqli_query($con,$sql) or die('Falha ao cadastrar matriz curricular');
 
-	$mensagem = "PPC cadastrado com sucesso";
+	$mensagem = "Matriz cadastrado com sucesso";
 ?>

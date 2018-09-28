@@ -17,11 +17,15 @@
 	<h1>Adicionar Série:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
+			<label for="modulo">Módulo</label>
+			<input type="text" name="modulo" class="form-control" placeholder="Módulo" required>
+		</div>
+		<div class="form-group">
 			<label for="ano">Ano</label>
 			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
 		</div>
 		<div class="form-group">
-			<label for="ppc">PPC</label>
+			<label for="ppc">Matriz</label>
 			<select name="ppc" class="form-control">
 				<?php 
 					while($ppc = mysqli_fetch_array($result)) {
