@@ -1,52 +1,37 @@
 <?php
 	require('conexao/conecta.php');
 
-	$id = $_GET['id'];
+	$tur_cod = $_GET['tur'];
+	$ser_cod = $_GET['ser'];
 
-	$sqlS = "SELECT * FROM serie as S 
+	$sql = "SELECT * FROM serie as S 
 			INNER JOIN serie_has_turma as st ON s.ser_cod = st.ser_cod
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
-			WHERE t.tur_cod =" . $id; 
-	$resultS = mysqli_query($con, $sqlS);
+			WHERE t.tur_cod = $tur_cod AND s.ser_cod = $ser_cod"; 
+	$result1 = mysqli_query($con, $sql);
+	$serie = mysqli_fetch_array($result1);
+	// $modulo = $serie['ser_modulo'];
+	$ano = $serie['ser_ano'];
+	$turma = $serie['tur_nome'];
 
-	$sqlD = "SELECT * FROM professor_has_disciplina as pd 
+	$sql = "SELECT * FROM professor_has_disciplina as pd 
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod ";
-	$resultD = mysqli_query($con, $sqlD);
+	$result2 = mysqli_query($con, $sql);
 
-	if(isset($_POST['ano'])){
+	if(isset($_POST['submit'])){
 		require('restrito/acoes/acao_oferta.php');
 	}	
 ?>
 
 <div>
-	<h2>Oferta:</h2>
+	<h2>Ofertar disciplina para turma "<?= $turma /* . " Série: " . $modulo . "º Ano"*/ ?>":</h2>
 	<form name="form1" method="post">
 		<div class="form-group">
-			<label for="serie">Série</label>
-			<select name="serie" class="form-control">
-				<?php 
-					while($serie = mysqli_fetch_array($resultS)) {
-						echo "<option value='" . $serie['ser_cod'];
-						/*if(isset($_GET['id'])){
-							if($ppc['cur_cod'] == $curso['cur_cod']){
-								echo "' selected>" . $curso['cur_nome'] . "</option>";
-							}
-							else{
-								echo "'>" . $curso['cur_nome'] . "</option>";
-							}
-						else{*/
-							echo "'>Ano de entrada: " . $serie['ser_ano'] . "</option>";
-						//}
-					}
-				?>
-			</select>
-		</div>
-		<div class="form-group">
 			<label for="disc">Disciplina</label>
-			<select name="disc" id="disc" class="form-control" multiple>
+			<select name="disc" id="disc" class="form-control">
 				<?php 
-					while($disciplina = mysqli_fetch_array($resultD)) {
+					while($disciplina = mysqli_fetch_array($result2)) {
 						echo "<option value='" . $disciplina['pd_cod'];
 						/*if(isset($_GET['id'])){
 							if($ppc['cur_cod'] == $curso['cur_cod']){
@@ -64,13 +49,10 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<input type="submit" value="Adicionar" class="btn btn-default" name="add" id="add">
-		</div>
-		<div class="form-group">
-			<label for="ano">Ano</label>
+			<label for="ano">Ano de Oferta</label>
 			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
 		</div>
-		<input type="submit" value="Salvar" class="btn btn-default">
+		<input type="submit" value="Salvar" name="submit" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=oferta">
 	</form>
 </div>

@@ -1,10 +1,9 @@
 <?php
 	require('conexao/conecta.php');
 
-	$sql = "SELECT * FROM disciplina as d
-			INNER JOIN serie as s ON d.ser_cod = s.ser_cod
-			INNER JOIN ppc as p ON s.ppc_cod = p.ppc_cod
-			INNER JOIN curso as c ON p.cur_cod = c.cur_cod";
+	$sql = "SELECT * FROM serie_has_turma as st
+			INNER JOIN serie as s ON st.ser_cod = s.ser_cod
+			INNER JOIN turma as t ON st.tur_cod = t.tur_cod";
 	$result = mysqli_query($con, $sql) or die("Falha ao buscar disciplinas");
 
 ?>
@@ -12,26 +11,19 @@
 <table class="table table-hover">
 	<tr>
 		<th>Código</th>
-		<th>Curso</th>
-		<th>Disciplina</th>
-		<th>Carga Horária</th>
+		<th>Série</th>
 		<th>Ações</th>
 	</tr>
 	<?php
-		while($disciplina = mysqli_fetch_array($result)){
+		while($serie = mysqli_fetch_array($result)){
 			$pag = $_GET['pag'];
-			$url = '?pag=' . $pag . '&id=' . $disciplina['dis_cod'];
+			$url = '?pag=oferta&tur=' . $id . '&ser=' . $serie['ser_cod'];
 
 			echo "<tr>";
 
-			echo "	<td>" . $disciplina['dis_cod'] . "</td>";
-			echo "	<td>" . $disciplina['cur_nome'] . "</td>";
-			echo "	<td>" . $disciplina['dis_nome'] . "</td>";
-			echo "	<td>" . $disciplina['dis_carga'] . "</td>";
-			echo "	<td>	
-						<a class='btn btn-warning' href='$url'>Informações</a>
-						<a class='btn btn-success' href='?pag=discprof&id=" . $disciplina['dis_cod'] . "'>Professores</a>
-					</td>";
+			echo "	<td>" . $serie['ser_cod'] . "</td>";
+			echo "	<td>" . $serie['ser_ano'] . "</td>";
+			echo "	<td><a href='$url'class='btn btn-success'>Ofertar disciplinas</a></td>";
 			echo "</tr>";
 		}
 	?>

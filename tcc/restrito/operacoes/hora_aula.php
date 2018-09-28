@@ -90,6 +90,11 @@
 			<label for="status">Status</label>
 			<input type="text" name="status" class="form-control" placeholder="Status" required>
 		</div>
-		<input type="submit" value="Salvar" name="submit" class="btn btn-default">
+		<div class="form-group">
+			<input type="submit" value="Salvar" name="submit" class="btn btn-default">
+		</div>
+		<div class="form-group">
+			<input type="button" value="Voltar" onclick="window.location='?pag=horario'" style="width:100%" class="btn btn-default">
+		</div>
 	</form>
 </div>

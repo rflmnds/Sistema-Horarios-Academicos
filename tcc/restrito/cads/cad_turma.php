@@ -15,11 +15,11 @@
 	<h1>Adicionar Turma:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
-			<label for="nome">Nome</label>
+			<label for="nome">Nome de Identificação</label>
 			<input type="text" name="nome" class="form-control" placeholder="Nome" required>
 		</div>
 		<div class="form-group"> 
-			<label for="ano">Ano</label>
+			<label for="ano">Ano de entrada</label>
 			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
 		</div>
 		<div class="form-group">

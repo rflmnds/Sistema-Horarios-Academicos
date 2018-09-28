@@ -83,9 +83,6 @@
           else if($link == 'oferta'){
             include('restrito/operacoes/oferta.php');
           }
-          else if($link == 'ofertateste'){
-            include('restrito/operacoes/oferta_teste.php');
-          }
           else if($link == 'turmaserie'){
             include('restrito/operacoes/turma_serie.php');
           }

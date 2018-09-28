@@ -7,5 +7,7 @@
 
 	mysqli_query($con, $sql) or die('Falha ao conectar professor à disciplina');
 
+	header('Refresh:0');
+	
 	$mensagem = "Conectado com sucesso";
 ?>

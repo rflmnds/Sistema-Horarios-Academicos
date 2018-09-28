@@ -51,6 +51,6 @@
 		<input type="submit" value="Salvar" class="btn btn-default" name="submit">
 	</form>
 
-	<h2>Séries vinculadas à "<?= $tur_nome ?></h2>
+	<h2>Séries vinculadas à "<?= $tur_nome ?>"</h2>
 	<?php include('restrito/grids/grid_ts.php') ?>
 </div>

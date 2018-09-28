@@ -58,8 +58,12 @@
 				?>
 			</select>		
 		</div>
-		<input type="submit" name="submit" value="Salvar" class="btn btn-default">
-
+		<div class="form-group">
+			<input type="submit" name="submit" value="Salvar" class="btn btn-default">
+		</div>
+		<div class="form-group">
+			<input type="button" value="Voltar" onclick="window.location='?pag=caddisc'" style="width:100%" class="btn btn-default">
+		</div>
 	</form>
 
 	<p class="text-success"><?= $mensagem ?></p>
