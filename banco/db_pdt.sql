@@ -166,11 +166,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`ppc`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`ppc` (
-  `ppc_cod` INT NOT NULL AUTO_INCREMENT,
-  `ppc_info` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `mydb`.`matriz` (
+  `mat_cod` INT NOT NULL AUTO_INCREMENT,
+  `mat_info` VARCHAR(45) NOT NULL,
   `cur_cod` INT NOT NULL,
-  PRIMARY KEY (`ppc_cod`),
+  PRIMARY KEY (`mat_cod`),
   INDEX `fk_ppc_curso1_idx` (`cur_cod` ASC),
   CONSTRAINT `fk_ppc_curso1`
     FOREIGN KEY (`cur_cod`)
@@ -185,13 +185,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`serie` (
   `ser_cod` INT NOT NULL AUTO_INCREMENT,
+  `ser_modulo` VARCHAR(45) NOT NULL,
   `ser_ano` INT NOT NULL,
-  `ppc_cod` INT NOT NULL,
+  `mat_cod` INT NOT NULL,
   PRIMARY KEY (`ser_cod`),
-  INDEX `fk_serie_ppc1_idx` (`ppc_cod` ASC),
+  INDEX `fk_serie_ppc1_idx` (`mat_cod` ASC),
   CONSTRAINT `fk_serie_ppc1`
-    FOREIGN KEY (`ppc_cod`)
-    REFERENCES `mydb`.`ppc` (`ppc_cod`)
+    FOREIGN KEY (`mat_cod`)
+    REFERENCES `mydb`.`matriz` (`mat_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -258,12 +259,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`turma` (
   `tur_cod` INT NOT NULL AUTO_INCREMENT,
   `tur_nome` VARCHAR(45) NOT NULL,
   `tur_ano` VARCHAR(45) NOT NULL,
-  `ppc_cod` INT NOT NULL,
+  `mat_cod` INT NOT NULL,
   PRIMARY KEY (`tur_cod`),
-  INDEX `fk_turma_ppc1_idx` (`ppc_cod` ASC),
+  INDEX `fk_turma_ppc1_idx` (`mat_cod` ASC),
   CONSTRAINT `fk_turma_ppc1`
-    FOREIGN KEY (`ppc_cod`)
-    REFERENCES `mydb`.`ppc` (`ppc_cod`)
+    FOREIGN KEY (`mat_cod`)
+    REFERENCES `mydb`.`matriz` (`mat_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -282,10 +283,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`hora_aula`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`hora_aula` (
-  `aula_cod` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `mydb`.`horario` (
+  `hor_cod` INT NOT NULL AUTO_INCREMENT,
+  `hor_periodo` INT NOT NULL,
   `ds_cod` INT NOT NULL,
-  PRIMARY KEY (`aula_cod`),
+  PRIMARY KEY (`hor_cod`),
   INDEX `fk_aula_dia_semana1_idx` (`ds_cod` ASC),
   CONSTRAINT `fk_aula_dia_semana1`
     FOREIGN KEY (`ds_cod`)
@@ -368,15 +370,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`horario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`horario` (
-  `hor_cod` INT NOT NULL AUTO_INCREMENT,
-  `hor_status` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `mydb`.`aula` (
+  `aula_cod` INT NOT NULL AUTO_INCREMENT,
+  `aula_status` VARCHAR(45) NOT NULL,
   `sal_cod` INT NOT NULL,
-  `aula_cod` INT NOT NULL,
+  `hor_cod` INT NOT NULL,
   `ofe_cod` INT NOT NULL,
   INDEX `fk_aula_sala1_idx` (`sal_cod` ASC),
-  PRIMARY KEY (`hor_cod`),
-  INDEX `fk_horário_aula1_idx` (`aula_cod` ASC),
+  PRIMARY KEY (`aula_cod`),
+  INDEX `fk_horário_aula1_idx` (`hor_cod` ASC),
   INDEX `fk_horario_Oferta1_idx` (`ofe_cod` ASC),
   CONSTRAINT `fk_aula_sala1`
     FOREIGN KEY (`sal_cod`)
@@ -384,8 +386,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`horario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_horário_aula1`
-    FOREIGN KEY (`aula_cod`)
-    REFERENCES `mydb`.`hora_aula` (`aula_cod`)
+    FOREIGN KEY (`hor_cod`)
+    REFERENCES `mydb`.`horario` (`hor_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_horario_Oferta1`
@@ -402,18 +404,18 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`hora_projeto` (
   `hp_cod` INT NOT NULL AUTO_INCREMENT,
   `proj_cod` INT NOT NULL,
-  `aula_cod` INT NOT NULL,
+  `hor_cod` INT NOT NULL,
   INDEX `fk_hora_projeto_projeto1_idx` (`proj_cod` ASC),
   PRIMARY KEY (`hp_cod`),
-  INDEX `fk_hora_projeto_hora_aula1_idx` (`aula_cod` ASC),
+  INDEX `fk_hora_projeto_hora_aula1_idx` (`hor_cod` ASC),
   CONSTRAINT `fk_hora_projeto_projeto1`
     FOREIGN KEY (`proj_cod`)
     REFERENCES `mydb`.`projeto` (`proj_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_hora_projeto_hora_aula1`
-    FOREIGN KEY (`aula_cod`)
-    REFERENCES `mydb`.`hora_aula` (`aula_cod`)
+    FOREIGN KEY (`hor_cod`)
+    REFERENCES `mydb`.`horario` (`hor_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -425,18 +427,18 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`hora_ativ_comp` (
   `hac_cod` INT NOT NULL AUTO_INCREMENT,
   `atv_cod` INT NOT NULL,
-  `aula_cod` INT NOT NULL,
+  `hor_cod` INT NOT NULL,
   PRIMARY KEY (`hac_cod`),
   INDEX `fk_hora_ativ_ativ_complementares1_idx` (`atv_cod` ASC),
-  INDEX `fk_hora_ativ_hora_aula1_idx` (`aula_cod` ASC),
+  INDEX `fk_hora_ativ_hora_aula1_idx` (`hor_cod` ASC),
   CONSTRAINT `fk_hora_ativ_ativ_complementares1`
     FOREIGN KEY (`atv_cod`)
     REFERENCES `mydb`.`ativ_complementares` (`atv_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_hora_ativ_hora_aula1`
-    FOREIGN KEY (`aula_cod`)
-    REFERENCES `mydb`.`hora_aula` (`aula_cod`)
+    FOREIGN KEY (`hor_cod`)
+    REFERENCES `mydb`.`horario` (`hor_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

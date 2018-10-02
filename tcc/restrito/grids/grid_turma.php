@@ -2,8 +2,8 @@
 	require('conexao/conecta.php');
 
 	$sql = "SELECT * FROM turma as t 
-			INNER JOIN ppc as p ON t.ppc_cod = p.ppc_cod
-			INNER JOIN curso as c ON p.cur_cod = c.cur_cod";
+			INNER JOIN matriz as m ON t.mat_cod = m.mat_cod
+			INNER JOIN curso as c ON m.cur_cod = c.cur_cod";
 	$result = mysqli_query($con, $sql) or die("Falha ao buscar turmas");
 
 ?>
@@ -27,7 +27,7 @@
 			echo "	<td>" . $turma['tur_nome'] . "</td>";
 			echo "	<td>" . $turma['cur_nome'] . "</td>";
 			echo "	<td>" . $turma['tur_ano'] . "</td>";
-			echo "	<td>" . $turma['ppc_info'] . "</td>";
+			echo "	<td>" . $turma['mat_info'] . "</td>";
 			echo "	<td>
 						<a class='btn btn-success' href='?pag=turmaserie&id=" . $turma['tur_cod'] . "'>Vincular à série</a>
 					</td>";

@@ -3,15 +3,15 @@
 
 	$turma = $_POST['turma'];
 
-	$sql = "SELECT * FROM horario as h
-			INNER JOIN hora_aula as ha ON h.aula_cod = ha.aula_cod
-			INNER JOIN oferta as o ON h.ofe_cod = o.ofe_cod
+	$sql = "SELECT * FROM aula as a
+			INNER JOIN horario as h ON a.hor_cod = h.hor_cod
+			INNER JOIN oferta as o ON a.ofe_cod = o.ofe_cod
 			INNER JOIN serie_has_turma as st ON o.ser_cod = st.ser_cod
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
-			WHERE t.tur_cod = " . $turma . " ORDER BY ha.ds_cod ";
+			WHERE t.tur_cod = " . $turma . " ORDER BY h.ds_cod ";
 	$script = mysqli_query($con, $sql) or die('Falha ao buscar horário de turma');
 	$qtd = mysqli_num_rows($script);
 ?>
@@ -35,7 +35,7 @@
 				$count = 0;
 				if($qtd >= 1){
 					while($horario = mysqli_fetch_array($script)){
-						if($horario['aula_period'] == $i &&  $horario['ds_cod'] == $j){
+						if($horario['hor_periodo'] == $i &&  $horario['ds_cod'] == $j){
 							echo $horario['dis_nome'];
 							$count = 1;
 							break;

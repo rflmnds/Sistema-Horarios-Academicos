@@ -1,6 +1,8 @@
 <?php
 	require('conexao/conecta.php');
 
+	$mensagem = null;
+
 	$tur_cod = $_GET['tur'];
 	$ser_cod = $_GET['ser'];
 
@@ -10,7 +12,7 @@
 			WHERE t.tur_cod = $tur_cod AND s.ser_cod = $ser_cod"; 
 	$result1 = mysqli_query($con, $sql);
 	$serie = mysqli_fetch_array($result1);
-	// $modulo = $serie['ser_modulo'];
+	$modulo = $serie['ser_modulo'];
 	$ano = $serie['ser_ano'];
 	$turma = $serie['tur_nome'];
 
@@ -25,7 +27,7 @@
 ?>
 
 <div>
-	<h2>Ofertar disciplina para turma "<?= $turma /* . " Série: " . $modulo . "º Ano"*/ ?>":</h2>
+	<h2>Ofertar disciplina para turma "<?= $turma  . " Série: " . $modulo?>":</h2>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="disc">Disciplina</label>
@@ -55,4 +57,5 @@
 		<input type="submit" value="Salvar" name="submit" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=oferta">
 	</form>
+	<p class="text-success"><?= $mensagem ?></p>
 </div>

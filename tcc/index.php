@@ -33,7 +33,7 @@
         <tr>
           <td><h4>Navbar provisória:</h4></td>
           <td><a href="?pag=cadcurso" class="btn btn-success">Curso</a></td>
-          <td><a href="?pag=cadppc" class="btn btn-success">Matriz</a></td>
+          <td><a href="?pag=cadmatriz" class="btn btn-success">Matriz</a></td>
           <td><a href="?pag=cadserie" class="btn btn-success">Série</a></td>
           <td><a href="?pag=cadturma" class="btn btn-success">Turma</a></td>
           <td><a href="?pag=cadprof" class="btn btn-success">Professor</a></td>
@@ -65,8 +65,8 @@
           else if($link == 'cadsala'){
             include('restrito/cads/cad_sala.php');
           }
-          else if($link == 'cadppc'){
-            include('restrito/cads/cad_ppc.php');
+          else if($link == 'cadmatriz'){
+            include('restrito/cads/cad_matriz.php');
           }
           else if($link == 'cadturma'){
             include('restrito/cads/cad_turma.php');

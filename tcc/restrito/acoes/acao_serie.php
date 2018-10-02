@@ -1,12 +1,13 @@
 <?php
 	require('conexao/conecta.php');
 
+	$modulo = $_POST['modulo'];
 	$ano = $_POST['ano'];
-	$ppc = $_POST['ppc'];
+	$matriz = $_POST['matriz'];
 
-	$sql = "INSERT INTO serie(ser_ano,ppc_cod) VALUES ($ano, $ppc)";
+	$sql = "INSERT INTO serie(ser_modulo, ser_ano, mat_cod) VALUES ('$modulo', $ano, $matriz)";
 
-	mysqli_query($con,$sql) or die('Falha ao cadastrar série');
+	mysqli_query($con, $sql) or die('Falha ao cadastrar série');
 
 	$mensagem = "Série cadastrado com sucesso";
 ?>

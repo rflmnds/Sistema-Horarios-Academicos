@@ -3,8 +3,8 @@
 
 	$mensagem = null;
 
-	$sql= "SELECT * FROM ppc as p INNER JOIN curso as c ON p.cur_cod = c.cur_cod";
-	$result = mysqli_query($con, $sql) or die ("Falha ao buscar ppc");
+	$sql= "SELECT * FROM matriz as m INNER JOIN curso as c ON m.cur_cod = c.cur_cod";
+	$result = mysqli_query($con, $sql) or die ("Falha ao buscar matriz");
 
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_turma.php');
@@ -23,11 +23,11 @@
 			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
 		</div>
 		<div class="form-group">
-			<label for="ppc">PPC</label>
-			<select name="ppc" class="form-control">
+			<label for="matriz">PPC</label>
+			<select name="matriz" class="form-control">
 				<?php 
-					while($ppc = mysqli_fetch_array($result)) {
-						echo "<option value='" . $ppc['ppc_cod'];
+					while($matriz = mysqli_fetch_array($result)) {
+						echo "<option value='" . $matriz['mat_cod'];
 						/*if(isset($_GET['id'])){
 							if($ppc['cur_cod'] == $curso['cur_cod']){
 								echo "' selected>" . $curso['cur_nome'] . "</option>";
@@ -37,7 +37,7 @@
 							}
 						}
 						else{*/
-							echo "'>" . $ppc['ppc_info'] . " - Curso: " . $ppc['cur_nome'] . "</option>";
+							echo "'>" . $matriz['mat_info'] . " - Curso: " . $matriz['cur_nome'] . "</option>";
 						//}
 					}
 				?>

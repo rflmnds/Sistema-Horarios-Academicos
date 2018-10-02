@@ -8,7 +8,7 @@
 	$result1 = mysqli_query($con, $sql) or die("Falha ao buscar a turma");
 	$turma = mysqli_fetch_array($result1);
 	$tur_nome = $turma['tur_nome'];
-	$matriz = $turma['ppc_cod'];
+	$matriz = $turma['mat_cod'];
 
 	$sql = "SELECT * FROM serie";
 	$result2 = mysqli_query($con, $sql) or die("Falha ao buscar serie");
@@ -30,7 +30,7 @@
 			<select name="serie" class="form-control">
 				<?php
 					while($serie = mysqli_fetch_array($result2)) {
-						if($serie['ppc_cod'] == $matriz){
+						if($serie['mat_cod'] == $matriz){
 							echo "<option value='" . $serie['ser_cod'];
 								// if(isset($_GET['id'])){
 								// 	if($ppc['cur_cod'] == $curso['cur_cod']){

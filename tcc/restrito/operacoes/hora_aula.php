@@ -3,22 +3,24 @@
 
 	$tur_cod = $_GET['turma'];
 	$ds_cod = $_GET['ds'];
-	$aula_period = $_GET['period'];
+	$hor_periodo = $_GET['period'];
 
-	$sql = "SELECT * FROM hora_aula as ha 
-			INNER JOIN dia_semana as ds ON ha.ds_cod = ds.ds_cod
-			WHERE ds.ds_cod = $ds_cod AND ha.aula_period = $aula_period";
-	$rAula = mysqli_query($con, $sql)or die("Falha ao buscar horário de aula");
+	$sql = "SELECT * FROM horario as h 
+			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
+			WHERE ds.ds_cod = $ds_cod AND h.hor_periodo = $hor_periodo";
+	$rHorario = mysqli_query($con, $sql)or die("Falha ao buscar horário de aula");
 
-	$aula = mysqli_fetch_array($rAula);
-	$aula_cod = $aula['aula_cod'];
+	$horario = mysqli_fetch_array($rHorario);
+	$hor_cod = $horario['hor_cod'];
 
-	if($aula_cod == null){
-		die('Período não cadastrado');
+	if($hor_cod == null){
+		$sql = "INSERT INTO horario(hor_periodo, ds_cod) VALUES ($hor_periodo, $ds_cod)";
+		mysqli_query($con, $sql) or die("Falha ao cadastrar Período");
+		header('Refresh:0');
 	}
 
-	$period = $aula['aula_period'];
-	$dsNome = $aula['ds_nome'];
+	$period = $horario['hor_periodo'];
+	$dsNome = $horario['ds_nome'];
 
 	$sql = "SELECT * FROM turma WHERE tur_cod = $tur_cod";
 	$rTurma = mysqli_query($con, $sql)or die("Falha ao buscar turma");
@@ -42,7 +44,7 @@
 ?>
 
 <div>
-	<?= "<h2>Turma:" . $nomeTurma . " - " . $period . "ª Aula de " . $dsNome . "</h2>" ?>
+	<?= "<h2>Turma: " . $nomeTurma . " - " . $period . "ª Aula de " . $dsNome . "</h2>" ?>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="disciplina">Disciplina</label>

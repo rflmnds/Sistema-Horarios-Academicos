@@ -4,8 +4,8 @@
 	$mensagem = null;
 
 	$sql = "SELECT * FROM serie as s 
-			INNER JOIN ppc as p ON s.ppc_cod = p.ppc_cod
-			INNER JOIN curso as c ON p.cur_cod = c.cur_cod";
+			INNER JOIN matriz as m ON s.mat_cod = m.mat_cod
+			INNER JOIN curso as c ON m.cur_cod = c.cur_cod";
 	$result = mysqli_query($con, $sql) or die ("Falha ao buscar Série");
 	
 	if(isset($_POST['nome'])){
@@ -41,7 +41,7 @@
 							}
 						}
 						else{*/
-							echo "'>Curso: " . $serie['cur_nome'] . " - Ano: " . $serie['ser_ano'] . " - PPC: " . $serie['ppc_info'] . "</option>";
+							echo "'>Curso: " . $serie['cur_nome'] . " - Ano: " . $serie['ser_ano'] . " - Matriz Curricular: " . $serie['mat_info'] . "</option>";
 						//}
 					}
 				?>
