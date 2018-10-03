@@ -14,7 +14,7 @@
 	$hor_cod = $horario['hor_cod'];
 
 	if($hor_cod == null){
-		$sql = "INSERT INTO horario(hor_periodo, ds_cod) VALUES ($hor_periodo, $ds_cod)";
+		echo $sql = "INSERT INTO horario(hor_periodo, ds_cod) VALUES ($hor_periodo, $ds_cod)";
 		mysqli_query($con, $sql) or die("Falha ao cadastrar Período");
 		header('Refresh:0');
 	}

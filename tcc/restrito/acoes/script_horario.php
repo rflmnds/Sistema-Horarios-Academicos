@@ -3,7 +3,13 @@
 
 	$turma = $_POST['turma'];
 
-	$sql = "SELECT * FROM aula as a
+	$sql1 = "SELECT * FROM serie_has_turma WHERE tur_cod = " . $turma;
+	$script1 = mysqli_query($con, $sql1) or die('Falha ao buscar horário de turma');
+
+	$rows = mysqli_fetch_array($script1);
+	$qtd_rows = $rows['st_qtd'];
+	
+	$sql2 = "SELECT * FROM aula as a
 			INNER JOIN horario as h ON a.hor_cod = h.hor_cod
 			INNER JOIN oferta as o ON a.ofe_cod = o.ofe_cod
 			INNER JOIN serie_has_turma as st ON o.ser_cod = st.ser_cod
@@ -12,8 +18,9 @@
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			WHERE t.tur_cod = " . $turma . " ORDER BY h.ds_cod ";
-	$script = mysqli_query($con, $sql) or die('Falha ao buscar horário de turma');
-	$qtd = mysqli_num_rows($script);
+	$script2 = mysqli_query($con, $sql2) or die('Falha ao buscar horário de turma');
+
+	$qtd = mysqli_num_rows($script2);
 ?>
 
 <table class="table table-hover">
@@ -27,14 +34,14 @@
 		<th>Sábado</th>
 	</tr>
 	<?php
-		for($i = 1; $i <= 2; $i++){
+		for($i = 1; $i <= $qtd_rows; $i++){
 			echo "<tr>";
 			for($j = 1; $j <= 7; $j++){
 				$url = "?pag=addaula&turma=" . $turma . "&ds=" . $j . "&period=" . $i;
 				echo "<td>";
 				$count = 0;
 				if($qtd >= 1){
-					while($horario = mysqli_fetch_array($script)){
+					while($horario = mysqli_fetch_array($script2)){
 						if($horario['hor_periodo'] == $i &&  $horario['ds_cod'] == $j){
 							echo $horario['dis_nome'];
 							$count = 1;
@@ -48,7 +55,7 @@
 				else{
 					echo "<a href='$url' class='btn btn-default'>Adicionar aula</a>";
 				}
-				mysqli_data_seek($script, 0);
+				mysqli_data_seek($script2, 0);
 				echo "</td>";
 			}
 			echo "</tr>";
