@@ -13,8 +13,8 @@
 		<th>Código</th>
 		<th>Turma</th>
 		<th>Curso</th>
-		<th>Ano</th>
-		<th>PPC</th>
+		<th>Ano de Entrada</th>
+		<th>Matriz Curricular</th>
 		<th>Ações</th>
 	</tr>
 	<?php

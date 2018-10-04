@@ -41,7 +41,7 @@
 								// 	}
 								// }
 								// else{
-									echo "'>" . $serie['ser_ano'] . "</option>";
+									echo "'>" . $serie['ser_modulo'] . "</option>";
 								//}
 						}
 					}

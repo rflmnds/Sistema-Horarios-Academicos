@@ -90,7 +90,7 @@
             include('restrito/operacoes/horario.php');
           }
           else if($link == 'addaula'){
-            include('restrito/operacoes/hora_aula.php');
+            include('restrito/operacoes/aula.php');
           }
       	}
       ?>

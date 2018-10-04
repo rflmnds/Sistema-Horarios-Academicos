@@ -25,7 +25,7 @@
 			echo "<tr>";
 
 			echo "	<td>" . $serie['ser_cod'] . "</td>";
-			echo "	<td>" . $serie['ser_ano'] . "</td>";
+			echo "	<td>" . $serie['ser_modulo'] . " - " . $serie['ser_ano'] . "</td>";
 			echo "	<td><a href='$url'class='btn btn-success'>Ofertar disciplinas</a></td>";
 			echo "</tr>";
 		}
