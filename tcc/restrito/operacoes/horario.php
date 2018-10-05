@@ -59,5 +59,5 @@
 		<button id="buscar">Buscar</button>
 	</form>
 
-	<p id="horario">Aqui fica a Tabela de horários</p>
+	<p id="horario">Tabela de horários</p>
 </div>
