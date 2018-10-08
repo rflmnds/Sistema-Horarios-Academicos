@@ -19,11 +19,11 @@
 			<input type="text" name="nome" class="form-control" placeholder="Nome" required>
 		</div>
 		<div class="form-group"> 
-			<label for="ano">Ano de entrada</label>
+			<label for="ano">Ano de Entrada</label>
 			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
 		</div>
 		<div class="form-group">
-			<label for="matriz">PPC</label>
+			<label for="matriz">Matriz Curricular</label>
 			<select name="matriz" class="form-control">
 				<?php 
 					while($matriz = mysqli_fetch_array($result)) {

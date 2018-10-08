@@ -292,7 +292,7 @@ INSERT INTO `dia_semana` (`ds_cod`, `ds_nome`) VALUES
 -- Table `mydb`.`turno`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`turno` (
-  `turno_cod` INT NOT NULL,
+  `turno_cod` INT NOT NULL AUTO_INCREMENT,
   `turno_desc` VARCHAR(45) NOT NULL,
   `turno_status` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`turno_cod`))

@@ -36,6 +36,7 @@
           <td><a href="?pag=cadmatriz" class="btn btn-success">Matriz</a></td>
           <td><a href="?pag=cadserie" class="btn btn-success">Série</a></td>
           <td><a href="?pag=cadturma" class="btn btn-success">Turma</a></td>
+          <td><a href="?pag=cadturno" class="btn btn-success">Turno</a></td>
           <td><a href="?pag=cadprof" class="btn btn-success">Professor</a></td>
           <td><a href="?pag=caddisc" class="btn btn-success">Disciplina</a></td>
           <td><a href="?pag=cadbloco" class="btn btn-success">Bloco</a></td>
@@ -91,6 +92,9 @@
           }
           else if($link == 'addaula'){
             include('restrito/operacoes/aula.php');
+          }
+          else if($link == 'cadturno'){
+            include('restrito/cads/cad_turno.php');
           }
       	}
       ?>
