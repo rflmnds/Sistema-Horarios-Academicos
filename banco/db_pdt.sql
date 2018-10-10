@@ -388,21 +388,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pdt`.`oferta` (
   `ofe_cod` INT NOT NULL AUTO_INCREMENT,
-  `ser_cod` INT NOT NULL,
-  `tur_cod` INT NOT NULL,
   `pd_cod` INT NOT NULL,
+  `st_cod` INT NOT NULL,
   `ofe_ano` INT NULL DEFAULT NULL,
-  INDEX `fk_professor_has_disciplina_has_serie_has_turma_serie_has_t_idx` (`ser_cod` ASC, `tur_cod` ASC),
   PRIMARY KEY (`ofe_cod`),
   INDEX `fk_oferta_professor_has_disciplina1_idx` (`pd_cod` ASC),
-  CONSTRAINT `fk_professor_has_disciplina_has_serie_has_turma_serie_has_tur1`
-    FOREIGN KEY (`ser_cod` , `tur_cod`)
-    REFERENCES `db_pdt`.`serie_has_turma` (`ser_cod` , `tur_cod`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_oferta_serie_has_turma1_idx` (`st_cod` ASC),
   CONSTRAINT `fk_oferta_professor_has_disciplina1`
     FOREIGN KEY (`pd_cod`)
     REFERENCES `db_pdt`.`professor_has_disciplina` (`pd_cod`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_oferta_serie_has_turma1`
+    FOREIGN KEY (`st_cod`)
+    REFERENCES `db_pdt`.`serie_has_turma` (`st_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
