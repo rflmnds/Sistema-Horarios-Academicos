@@ -5,7 +5,7 @@
 	$ser_cod = $_GET['ser'];
 	$mensagem = null;
 	
-	$sql = "SELECT * FROM serie as S 
+	$sql = "SELECT * FROM serie as s 
 			INNER JOIN serie_has_turma as st ON s.ser_cod = st.ser_cod
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 			WHERE t.tur_cod = $tur_cod AND s.ser_cod = $ser_cod";
@@ -35,7 +35,7 @@
 			<select name="turno" class="form-control">
 				<?php
 					while($turno = mysqli_fetch_array($result2)) {
-						echo "<option value='" . $serie['ser_cod'];
+						echo "<option value='" . $turno['turno_cod'];
 							// if(isset($_GET['id'])){
 							// 	if($ppc['cur_cod'] == $curso['cur_cod']){
 							// 		echo "' selected>" . $curso['cur_nome'] . "</option>";
@@ -45,7 +45,7 @@
 							// 	}
 							// }
 							// else{
-								echo "'>" . $serie['ser_modulo'] . "</option>";
+								echo "'>" . $turno['turno_desc'] . "</option>";
 							//}
 					}
 				?>

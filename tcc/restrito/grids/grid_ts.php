@@ -6,8 +6,8 @@
 	$sql = "SELECT * FROM serie_has_turma as st
 			INNER JOIN serie as s ON st.ser_cod = s.ser_cod
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
-			WHERE s.ser_cod = $id";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar disciplinas");
+			WHERE t.tur_cod = $id";
+	$result = mysqli_query($con, $sql) or die("Falha ao buscar séries vinculadas");
 
 ?>
 

@@ -6,7 +6,7 @@
 	$tur_cod = $_GET['tur'];
 	$ser_cod = $_GET['ser'];
 
-	$sql = "SELECT * FROM serie as S 
+	$sql = "SELECT * FROM serie as s
 			INNER JOIN serie_has_turma as st ON s.ser_cod = st.ser_cod
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 			WHERE t.tur_cod = $tur_cod AND s.ser_cod = $ser_cod"; 
