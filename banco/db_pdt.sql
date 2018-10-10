@@ -513,20 +513,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pdt`.`serie_turma_has_turno` (
   `stt_cod` INT NOT NULL AUTO_INCREMENT,
-  `ser_cod` INT NOT NULL,
-  `tur_cod` INT NOT NULL,
   `turno_cod` INT NOT NULL,
+  `st_cod` INT NOT NULL,
   PRIMARY KEY (`stt_cod`),
   INDEX `fk_serie_has_turma_has_turno_turno1_idx` (`turno_cod` ASC),
-  INDEX `fk_serie_has_turma_has_turno_serie_has_turma1_idx` (`ser_cod` ASC, `tur_cod` ASC),
-  CONSTRAINT `fk_serie_has_turma_has_turno_serie_has_turma1`
-    FOREIGN KEY (`ser_cod` , `tur_cod`)
-    REFERENCES `db_pdt`.`serie_has_turma` (`ser_cod` , `tur_cod`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_serie_turma_has_turno_serie_has_turma1_idx` (`st_cod` ASC),
   CONSTRAINT `fk_serie_has_turma_has_turno_turno1`
     FOREIGN KEY (`turno_cod`)
     REFERENCES `db_pdt`.`turno` (`turno_cod`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_serie_turma_has_turno_serie_has_turma1`
+    FOREIGN KEY (`st_cod`)
+    REFERENCES `db_pdt`.`serie_has_turma` (`st_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
