@@ -1,11 +1,25 @@
 <?php
 	require('conexao/conecta.php');
-
+	
 	$turno = $_POST['turno'];
 
-	$sql = "INSERT INTO serie_turma_has_turno(ser_cod, tur_cod, turno_cod) VALUES ($ser_cod, $tur_cod, $turno)";
+	$sql = "SELECT * FROM serie_has_turma WHERE ser_cod = $ser_cod AND tur_cod = $tur_cod";
+	$result = mysqli_query($con, $sql);
+	$serie = mysqli_fetch_array($result);
+	$st_cod = $serie['st_cod'];
 
-	mysqli_query($con, $sql) or die('Falha ao conectar professor à disciplina');
+	$sql = "SELECT * FROM serie_turma_has_turno WHERE st_cod = $ser_cod AND turno_cod = $turno";
+	$result1 = mysqli_query($con, $sql);
+	$rows = mysqli_num_rows($result1);
 
-	$mensagem = "Conectado com sucesso";
+	if($rows == 0){
+		$sql = "INSERT INTO serie_turma_has_turno(st_cod, turno_cod) VALUES ($st_cod, $turno)";
+
+		mysqli_query($con, $sql) or die('Falha ao vincular turno');
+
+		$mensagem = "Conectado com sucesso";
+	}
+	else{
+		$mensagem = "Já há um vínculo entre a turma, série e turno selecionados";
+	}
 ?>
