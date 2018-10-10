@@ -96,6 +96,9 @@
           else if($link == 'cadturno'){
             include('restrito/cads/cad_turno.php');
           }
+          else if($link == 'vincturno'){
+           include('restrito/operacoes/vinc_turno.php');
+          }
       	}
       ?>
       

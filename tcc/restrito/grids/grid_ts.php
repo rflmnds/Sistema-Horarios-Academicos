@@ -20,13 +20,17 @@
 	<?php
 		while($serie = mysqli_fetch_array($result)){
 			$pag = $_GET['pag'];
-			$url = '?pag=oferta&tur=' . $id . '&ser=' . $serie['ser_cod'];
+			$url1 = '?pag=oferta&tur=' . $id . '&ser=' . $serie['ser_cod'];
+			$url2 = '?pag=vincturno&tur=' . $id . '&ser=' . $serie['ser_cod'];
 
 			echo "<tr>";
 
 			echo "	<td>" . $serie['ser_cod'] . "</td>";
 			echo "	<td>" . $serie['ser_modulo'] . " - " . $serie['ser_ano'] . "</td>";
-			echo "	<td><a href='$url'class='btn btn-success'>Ofertar disciplinas</a></td>";
+			echo "	<td>
+						<a href='$url1'class='btn btn-success'>Ofertar disciplinas</a>
+						<a href='$url2'class='btn btn-success'>Vincular à turno</a>
+					</td>";
 			echo "</tr>";
 		}
 	?>
