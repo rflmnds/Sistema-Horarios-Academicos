@@ -283,6 +283,7 @@ INSERT INTO `dia_semana` (`ds_cod`, `ds_nome`) VALUES
 (6, 'Sexta-Feira'),
 (7, 'Sábado');
 
+
 -- -----------------------------------------------------
 -- Table `db_pdt`.`turno`
 -- -----------------------------------------------------
@@ -293,31 +294,46 @@ CREATE TABLE IF NOT EXISTS `db_pdt`.`turno` (
   PRIMARY KEY (`turno_cod`))
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `mydb`.`config_hora`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_pdt`.`config_hora` (
+  `con_cod` INT NOT NULL AUTO_INCREMENT,
+  `con_desc` VARCHAR(45) NOT NULL,
+  `con_horaini` TIME NOT NULL,
+  `con_horafin` TIME NOT NULL,
+  `turno_cod` INT NOT NULL,
+  PRIMARY KEY (`con_cod`),
+  INDEX `fk_config_hora_turno1_idx` (`turno_cod` ASC),
+  CONSTRAINT `fk_config_hora_turno1`
+    FOREIGN KEY (`turno_cod`)
+    REFERENCES `db_pdt`.`turno` (`turno_cod`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 -- -----------------------------------------------------
 -- Table `db_pdt`.`hora_aula`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pdt`.`horario` (
   `hor_cod` INT NOT NULL AUTO_INCREMENT,
-  `hor_periodo` INT NOT NULL,
   `ds_cod` INT NOT NULL,
-  `turno_cod` INT NOT NULL,
-  `hor_ini` TIME NULL,
-  `hor_fim` TIME NULL,
-  `hor_desc` VARCHAR(45) NULL,
+  `con_cod` INT NOT NULL,
   PRIMARY KEY (`hor_cod`),
   INDEX `fk_aula_dia_semana1_idx` (`ds_cod` ASC),
-  INDEX `fk_horario_turno1_idx` (`turno_cod` ASC),
+  INDEX `fk_horário_config_hora1_idx` (`con_cod` ASC),
   CONSTRAINT `fk_aula_dia_semana1`
     FOREIGN KEY (`ds_cod`)
     REFERENCES `db_pdt`.`dia_semana` (`ds_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_horario_turno1`
-    FOREIGN KEY (`turno_cod`)
-    REFERENCES `db_pdt`.`turno` (`turno_cod`)
+  CONSTRAINT `fk_horário_config_hora1`
+    FOREIGN KEY (`con_cod`)
+    REFERENCES `db_pdt`.`config_hora` (`con_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-
 ENGINE = InnoDB;
 
 
@@ -325,9 +341,10 @@ ENGINE = InnoDB;
 -- Table `db_pdt`.`serie_has_turma`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pdt`.`serie_has_turma` (
+  `st_cod` INT NOT NULL AUTO_INCREMENT,
   `ser_cod` INT NOT NULL,
   `tur_cod` INT NOT NULL,
-  PRIMARY KEY (`ser_cod`, `tur_cod`),
+  PRIMARY KEY (`st_cod`),
   INDEX `fk_serie_has_turma_turma1_idx` (`tur_cod` ASC),
   INDEX `fk_serie_has_turma_serie1_idx` (`ser_cod` ASC),
   CONSTRAINT `fk_serie_has_turma_serie1`
@@ -496,10 +513,11 @@ ENGINE = InnoDB;
 -- Table `db_pdt`.`serie_turma_has_turno`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pdt`.`serie_turma_has_turno` (
+  `stt_cod` INT NOT NULL AUTO_INCREMENT,
   `ser_cod` INT NOT NULL,
   `tur_cod` INT NOT NULL,
   `turno_cod` INT NOT NULL,
-  PRIMARY KEY (`ser_cod`, `tur_cod`, `turno_cod`),
+  PRIMARY KEY (`stt_cod`),
   INDEX `fk_serie_has_turma_has_turno_turno1_idx` (`turno_cod` ASC),
   INDEX `fk_serie_has_turma_has_turno_serie_has_turma1_idx` (`ser_cod` ASC, `tur_cod` ASC),
   CONSTRAINT `fk_serie_has_turma_has_turno_serie_has_turma1`
@@ -513,6 +531,7 @@ CREATE TABLE IF NOT EXISTS `db_pdt`.`serie_turma_has_turno` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 
 
 
