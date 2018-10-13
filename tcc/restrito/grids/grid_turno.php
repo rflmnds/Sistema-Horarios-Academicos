@@ -23,7 +23,7 @@
 			echo "	<td>" . $turma['turno_desc'] . "</td>";
 			echo "	<td>" . $turma['turno_status'] . "</td>";
 			echo "	<td>
-						<a class='btn btn-success' href='?pag=tsturno&turno=" . $turma['turno_cod'] . "'>Configurar horário</a>
+						<a class='btn btn-success' href='?pag=config&id=" . $turma['turno_cod'] . "'>Configurar horário</a>
 					</td>";
 			echo "</tr>";
 		}

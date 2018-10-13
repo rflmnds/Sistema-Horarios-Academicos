@@ -99,6 +99,9 @@
           else if($link == 'vincturno'){
            include('restrito/operacoes/vinc_turno.php');
           }
+          else if($link == 'config'){
+           include('restrito/grids/grid_config.php');
+          }
       	}
       ?>
       

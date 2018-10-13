@@ -6,7 +6,6 @@
 			INNER JOIN matriz as m ON s.mat_cod = m.mat_cod
 			INNER JOIN curso as c ON m.cur_cod = c.cur_cod";
 	$result = mysqli_query($con, $sql) or die("Falha ao buscar disciplinas");
-
 ?>
 
 <table class="table table-hover">
@@ -23,7 +22,6 @@
 			$url = '?pag=' . $pag . '&id=' . $disciplina['dis_cod'];
 
 			echo "<tr>";
-
 			echo "	<td>" . $disciplina['dis_cod'] . "</td>";
 			echo "	<td>" . $disciplina['cur_nome'] . "</td>";
 			echo "	<td>" . $disciplina['dis_nome'] . "</td>";
