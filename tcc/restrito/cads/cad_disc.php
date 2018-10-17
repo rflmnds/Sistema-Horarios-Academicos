@@ -11,8 +11,6 @@
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_disc.php');
 	}
-
-	$ppc = null;
 ?>
 
 <div>

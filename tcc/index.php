@@ -102,6 +102,9 @@
           else if($link == 'config'){
            include('restrito/grids/grid_config.php');
           }
+          else if($link == 'addconfig'){
+           include('restrito/cads/cad_config.php');
+          }
       	}
       ?>
       
