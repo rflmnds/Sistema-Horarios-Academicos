@@ -10,16 +10,16 @@
 	$turno = mysqli_fetch_array($result);
 	$desc = $turno['turno_desc'];
 
-	$sql = "SELECT * FROM config_hora as c
+	$sql = "SELECT c.con_cod, c.con_horaini, c.con_horafin, c.con_desc FROM config_hora as c
 			INNER JOIN turno as t ON c.turno_cod = t.turno_cod
-			WHERE t.turno_cod = $id";
+			WHERE t.turno_cod = $id
+			ORDER BY c.con_horaini";
 	$result1 = mysqli_query($con, $sql) or die("Falha ao buscar séries vinculadas");
 ?>
 <div>
 	<h2>Configuração de horários do turno "<?= $desc ?>"</h2>
 	<table class="table table-hover">
 		<tr>
-			<th>Código</th>
 			<th>Início</th>
 			<th>Fim</th>
 			<th>Descrição</th>
@@ -28,10 +28,10 @@
 		<?php
 			while($config = mysqli_fetch_array($result1)){
 				echo "<tr>";
-				echo "	<td>" . $config['con_cod'] . "</td>";
 				echo "	<td>" . $config['con_horaini'] . "</td>";
 				echo "	<td>" . $config['con_horafin'] . "</td>";
 				echo "	<td>" . $config['con_desc'] . "</td>";
+				echo "	<td><a href='$'class='btn btn-success'>Aplicar configuração</a></td>";
 				echo "</tr>";
 			}
 		?>

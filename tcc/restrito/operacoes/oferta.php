@@ -12,8 +12,8 @@
 			WHERE t.tur_cod = $tur_cod AND s.ser_cod = $ser_cod"; 
 	$result1 = mysqli_query($con, $sql);
 	$serie = mysqli_fetch_array($result1);
+	$st_cod = $serie['st_cod'];
 	$modulo = $serie['ser_modulo'];
-	$ano = $serie['ser_ano'];
 	$turma = $serie['tur_nome'];
 
 	$sql = "SELECT * FROM professor_has_disciplina as pd 

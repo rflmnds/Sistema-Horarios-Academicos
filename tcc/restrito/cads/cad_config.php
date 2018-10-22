@@ -13,6 +13,7 @@
 	if(isset($_POST['submit'])){
 	 	require('restrito/acoes/acao_config.php');
 	}
+	$url = "window.location.href='?pag=config&id=" . $turno_cod . "'"
 ?>
 
 <div>
@@ -35,7 +36,7 @@
 			<p class="text-success"><?= $mensagem ?></p>
 		</div>
 		<div class="form-group">
-			<input type="button" value="Voltar" onclick="window.location='?pag=cadcurso'" style="width:100%" class="btn btn-default">
+			<input type="button" value="Voltar" <?= "onclick=" . $url ?> style="width:100%" class="btn btn-default">
 		</div>
 	</form>
 </div>

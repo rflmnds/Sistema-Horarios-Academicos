@@ -1,27 +1,23 @@
 <?php
 	require('conexao/conecta.php');
 
-	$sql = "SELECT t.tur_cod, t.tur_nome FROM oferta as o 
+	$sql = "SELECT * FROM oferta as o 
 		INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
 		INNER JOIN turma as t ON st.tur_cod = t.tur_cod
-		GROUP BY t.tur_cod, t.tur_nome";
-	$result = mysqli_query($con, $sql) or die('Falha');
-
-	$sql1 = "SELECT s.ser_cod, s.ser_modulo FROM oferta as o 
-		INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
 		INNER JOIN serie as s ON st.ser_cod = s.ser_cod
-		GROUP BY s.ser_cod, s.ser_modulo";
-	$result1 = mysqli_query($con, $sql1) or die('Falha');
+		INNER JOIN serie_turma_has_turno as stt ON stt.st_cod = st.st_cod
+		INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod ";
+	$result = mysqli_query($con, $sql) or die('Falha');
 ?>
 
 <div>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<select name="turma" id="turma" class="form-control">
-				<option value="0">Selecione a Turma</option>
+				<option value="0">Selecione a Turma - Série - Turno</option>
 				<?php 
-					while($turma = mysqli_fetch_array($result)) {
-						echo "<option value='" . $turma['tur_cod'];
+					while($tst = mysqli_fetch_array($result)) {
+						echo "<option value='" . $tst['stt_cod'];
 						/*if(isset($_GET['id'])){
 							if($ppc['cur_cod'] == $curso['cur_cod']){
 								echo "' selected>" . $curso['cur_nome'] . "</option>";
@@ -30,33 +26,13 @@
 								echo "'>" . $curso['cur_nome'] . "</option>";
 							}
 						else{*/
-							echo "'>Turma: " . $turma['tur_nome'] . "</option>";
+							echo "'>Turma: " . $tst['tur_nome'] . "- Série: " . $tst['ser_modulo'] . " - Turno: " . $tst['turno_desc'] . "</option>";
 						//}
 					}
 				?>
 			</select>
 		</div>
-		<div class="form-group">
-			<select name="serie" id="serie" class="form-control">
-				<option value="0">Selecione a Série</option>
-				<?php 
-					while($serie = mysqli_fetch_array($result1)) {
-						echo "<option value='" . $serie['ser_cod'];
-						/*if(isset($_GET['id'])){
-							if($ppc['cur_cod'] == $curso['cur_cod']){
-								echo "' selected>" . $curso['cur_nome'] . "</option>";
-							}
-							else{
-								echo "'>" . $curso['cur_nome'] . "</option>";
-							}
-						else{*/
-							echo "'>Série: " . $serie['ser_modulo'] . "</option>";
-						//}
-					}
-				?>
-			</select>
-		</div>
-		<button id="buscar">Buscar</button>
+		<!-- <button id="buscar" class="bt">Buscar</button> -->
 	</form>
 
 	<p id="horario">Tabela de horários</p>
