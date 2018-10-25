@@ -3,18 +3,19 @@
 
 	$tur_cod = $_GET['turma'];
 	$ds_cod = $_GET['ds'];
-	$hor_periodo = $_GET['period'];
+	$con_cod = $_GET['period'];
 
 	$sql = "SELECT * FROM horario as h 
 			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
-			WHERE ds.ds_cod = $ds_cod AND h.hor_periodo = $hor_periodo";
+			INNER JOIN config_hora as c ON h.con_cod = c.con_cod
+			WHERE ds.ds_cod = $ds_cod AND h.con_cod = $con_cod";
 	$rHorario = mysqli_query($con, $sql)or die("Falha ao buscar horário de aula");
 
 	$horario = mysqli_fetch_array($rHorario);
 	$hor_cod = $horario['hor_cod'];
 
 	if($hor_cod == null){
-		echo $sql = "INSERT INTO horario(hor_periodo, ds_cod) VALUES ($hor_periodo, $ds_cod)";
+		echo $sql = "INSERT INTO horario(hor_periodo, ds_cod) VALUES ($con_cod, $ds_cod)";
 		mysqli_query($con, $sql) or die("Falha ao cadastrar Período");
 		header('Refresh:0');
 	}

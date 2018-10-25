@@ -38,7 +38,6 @@
 		<th>Sábado</th>
 	</tr>
 	<?php
-		//for($i = 1; $i <= $qtd_rows; $i++){
 		$i = 0;
 		while($linha= mysqli_fetch_array($script1)){
 			$i++;
@@ -54,7 +53,7 @@
 					while($horario = mysqli_fetch_array($script2)){
 						if($horario['con_cod'] == $linha['con_cod'] &&  $horario['ds_cod'] == $j){
 							echo $horario['dis_nome'];
-							echo $count = 1;
+							$count++;
 							break;
 						}
 					}

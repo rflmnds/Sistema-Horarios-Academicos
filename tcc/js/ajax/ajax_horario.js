@@ -11,5 +11,5 @@ function buscar(turma) {
 }
 
 $('#turma').change(function(){
-	buscar($('#turma').val())
+	buscar(('#turma').val())
 });
