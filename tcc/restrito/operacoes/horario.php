@@ -6,7 +6,8 @@
 		INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 		INNER JOIN serie as s ON st.ser_cod = s.ser_cod
 		INNER JOIN serie_turma_has_turno as stt ON stt.st_cod = st.st_cod
-		INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod ";
+		INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod 
+		WHERE stt.stt_status = 'Ativo'";
 	$result = mysqli_query($con, $sql) or die('Falha');
 ?>
 

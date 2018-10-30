@@ -8,5 +8,5 @@
 
 	mysqli_query($con,$sql) or die('Falha ao cadastrar turno');
 
-	$mensagem = "Turma cadastrada com sucesso";
+	$mensagem = "Turno cadastrada com sucesso";
 ?>

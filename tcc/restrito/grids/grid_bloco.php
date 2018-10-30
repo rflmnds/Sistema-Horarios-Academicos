@@ -3,7 +3,6 @@
 
 	$sql = "SELECT * FROM bloco";
 	$result = mysqli_query($con, $sql) or die("Falha ao buscar disciplinas");
-
 ?>
 
 <table class="table table-hover">

@@ -12,7 +12,7 @@
 
 	if(isset($_POST['submit'])){
 	 	require('restrito/acoes/acao_config.php');
-	 	require('restrito/acoes/acao_horario.php')
+	 	require('restrito/acoes/acao_horario.php');
 	}
 	$url = "window.location.href='?pag=config&id=" . $turno_cod . "'"
 ?>

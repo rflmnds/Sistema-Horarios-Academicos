@@ -15,12 +15,12 @@
 	$hor_cod = $horario['hor_cod'];
 
 	if($hor_cod == null){
-		echo $sql = "INSERT INTO horario(hor_periodo, ds_cod) VALUES ($con_cod, $ds_cod)";
+		echo $sql = "INSERT INTO horario(con_cod, ds_cod) VALUES ($con_cod, $ds_cod)";
 		mysqli_query($con, $sql) or die("Falha ao cadastrar Período");
 		header('Refresh:0');
 	}
 
-	$period = $horario['hor_periodo'];
+	$period = $horario['con_cod'];
 	$dsNome = $horario['ds_nome'];
 
 	$sql = "SELECT * FROM turma WHERE tur_cod = $tur_cod";
@@ -36,7 +36,8 @@
 			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
 			INNER JOIN disciplina as d on pd.dis_cod = d.dis_cod
 			INNER JOIN professor as p on pd.pro_cod = p.pro_cod
-			WHERE o.tur_cod = $tur_cod";
+			INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
+			WHERE st.tur_cod = $tur_cod";
 	$rDisciplina = mysqli_query($con, $sql)or die("Falha ao buscar disciplinas");
 
 	if(isset($_POST['submit'])){

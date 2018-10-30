@@ -45,7 +45,7 @@
 							// 	}
 							// }
 							// else{
-								echo "'>" . $turno['turno_desc'] . "</option>";
+								echo "'>" . $turno['turno_desc'] . " - " . $turno['turno_status'] ."</option>";
 							//}
 					}
 				?>
