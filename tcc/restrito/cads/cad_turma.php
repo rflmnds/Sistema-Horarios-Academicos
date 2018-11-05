@@ -23,8 +23,8 @@
 			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
 		</div>
 		<div class="form-group">
-			<label for="matriz">Matriz Curricular</label>
-			<select name="matriz" class="form-control">
+			<label for="matriz" style="display: block">Matriz Curricular</label>
+			<select name="matriz" class="form-control" style="float: left; max-width: 80%" >
 				<?php 
 					while($matriz = mysqli_fetch_array($result)) {
 						echo "<option value='" . $matriz['mat_cod'];
@@ -42,6 +42,7 @@
 					}
 				?>
 			</select>
+			<a href="?pag=cadmatriz" class="btn btn-default" style="display: block;">Cadastrar matriz</a>
 		</div>
 		<input type="submit" value="Salvar" class="btn btn-default">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadturma'">

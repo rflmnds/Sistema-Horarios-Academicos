@@ -1,8 +1,8 @@
 <?php
   $active['home'] = '';
-  $active['jogo'] = '';
-  $active['selecoes'] = '';
-  $active['jogadores'] = '';
+  $active['horario'] = '';
+  $active['portalprof'] = '';
+  $active['cads'] = '';
 
   if(isset($_GET['pag'])){
     $active[$_GET['pag']] = 'active';
@@ -26,9 +26,9 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class='<?= $active['home'] ?>'><a href="#">Home</a></li>
-            <li class='<?= $active['jogo'] ?>'><a href="?pag=horario">Horários</a></li>
-            <li class='<?= $active['selecoes'] ?>'><a href="?pag=selecoes">Cadastros</a></li>
-            <li class='<?= $active['jogadores'] ?>'><a href="?pag=jogadores">Portal do professor</a></li>
+            <li class='<?= $active['horario'] ?>'><a href="?pag=horario">Horários</a></li>
+            <li class='<?= $active['cads'] ?>'><a href="?pag=selecoes">Cadastros</a></li>
+            <li class='<?= $active['portalprof'] ?>'><a href="?pag=jogadores">Portal do professor</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

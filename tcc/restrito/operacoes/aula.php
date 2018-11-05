@@ -41,7 +41,7 @@
 	$rDisciplina = mysqli_query($con, $sql)or die("Falha ao buscar disciplinas");
 
 	if(isset($_POST['submit'])){
-		require('restrito/acoes/acao_ha.php');
+		require('restrito/acoes/acao_aula.php');
 	}
 ?>
 
