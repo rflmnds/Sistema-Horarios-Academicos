@@ -17,15 +17,15 @@
 ?>
 
 <div>
-	<h1>Adicionar Sala:</h1>
+	<h1>Cadastrar Sala:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="desc">Sala</label>
 			<input type="text" name="desc" class="form-control" placeholder="Sala" required>
 		</div>
 		<div class="form-group">
-			<label for="bloco">Bloco</label>
-			<select class="form-control" name="bloco">
+			<label for="bloco" style="display: block">Bloco</label>
+			<select class="form-control" name="bloco" style="float: left; max-width: 80%">
 				<?php
 					while($bloco = mysqli_fetch_array($resultBloco)) {
 						echo "<option value='" . $bloco['blo_cod'];
@@ -43,6 +43,7 @@
 					}
 				?>
 			</select>
+			<a href="?pag=cadbloco" class="btn btn-default" style="display: block">Cadastrar bloco</a>
 		</div>
 		<div class="form-group">
 			<label for="disciplina">Disciplina (Para salas temáticas)</label>

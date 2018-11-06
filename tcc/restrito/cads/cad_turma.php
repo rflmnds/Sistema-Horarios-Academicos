@@ -12,7 +12,7 @@
 ?>
 
 <div>
-	<h1>Adicionar Turma:</h1>
+	<h1>Cadastrar Turma:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Nome de Identificação</label>
