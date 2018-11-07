@@ -1,13 +1,14 @@
 <?php
 	require('conexao/conecta.php');
 
-	$sql = "SELECT stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc FROM oferta as o 
+	$sql = "SELECT stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo FROM oferta as o 
 		INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
 		INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 		INNER JOIN serie as s ON st.ser_cod = s.ser_cod
 		INNER JOIN serie_turma_has_turno as stt ON stt.st_cod = st.st_cod
 		INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod 
-		WHERE stt.stt_status = 'Ativo'";
+		WHERE stt.stt_status = 'Ativo'
+		GROUP by stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo";
 	$result = mysqli_query($con, $sql) or die('Falha');
 ?>
 

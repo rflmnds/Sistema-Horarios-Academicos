@@ -49,4 +49,7 @@
 	</form>
 	
 	<p class="text-success"><?= $mensagem ?></p>
+
+	<h2>Séries cadastradas:</h2>
+	<?php include('restrito/grids/grid_serie.php') ?>
 </div>

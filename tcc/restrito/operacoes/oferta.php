@@ -24,6 +24,8 @@
 	if(isset($_POST['submit'])){
 		require('restrito/acoes/acao_oferta.php');
 	}	
+
+	$url = "?pag=turmaserie&id=" . $tur_cod;
 ?>
 
 <div>
@@ -58,4 +60,9 @@
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=oferta">
 	</form>
 	<p class="text-success"><?= $mensagem ?></p>
+	
+	<a class="btn btn-default" href="<?= $url ?>" style="width: 100%">Voltar</a>
+
+	<h2>Disciplinas ofertadas de "<?= $turma . " - " . $modulo ?>"</h2>
+	<?php include('restrito/grids/grid_oferta.php') ?>
 </div>

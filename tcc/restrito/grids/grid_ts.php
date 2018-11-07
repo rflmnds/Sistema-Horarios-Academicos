@@ -19,12 +19,10 @@
 	</tr>
 	<?php
 		while($serie = mysqli_fetch_array($result)){
-			$pag = $_GET['pag'];
 			$url1 = '?pag=oferta&tur=' . $id . '&ser=' . $serie['ser_cod'];
 			$url2 = '?pag=vincturno&tur=' . $id . '&ser=' . $serie['ser_cod'];
 
 			echo "<tr>";
-
 			echo "	<td>" . $serie['ser_cod'] . "</td>";
 			echo "	<td>" . $serie['ser_modulo'] . " - " . $serie['ser_ano'] . "</td>";
 			echo "	<td>

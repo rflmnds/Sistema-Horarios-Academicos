@@ -27,8 +27,8 @@
           <ul class="nav navbar-nav">
             <li class='<?= $active['home'] ?>'><a href="#">Home</a></li>
             <li class='<?= $active['horario'] ?>'><a href="?pag=horario">Horários</a></li>
-            <li class='<?= $active['cads'] ?>'><a href="?pag=selecoes">Cadastros</a></li>
-            <li class='<?= $active['portalprof'] ?>'><a href="?pag=jogadores">Portal do professor</a></li>
+            <li class='<?= $active['cads'] ?>'><a href="?pag=cads">Cadastros</a></li>
+            <li class='<?= $active['portalprof'] ?>'><a href="?pag=portalprof">Portal do professor</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -10,7 +10,7 @@
 	$tur_nome = $turma['tur_nome'];
 	$matriz = $turma['mat_cod'];
 
-	$sql = "SELECT * FROM serie";
+	$sql = "SELECT * FROM serie ORDER BY ser_modulo";
 	$result2 = mysqli_query($con, $sql) or die("Falha ao buscar serie");
 
 	$sql = "SELECT * FROM serie_has_turma WHERE tur_cod = $id";
@@ -19,14 +19,13 @@
 	if(isset($_POST['submit'])) {
 		include('restrito/acoes/acao_ts.php');
 	}
-
 ?>
 
 <div>
 	<form name="form1" method="post">
 		<div class="form-group">
-			<label for="serie">Série</label>
-			<select name="serie" class="form-control">
+			<label for="serie" style="display: block;">Série</label>
+			<select name="serie" class="form-control" style="float: left;max-width: 80%">
 				<?php
 					while($serie = mysqli_fetch_array($result2)) {
 						if($serie['mat_cod'] == $matriz){
@@ -46,6 +45,7 @@
 					}
 				?>
 			</select>
+			<a href="?pag=cadserie" class="btn btn-default" style="display: block">Cadastrar série</a>		
 		</div>
 		<input type="submit" value="Salvar" class="btn btn-default" name="submit">
 	</form>

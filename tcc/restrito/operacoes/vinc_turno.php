@@ -25,6 +25,7 @@
 		include('restrito/acoes/acao_vincturno.php');
 	}
 
+	$url = "?pag=turmaserie&id=" . $tur_cod;
 ?>
 
 <div>
@@ -53,6 +54,10 @@
 		</div>
 		<input type="submit" value="Salvar" class="btn btn-default" name="submit">
 	</form>
+
+	<p></p>
+
+	<a class="btn btn-default" href="<?= $url ?>" style="width: 100%">Voltar</a>
 
 	<h2>Turnos de "<?= $turma . " Série: " . $modulo?>"</h2>
 	<?php include('restrito/grids/grid_vincturno.php') ?>

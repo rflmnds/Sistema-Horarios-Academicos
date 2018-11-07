@@ -20,7 +20,6 @@
 	if(isset($_POST['submit'])) {
 		include('restrito/acoes/acao_dp.php');
 	}
-
 ?>
 <div>
 	<h3>Professores da disciplina "<?= $disciplina['dis_nome'] ?>"</h3>
@@ -37,9 +36,9 @@
 			?>
 		</table>
 	<form name="form1" method="post">
-		<h4>Adicionar disciplina:</h4>
+		<h4>Conectar disciplina ao professor:</h4>
 		<div class="form-group">
-			<select name="addProf" class="form-control">
+			<select name="addProf" class="form-control" style="float: left;max-width: 80%">
 				<?php
 					while($professor = mysqli_fetch_array($resultAdd)) {
 						echo "<option value='" . $professor['pro_cod'];
@@ -56,7 +55,8 @@
 						//}
 					}
 				?>
-			</select>		
+			</select>
+			<a href="?pag=cadprof" class="btn btn-default" style="display: block">Cadastrar professor</a>		
 		</div>
 		<div class="form-group">
 			<input type="submit" name="submit" value="Salvar" class="btn btn-default">

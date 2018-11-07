@@ -37,9 +37,9 @@
 			?>
 		</table>
 	<form name="form1" method="post">
-		<h4>Adicionar disciplina:</h4>
+		<h4>Conectar professor à disciplina:</h4>
 		<div class="form-group">
-			<select name="addDisciplina" class="form-control">
+			<select name="addDisciplina" class="form-control" style="float: left;max-width: 80%">
 				<?php
 					while($disciplina = mysqli_fetch_array($resultAdd)) {
 						echo "<option value='" . $disciplina['dis_cod'];
@@ -56,7 +56,8 @@
 						//}
 					}
 				?>
-			</select>		
+			</select>
+			<a href="?pag=caddisc" class="btn btn-default" style="display: block">Cadastrar disciplina</a>				
 		</div>
 		<div class="form-group">
 			<input type="submit" name="submit" value="Salvar" class="btn btn-default">
