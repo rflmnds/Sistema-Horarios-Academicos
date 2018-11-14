@@ -92,7 +92,10 @@
 		</div>
 		<div class="form-group">
 			<label for="status">Status</label>
-			<input type="text" name="status" class="form-control" placeholder="Status" required>
+			<select name="status" class="form-control" required>
+				<option value="Ativo">Ativo</option>
+				<option value="Inativo">Inativo</option>
+			</select>
 		</div>
 		<div class="form-group">
 			<input type="submit" value="Salvar" name="submit" class="btn btn-default">

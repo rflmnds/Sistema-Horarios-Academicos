@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,28 +31,15 @@
   
   	<?php include('menus/navbar.php') ?>
 
-
     <div class="container">
-      <table class="table table-hover">
-        <tr>
-          <td><h4>Navbar provisória:</h4></td>
-          <td><a href="?pag=cadcurso" class="btn btn-success">Curso</a></td>
-          <td><a href="?pag=cadmatriz" class="btn btn-success">Matriz</a></td>
-          <td><a href="?pag=cadserie" class="btn btn-success">Série</a></td>
-          <td><a href="?pag=cadturma" class="btn btn-success">Turma</a></td>
-          <td><a href="?pag=cadturno" class="btn btn-success">Turno</a></td>
-          <td><a href="?pag=cadprof" class="btn btn-success">Professor</a></td>
-          <td><a href="?pag=caddisc" class="btn btn-success">Disciplina</a></td>
-          <td><a href="?pag=cadbloco" class="btn btn-success">Bloco</a></td>
-          <td><a href="?pag=cadsala" class="btn btn-success">Sala</a></td>
-        </tr>
-      </table> 
-
       <?php
       	if(isset($_GET['pag'])){
       		$link = $_GET['pag'];
       		
-          if($link == 'cadcurso'){
+          if($link == 'login'){
+            include('restrito/operacoes/login.php');
+          }
+          else if($link == 'cadcurso'){
             include('restrito/cads/cad_curso.php');
           }
           else if($link == 'cadprof'){
@@ -107,7 +98,6 @@
           }
       	}
       ?>
-      
 
     </div><!-- /.container -->
 
@@ -118,8 +108,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <?php
-      if($link == 'horario'){
-        echo "<script src='js/ajax/ajax_horario.js?newversion'></script>";
+      if(isset($_GET['pag'])){
+        if($link == 'horario'){
+          echo "<script src='js/ajax/ajax_horario.js?newversion'></script>";
+        }
       }
     ?>
   </body>

@@ -22,6 +22,7 @@
 ?>
 
 <div>
+	<h2>Vincular séries à turma "<?= $tur_nome ?>"</h2>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="serie" style="display: block;">Série</label>

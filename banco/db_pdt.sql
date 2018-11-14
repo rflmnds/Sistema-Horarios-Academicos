@@ -513,6 +513,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pdt`.`serie_turma_has_turno` (
   `stt_cod` INT NOT NULL AUTO_INCREMENT,
+  `stt_status` VARCHAR(45) NOT NULL,
   `turno_cod` INT NOT NULL,
   `st_cod` INT NOT NULL,
   PRIMARY KEY (`stt_cod`),

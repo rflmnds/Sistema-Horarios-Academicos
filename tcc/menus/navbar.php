@@ -2,17 +2,17 @@
   $active['home'] = '';
   $active['horario'] = '';
   $active['portalprof'] = '';
-  $active['cads'] = '';
+  $active['login'] = '';
 
   if(isset($_GET['pag'])){
     $active[$_GET['pag']] = 'active';
   }
   else{
-    $active['home'] = active;
+    $active['home'] = 'active';
   }
 ?>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-default bg-light">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -27,8 +27,39 @@
           <ul class="nav navbar-nav">
             <li class='<?= $active['home'] ?>'><a href="#">Home</a></li>
             <li class='<?= $active['horario'] ?>'><a href="?pag=horario">Horários</a></li>
-            <li class='<?= $active['cads'] ?>'><a href="?pag=cads">Cadastros</a></li>
-            <li class='<?= $active['portalprof'] ?>'><a href="?pag=portalprof">Portal do professor</a></li>
+
+            <li class='dropdown'>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" href="?pag=cads">
+                Cadastros
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a href="?pag=cadcurso" class="dropdown-item">Curso</a></li>
+                <li><a href="?pag=cadmatriz" class="dropdown-item">Matriz</a></li>
+                <li><a href="?pag=cadserie" class="dropdown-item">Série</a></li>
+                <li><a href="?pag=cadturma" class="dropdown-item">Turma</a></li>
+                <li><a href="?pag=cadturno" class="dropdown-item">Turno</a></li>
+                <li><a href="?pag=cadprof" class="dropdown-item">Professor</a></li>
+                <li><a href="?pag=caddisc" class="dropdown-item">Disciplina</a></li>
+                <li><a href="?pag=cadbloco" class="dropdown-item">Bloco Local</a></li>
+                <li><a href="?pag=cadsala" class="dropdown-item">Sala</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <?php
+                if(isset($_SESSION['usuario'])){
+              ?>
+              <li class='<?= $active['login'] ?>'><a href="?pag=login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <?php
+                }
+                else{
+              ?>
+              <li class='<?= $active['portalprof'] ?>'><a href="?pag=portalprof"><span class="glyphicon glyphicon-user"></span> Portal do professor</a></li>
+              <li><a href="?pag=logout"><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
+              <?php
+                }
+              ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

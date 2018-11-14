@@ -13,6 +13,7 @@
 ?>
 
 <div>
+	<h2>Horário de aulas:</h2>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<select name="turma" id="turma" class="form-control">
@@ -28,7 +29,7 @@
 								echo "'>" . $curso['cur_nome'] . "</option>";
 							}
 						else{*/
-							echo "'>Turma: " . $tst['tur_nome'] . "- Série: " . $tst['ser_modulo'] . " - Turno: " . $tst['turno_desc'] . "</option>";
+							echo "'>Turma: " . $tst['tur_nome'] . " - Série: " . $tst['ser_modulo'] . " - Turno: " . $tst['turno_desc'] . "</option>";
 						//}
 					}
 				?>
