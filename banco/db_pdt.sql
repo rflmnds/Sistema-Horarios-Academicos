@@ -23,6 +23,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `db_pdt`.`professor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_pdt`.`professor` (
+  `pro_cod` INT NOT NULL AUTO_INCREMENT,
+  `pro_nome` VARCHAR(45) NOT NULL,
+  `pro_siape` INT NOT NULL,
+  `pro_formacao` VARCHAR(70) NOT NULL,
+  PRIMARY KEY (`pro_cod`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `db_pdt`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pdt`.`usuario` (
@@ -36,28 +48,13 @@ CREATE TABLE IF NOT EXISTS `db_pdt`.`usuario` (
     FOREIGN KEY (`tu_cod`)
     REFERENCES `db_pdt`.`tipo_usuario` (`tu_cod`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `db_pdt`.`professor`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_pdt`.`professor` (
-  `pro_cod` INT NOT NULL AUTO_INCREMENT,
-  `pro_nome` VARCHAR(45) NOT NULL,
-  `pro_siape` INT NOT NULL,
-  `pro_formacao` VARCHAR(70) NOT NULL,
-  `usu_cod` INT NULL,
-  PRIMARY KEY (`pro_cod`),
-  INDEX `fk_professor_usuario1_idx` (`usu_cod` ASC),
-  CONSTRAINT `fk_professor_usuario1`
-    FOREIGN KEY (`usu_cod`)
-    REFERENCES `db_pdt`.`usuario` (`usu_cod`)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_professor1`
+    FOREIGN KEY (`pro_cod`)
+    REFERENCES `db_pdt`.`professor` (`pro_cod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `db_pdt`.`tipo_ativ`

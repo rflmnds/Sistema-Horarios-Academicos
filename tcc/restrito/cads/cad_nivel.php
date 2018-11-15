@@ -1,6 +1,8 @@
 <?php
 	$mensagem = null;
 
+	include('restrito/operacoes/valida.php');
+
 	if(isset($_POST['desc'])){
 	 	require('restrito/acoes/acao_nivel.php');
 	}

@@ -1,5 +1,6 @@
 <?php
 	require('conexao/conecta.php');
+	include('restrito/operacoes/valida.php');
 
 	$mensagem = null;
 

@@ -1,5 +1,6 @@
 <?php
 	require('conexao/conecta.php');
+	include('restrito/operacoes/valida.php');
 
 	$id = $_GET['id'];
 	$mensagem = null;

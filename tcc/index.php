@@ -39,6 +39,12 @@
           if($link == 'login'){
             include('restrito/operacoes/login.php');
           }
+          else if($link == 'logout'){
+            include('restrito/operacoes/logout.php');
+          }
+          else if($link == 'erro'){
+            include('restrito/operacoes/erro.php');
+          }
           else if($link == 'cadcurso'){
             include('restrito/cads/cad_curso.php');
           }

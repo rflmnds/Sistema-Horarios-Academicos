@@ -1,5 +1,6 @@
 <?php
 	require('conexao/conecta.php');
+	include('restrito/operacoes/valida.php');
 
 	$tur_cod = $_GET['tur'];
 	$ser_cod = $_GET['ser'];

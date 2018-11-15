@@ -3,6 +3,7 @@
   $active['horario'] = '';
   $active['portalprof'] = '';
   $active['login'] = '';
+  $active['users'] = '';
 
   if(isset($_GET['pag'])){
     $active[$_GET['pag']] = 'active';
@@ -12,7 +13,7 @@
   }
 ?>
 
-    <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-default bg-light">
+    <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-default">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -49,15 +50,16 @@
           <ul class="nav navbar-nav navbar-right">
               <?php
                 if(isset($_SESSION['usuario'])){
-              ?>
-              <li class='<?= $active['login'] ?>'><a href="?pag=login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-              <?php
+                  if($_SESSION['tipoUsuario'] == 1){ // Administrador
+                    echo "<li class='" . $active['users'] . "''><a href='?pag=users'><span class='glyphicon glyphicon-user'></span> Gerenciar usuários</a></li>";
+                  }
+                  else if($_SESSION['tipoUsuario'] == 2){ // Professor
+                    echo "<li class='" . $active['portalprof'] . "'><a href='?pag=portalprof'><span class='glyphicon glyphicon-user'></span> Portal do professor</a></li>";
+                  }
+                  echo "<li><a href='restrito/operacoes/logout.php'><span class='glyphicon glyphicon-off'></span> Log Out</a></li>";
                 }
-                else{
-              ?>
-              <li class='<?= $active['portalprof'] ?>'><a href="?pag=portalprof"><span class="glyphicon glyphicon-user"></span> Portal do professor</a></li>
-              <li><a href="?pag=logout"><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
-              <?php
+                else{ 
+                  echo "<li class='" . $active['login'] . "'><a href='?pag=login'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>";
                 }
               ?>
           </ul>

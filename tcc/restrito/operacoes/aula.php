@@ -1,5 +1,6 @@
 <?php
 	require('conexao/conecta.php');
+	include('restrito/operacoes/valida.php');
 
 	$tur_cod = $_GET['turma'];
 	$ds_cod = $_GET['ds'];
