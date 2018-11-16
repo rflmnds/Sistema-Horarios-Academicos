@@ -6,7 +6,7 @@
 	$sql = "SELECT * FROM usuario as u 
 			INNER JOIN professor as p ON u.pro_cod = p.pro_cod
 			WHERE u.pro_cod = $pro_cod";
-	$result = mysqli_query($con, $sql) or die ('Falha');
+	$result = mysqli_query($con, $sql) or die ('Falha ao buscar usuário');
 	$professor = mysqli_fetch_array($result);
 
 	$sqlPD = "SELECT * FROM disciplina as d

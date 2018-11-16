@@ -12,7 +12,7 @@
 	$resultPD = mysqli_query($con, $sqlPD) or die("Falha ao buscar disciplinas do professor");
 
 	$sql = "SELECT * FROM professor WHERE pro_cod = " . $id;
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar nome do professor");
+	$result = mysqli_query($con, $sql) or die("Falha ao buscar professor selecionado");
 	$professor = mysqli_fetch_array($result);
 
 	$sqlAdd = "SELECT * FROM disciplina";

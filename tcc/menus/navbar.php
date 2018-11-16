@@ -26,11 +26,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">GerAcad</a>
+          <a class="navbar-brand" href="?pag=home">GerAcad</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class='<?= $active['home'] ?>'><a href="#">Home</a></li>
+            <li class='<?= $active['home'] ?>'><a href="?pag=home">Home</a></li>
             <li class='<?= $active['horario'] ?>'><a href="?pag=horario">Horários</a></li>
 
             <li class='dropdown'>

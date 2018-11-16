@@ -4,8 +4,11 @@
 
 	$mensagem = null;
 
-	$sql = $sql = "SELECT * FROM tipo_usuario";
+	$sql = "SELECT * FROM tipo_usuario";
 	$rNivel = mysqli_query($con,$sql) or die('Falha ao buscar nivel');
+
+	$sql = "SELECT * FROM professor";
+	$rProf = mysqli_query($con, $sql) or die("Falha ao buscar professor");
 
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_user.php');
@@ -67,6 +70,28 @@
 						}
 						else{
 							echo "'>" . $tipo['tu_desc'] . "</option>";
+						}
+					}
+				?>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="prof">Tipo de Usuário</label>
+			<select class="form-control" name="prof">
+				<option value="null">Nenhum</option>
+				<?php
+					while($prof = mysqli_fetch_array($rProf)) {
+						echo "<option value='" . $prof['pro_cod'];
+						if(isset($_GET['id'])){
+							if($user['pro_cod'] == $prof['pro_cod']){
+								echo "' selected>" . $prof['pro_nome'] . "</option>";
+							}
+							else{
+								echo "'>" . $prof['pro_nome'] . "</option>";
+							}
+						}
+						else{
+							echo "'>" . $prof['pro_nome'] . "</option>";
 						}
 					}
 				?>

@@ -12,11 +12,11 @@
 	$resultPD = mysqli_query($con, $sqlPD) or die("Falha ao buscar disciplinas do professor");
 
 	$sql = "SELECT * FROM disciplina WHERE dis_cod = " . $id;
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar nome da disciplina");
+	$result = mysqli_query($con, $sql) or die("Falha ao buscar disciplina selecionada");
 	$disciplina = mysqli_fetch_array($result);
 
 	$sqlAdd = "SELECT * FROM professor";
-	$resultAdd = mysqli_query($con, $sqlAdd) or die("Falha ao buscar disciplinas");
+	$resultAdd = mysqli_query($con, $sqlAdd) or die("Falha ao buscar professor");
 
 	if(isset($_POST['submit'])) {
 		include('restrito/acoes/acao_dp.php');

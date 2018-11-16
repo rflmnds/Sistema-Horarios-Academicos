@@ -52,6 +52,9 @@
           else if($link == 'users'){
             include('restrito/grids/grid_user.php');
           }
+          else if($link == 'changeuser'){
+            include('restrito/operacoes/user_info.php');
+          }
           else if($link == 'caduser'){
             include('restrito/cads/cad_user.php');
           }
@@ -127,7 +130,7 @@
         if($link == 'horario'){
           echo "<script src='js/ajax/ajax_horario.js?newversion'></script>";
         }
-        else if($link == 'login' || $link == 'caduser'){
+        else if($link == 'login' || $link == 'caduser' || $link == 'changeuser'){
           echo "<script src='js/view_password.js'></script>";
         }
       }
