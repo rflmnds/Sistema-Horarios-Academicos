@@ -39,9 +39,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pdt`.`usuario` (
   `usu_cod` INT NOT NULL AUTO_INCREMENT,
+  `usu_nome` VARCHAR(45) NOT NULL,
   `usu_email` VARCHAR(45) NOT NULL,
   `usu_senha` VARCHAR(45) NOT NULL,
   `tu_cod` INT NOT NULL,
+  `pro_cod` INT NULL,
   PRIMARY KEY (`usu_cod`),
   INDEX `fk_usuario_tipo_usuario1_idx` (`tu_cod` ASC),
   CONSTRAINT `fk_usuario_tipo_usuario1`

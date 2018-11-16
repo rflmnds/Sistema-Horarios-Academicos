@@ -15,9 +15,14 @@
 		        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
 		    </div>
 		    <div class="form-group">
-		        <label for="password" class="sr-only">Senha:</label>
-		        <input type="password" id="password" name="password" class="form-control" placeholder="Senha" required>
-		    </div>
+				<label for="senha" class="sr-only">Senha:</label>
+				<div class="input-group">
+					<input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required>
+					<div class="input-group-addon">
+						<span id="toggle_view_senha" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+					</div>
+				</div>
+			</div>
 		    <div class="form-group">
 	        	<input name="login" class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
 	        </div>

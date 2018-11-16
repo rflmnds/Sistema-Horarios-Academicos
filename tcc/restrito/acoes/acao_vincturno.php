@@ -13,7 +13,7 @@
 	$rows = mysqli_num_rows($result1);
 
 	if($rows == 0){
-		echo $sql = "INSERT INTO serie_turma_has_turno(st_cod, stt_status,  turno_cod) VALUES ($st_cod, 'Ativo', $turno)";
+		$sql = "INSERT INTO serie_turma_has_turno(st_cod, stt_status,  turno_cod) VALUES ($st_cod, 'Ativo', $turno)";
 
 		mysqli_query($con, $sql) or die('Falha ao vincular turno');
 

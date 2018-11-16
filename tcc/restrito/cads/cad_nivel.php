@@ -29,11 +29,11 @@
 			<input type="text" name="desc" class="form-control" value="<?= $desc ?>" placeholder="Nível de Ensino" required>
 		</div>
 		<div class="form-group">
-			<input type="submit" value="Salvar" class="btn btn-default">
+			<input type="submit" value="Salvar" class="btn btn-primary">
 			<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadnivel'">
 		</div>
 		<div class="form-group">
-			<input type="button" value="Voltar" onclick="window.location='?pag=cadcurso'" style="width:100%" class="btn btn-default">
+			<a href='?pag=cadcurso' class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 		</div>
 	</form>
 

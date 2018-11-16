@@ -5,6 +5,10 @@
   $active['login'] = '';
   $active['users'] = '';
 
+  if(isset($_SESSION['professor'])){
+    $pro_cod = $_SESSION['professor'];
+  }
+
   if(isset($_GET['pag'])){
     $active[$_GET['pag']] = 'active';
   }
@@ -54,7 +58,7 @@
                     echo "<li class='" . $active['users'] . "''><a href='?pag=users'><span class='glyphicon glyphicon-user'></span> Gerenciar usuários</a></li>";
                   }
                   else if($_SESSION['tipoUsuario'] == 2){ // Professor
-                    echo "<li class='" . $active['portalprof'] . "'><a href='?pag=portalprof'><span class='glyphicon glyphicon-user'></span> Portal do professor</a></li>";
+                    echo "<li class='" . $active['portalprof'] . "'><a href='?pag=portalprof&id=$pro_cod'><span class='glyphicon glyphicon-user'></span> Portal do professor</a></li>";
                   }
                   echo "<li><a href='restrito/operacoes/logout.php'><span class='glyphicon glyphicon-off'></span> Log Out</a></li>";
                 }

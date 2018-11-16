@@ -4,7 +4,7 @@
 
 	$mensagem = null;
 
-	$sql = $sql = "SELECT niv_cod, niv_desc FROM nivel ORDER BY niv_desc";
+	$sql = "SELECT niv_cod, niv_desc FROM nivel ORDER BY niv_desc";
 	$rNivel = mysqli_query($con,$sql) or die('Falha ao buscar nivel');
 
 	if(isset($_POST['nome'])){

@@ -17,6 +17,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
@@ -44,6 +45,15 @@
           }
           else if($link == 'erro'){
             include('restrito/operacoes/erro.php');
+          }
+          else if($link == 'portalprof'){
+            include('restrito/operacoes/portal_prof.php');
+          }
+          else if($link == 'users'){
+            include('restrito/grids/grid_user.php');
+          }
+          else if($link == 'caduser'){
+            include('restrito/cads/cad_user.php');
           }
           else if($link == 'cadcurso'){
             include('restrito/cads/cad_curso.php');
@@ -107,7 +117,6 @@
 
     </div><!-- /.container -->
 
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -117,6 +126,9 @@
       if(isset($_GET['pag'])){
         if($link == 'horario'){
           echo "<script src='js/ajax/ajax_horario.js?newversion'></script>";
+        }
+        else if($link == 'login' || $link == 'caduser'){
+          echo "<script src='js/view_password.js'></script>";
         }
       }
     ?>

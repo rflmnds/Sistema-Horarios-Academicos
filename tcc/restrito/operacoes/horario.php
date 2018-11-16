@@ -1,6 +1,5 @@
 <?php
-	require('conexao/conecta.php');
-
+	require('conexao/conecta.php');	
 	$sql = "SELECT stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo FROM oferta as o 
 		INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
 		INNER JOIN turma as t ON st.tur_cod = t.tur_cod

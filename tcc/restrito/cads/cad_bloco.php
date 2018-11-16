@@ -24,7 +24,7 @@
 
 
 <div>
-	<h1>Adicionar Bloco Local:</h1>
+	<h1>Cadastrar Bloco Local:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Nome</label>
@@ -36,6 +36,6 @@
 
 	<p class="text-success"><?= $mensagem ?></p>
 
-	<h2>Disciplinas:</h2>
+	<h2>Blocos Locais cadastrados:</h2>
 	<?php include('restrito/grids/grid_bloco.php') ?>
 </div>

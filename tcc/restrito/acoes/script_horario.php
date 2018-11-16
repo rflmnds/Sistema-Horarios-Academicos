@@ -2,7 +2,7 @@
 	require('../../conexao/conecta.php');
 
 	$stt_cod = $_POST['turma'];
-	$sql1 = "SELECT ch.con_cod, ch.con_horaini, st.tur_cod, ch.con_desc  FROM config_hora as ch
+	$sql1 = "SELECT ch.con_cod, ch.con_horaini, st.tur_cod, ch.con_desc FROM config_hora as ch
 			INNER JOIN turno as tn ON ch.turno_cod = tn.turno_cod
 			INNER JOIN serie_turma_has_turno as stt ON stt.turno_cod = tn.turno_cod
 			INNER JOIN serie_has_turma as st ON stt.st_cod = st.st_cod
@@ -68,7 +68,7 @@
 						echo "<p>--Intervalo--</p>";
 					}
 					else if($count==0){
-							echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
+						echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
 					}
 				}
 				else if($linha['con_desc'] == 'Intervalo'){
