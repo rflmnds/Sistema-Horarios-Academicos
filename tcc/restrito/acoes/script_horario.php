@@ -1,7 +1,9 @@
 <?php
 	require('../../conexao/conecta.php');
 
+	$tipoUsuario = $_POST['tipoUsuario'];
 	$stt_cod = $_POST['turma'];
+
 	$sql1 = "SELECT ch.con_cod, ch.con_horaini, st.tur_cod, ch.con_desc FROM config_hora as ch
 			INNER JOIN turno as tn ON ch.turno_cod = tn.turno_cod
 			INNER JOIN serie_turma_has_turno as stt ON stt.turno_cod = tn.turno_cod
@@ -68,14 +70,24 @@
 						echo "<p>--Intervalo--</p>";
 					}
 					else if($count==0){
-						echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
+						if($tipoUsuario == 1){
+							echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
+						}
+						else {
+							echo "...";
+						}
 					}
 				}
 				else if($linha['con_desc'] == 'Intervalo'){
 					echo "<p>--Intervalo--</p>";
 				}
 				else{
-					echo "<a href='$url' class='btn btn-default'>Adicionar aula</a>";
+					if($tipoUsuario == 1){
+							echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
+						}
+						else {
+							echo "...";
+						}
 				}
 				mysqli_data_seek($script2, 0);
 				echo "</td>";

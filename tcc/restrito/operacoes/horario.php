@@ -9,12 +9,21 @@
 		WHERE stt.stt_status = 'Ativo'
 		GROUP by stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo";
 	$result = mysqli_query($con, $sql) or die('Falha');
+
+	$tipoUsuario = null;
+
+	if(isset($_SESSION['usuario'])){
+		$tipoUsuario = $_SESSION['tipoUsuario'];
+	}
 ?>
 
 <div>
 	<h2>Horário de aulas:</h2>
 	<form name="form1" method="post">
 		<div class="form-group">
+			<select name="tipoUsuario" id="tipoUsuario" hidden="true" >
+				<option value= "<?= $tipoUsuario ?>" selected></option>
+			</select>
 			<select name="turma" id="turma" class="form-control">
 				<option value="0">Selecione a Turma - Série - Turno</option>
 				<?php 

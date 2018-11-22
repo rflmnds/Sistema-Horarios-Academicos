@@ -107,13 +107,19 @@
             include('restrito/cads/cad_turno.php');
           }
           else if($link == 'vincturno'){
-           include('restrito/operacoes/vinc_turno.php');
+            include('restrito/operacoes/vinc_turno.php');
           }
           else if($link == 'config'){
-           include('restrito/grids/grid_config.php');
+            include('restrito/grids/grid_config.php');
           }
           else if($link == 'addconfig'){
-           include('restrito/cads/cad_config.php');
+            include('restrito/cads/cad_config.php');
+          }
+          else if($link == 'home'){
+            include('restrito/operacoes/home.php');
+          }
+          else {
+            include('restrito/operacoes/home.php');
           }
       	}
       ?>

@@ -1,9 +1,9 @@
-function buscar(turma) {
+function buscar(turma, tipoUsuario) {
 	$.ajax({
 		method: "POST",
 		dataType: "html",
 		url: "restrito/acoes/script_horario.php",
-		data: {turma: turma},
+		data: {turma: turma, tipoUsuario: tipoUsuario},
 		success: function(msg){
 			$('#horario').html(msg);
 		}
@@ -11,5 +11,5 @@ function buscar(turma) {
 }
 
 $('#turma').change(function(){
-	buscar($('#turma').val());
+	buscar($('#turma').val(), $('#tipoUsuario').val()) ;
 });
