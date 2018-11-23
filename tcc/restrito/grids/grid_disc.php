@@ -28,7 +28,7 @@
 			echo "	<td>" . $disciplina['dis_carga'] . "</td>";
 			echo "	<td>	
 						<a class='btn btn-warning' href='$url'>Informações</a>
-						<a class='btn btn-success' href='?pag=discprof&id=" . $disciplina['dis_cod'] . "'>Professores</a>
+						<a class='btn btn-info' href='?pag=discprof&id=" . $disciplina['dis_cod'] . "'>Professores</a>
 					</td>";
 			echo "</tr>";
 		}

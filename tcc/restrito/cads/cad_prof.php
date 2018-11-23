@@ -41,7 +41,7 @@
 			<label for="formacao">Formação profissional</label>
 			<input type="text" name="formacao" class="form-control" value="<?= $formacao ?>" placeholder="Formação" required>
 		</div>
-		<input type="submit" value="Salvar" class="btn btn-default">
+		<input type="submit" value="Salvar" class="btn btn-primary">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadprof'">
 	</form>
 

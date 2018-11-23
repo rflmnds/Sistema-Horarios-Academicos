@@ -34,7 +34,7 @@
 				echo "	<td>" . $config['con_horaini'] . "</td>";
 				echo "	<td>" . $config['con_horafin'] . "</td>";
 				echo "	<td>" . $config['con_desc'] . "</td>";
-				echo "	<td><a href='$url'class='btn btn-success'>Editar</a></td>";
+				echo "	<td><a href='$url'class='btn btn-warning'>Editar</a></td>";
 				echo "</tr>";
 			}
 		?>

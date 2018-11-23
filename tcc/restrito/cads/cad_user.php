@@ -76,7 +76,7 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="prof">Tipo de Usuário</label>
+			<label for="prof">Professor</label>
 			<select class="form-control" name="prof">
 				<option value="null">Nenhum</option>
 				<?php
@@ -97,8 +97,12 @@
 				?>
 			</select>
 		</div>
-		<input type="submit" value="Salvar" class="btn btn-primary">
-		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadcurso'">
+		<div class="form-group">
+			<input type="submit" value="Salvar" class="btn btn-primary">
+			<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadcurso'">
+		</div>
+		<div class="form-group">
+			<a href='?pag=users' class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 	</form>
 
 	<p class="text-success"><?= $mensagem ?></p>

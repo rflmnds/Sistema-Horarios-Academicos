@@ -29,7 +29,7 @@
 			echo "	<td>" . $turma['tur_ano'] . "</td>";
 			echo "	<td>" . $turma['mat_info'] . "</td>";
 			echo "	<td>
-						<a class='btn btn-success' href='?pag=turmaserie&id=" . $turma['tur_cod'] . "'>Vincular à série</a>
+						<a class='btn btn-default' href='?pag=turmaserie&id=" . $turma['tur_cod'] . "'>Vincular à série</a>
 					</td>";
 			echo "</tr>";
 		}

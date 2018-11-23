@@ -15,7 +15,7 @@
 	 	require('restrito/acoes/acao_config.php');
 	 	require('restrito/acoes/acao_horario.php');
 	}
-	$url = "window.location.href='?pag=config&id=" . $turno_cod . "'"
+	$url = "?pag=config&id=" . $turno_cod;
 ?>
 
 <div>
@@ -34,11 +34,11 @@
 			<input type="time" name="horaFin" class="form-control">
 		</div>
 		<div class="form-group">
-			<input type="submit" name="submit" value="Salvar" class="btn btn-default">
+			<input type="submit" name="submit" value="Salvar" class="btn btn-primary">
 			<p class="text-success"><?= $mensagem ?></p>
 		</div>
 		<div class="form-group">
-			<input type="button" value="Voltar" <?= "onclick=" . $url ?> style="width:100%" class="btn btn-default">
+			<a href='<?= $url ?>' class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 		</div>
 	</form>
 </div>

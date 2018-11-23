@@ -45,7 +45,7 @@
 			</select>
 			<a href="?pag=cadmatriz" class="btn btn-default" style="display: block;">Cadastrar matriz</a>
 		</div>
-		<input type="submit" value="Salvar" class="btn btn-default">
+		<input type="submit" value="Salvar" class="btn btn-primary">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadturma'">
 	</form>
 

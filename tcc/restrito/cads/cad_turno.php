@@ -23,7 +23,7 @@
 				<option value="Inativo">Inativo</option>
 			</select>
 		</div>
-		<input type="submit" value="Salvar" name="submit" class="btn btn-default">
+		<input type="submit" value="Salvar" name="submit" class="btn btn-primary">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=cadturma'">
 	</form>
 
