@@ -99,10 +99,10 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<input type="submit" value="Salvar" name="submit" class="btn btn-default">
+			<input type="submit" value="Salvar" name="submit" class="btn btn-primary">
 		</div>
 		<div class="form-group">
-			<input type="button" value="Voltar" onclick="window.location='?pag=horario'" style="width:100%" class="btn btn-default">
+			<a href='?pag=horario' class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 		</div>
 	</form>
 </div>

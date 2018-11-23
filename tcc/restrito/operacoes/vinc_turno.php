@@ -53,12 +53,12 @@
 				?>
 			</select>
 		</div>
-		<input type="submit" value="Salvar" class="btn btn-default" name="submit">
+		<div class="form-group">
+			<input type="submit" value="Salvar" class="btn btn-primary" name="submit">
+		</div>
 	</form>
 
-	<p></p>
-
-	<a class="btn btn-default" href="<?= $url ?>" style="width: 100%">Voltar</a>
+	<a href='<?= $url ?>' class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 
 	<h2>Turnos de "<?= $turma . " Série: " . $modulo?>"</h2>
 	<?php include('restrito/grids/grid_vincturno.php') ?>

@@ -49,7 +49,7 @@
 			</select>
 			<a href="?pag=cadserie" class="btn btn-default" style="display: block">Cadastrar série</a>		
 		</div>
-		<input type="submit" value="Salvar" class="btn btn-default" name="submit">
+		<input type="submit" value="Salvar" class="btn btn-primary" name="submit">
 	</form>
 
 	<h2>Séries vinculadas à "<?= $tur_nome ?>"</h2>

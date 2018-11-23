@@ -57,12 +57,12 @@
 			<label for="ano">Ano de Oferta</label>
 			<input type="text" name="ano" class="form-control" placeholder="Ano" required>
 		</div>
-		<input type="submit" value="Salvar" name="submit" class="btn btn-default">
+		<input type="submit" value="Salvar" name="submit" class="btn btn-primary">
 		<input type="button" value="Limpar" class="btn btn-default" onclick="window.location='?pag=oferta">
 	</form>
 	<p class="text-success"><?= $mensagem ?></p>
 	
-	<a class="btn btn-default" href="<?= $url ?>" style="width: 100%">Voltar</a>
+	<a href='<?= $url ?>' class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 
 	<h2>Disciplinas ofertadas de "<?= $turma . " - " . $modulo ?>"</h2>
 	<?php include('restrito/grids/grid_oferta.php') ?>

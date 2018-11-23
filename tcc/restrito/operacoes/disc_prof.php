@@ -60,10 +60,10 @@
 			<a href="?pag=cadprof" class="btn btn-default" style="display: block">Cadastrar professor</a>		
 		</div>
 		<div class="form-group">
-			<input type="submit" name="submit" value="Salvar" class="btn btn-default">
+			<input type="submit" name="submit" value="Salvar" class="btn btn-primary">
 		</div>
 		<div class="form-group">
-			<input type="button" value="Voltar" onclick="window.location='?pag=caddisc'" style="width:100%" class="btn btn-default">
+			<a href='?pag=caddisc' class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 		</div>
 	</form>
 

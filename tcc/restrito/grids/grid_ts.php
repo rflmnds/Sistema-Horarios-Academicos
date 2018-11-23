@@ -26,8 +26,8 @@
 			echo "	<td>" . $serie['ser_cod'] . "</td>";
 			echo "	<td>" . $serie['ser_modulo'] . " - " . $serie['ser_ano'] . "</td>";
 			echo "	<td>
-						<a href='$url1'class='btn btn-success'>Ofertar disciplinas</a>
-						<a href='$url2'class='btn btn-success'>Vincular à turno</a>
+						<a href='$url1'class='btn btn-default'>Ofertar disciplinas</a>
+						<a href='$url2'class='btn btn-default'>Vincular à turno</a>
 					</td>";
 			echo "</tr>";
 		}
