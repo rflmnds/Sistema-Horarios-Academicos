@@ -6,6 +6,8 @@
 	$ds_cod = $_GET['ds'];
 	$con_cod = $_GET['period'];
 
+	$mensagem = null;
+
 	$sql = "SELECT * FROM horario as h 
 			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
 			INNER JOIN config_hora as c ON h.con_cod = c.con_cod
@@ -16,7 +18,7 @@
 	$hor_cod = $horario['hor_cod'];
 
 	if($hor_cod == null){
-		echo $sql = "INSERT INTO horario(con_cod, ds_cod) VALUES ($con_cod, $ds_cod)";
+		$sql = "INSERT INTO horario(con_cod, ds_cod) VALUES ($con_cod, $ds_cod)";
 		mysqli_query($con, $sql) or die("Falha ao cadastrar Período");
 		header('Refresh:0');
 	}
@@ -41,6 +43,12 @@
 			WHERE st.tur_cod = $tur_cod";
 	$rDisciplina = mysqli_query($con, $sql)or die("Falha ao buscar disciplinas");
 
+	if(isset($_GET['id'])){
+		$sql = "SELECT * FROM aula where aula_cod = " . $_GET['id'];
+		$result1 = mysqli_query($con, $sql) or die('Falha ao buscar curso');
+		$aula = mysqli_fetch_array($result1);
+	}
+
 	if(isset($_POST['submit'])){
 		require('restrito/acoes/acao_aula.php');
 	}
@@ -55,17 +63,17 @@
 				<?php
 					while($disciplina = mysqli_fetch_array($rDisciplina)) {
 						echo "<option value='" . $disciplina['ofe_cod'];
-						/*if(isset($_GET['id'])){
-							if($ppc['cur_cod'] == $curso['cur_cod']){
-								echo "' selected>" . $curso['cur_nome'] . "</option>";
+						if(isset($_GET['id'])){
+							if($aula['ofe_cod'] == $disciplina['ofe_cod']){
+								echo "' selected>Disciplina: " . $disciplina['dis_nome'] . " - Professor: " . $disciplina['pro_nome'] . "</option>";
 							}
 							else{
-								echo "'>" . $curso['cur_nome'] . "</option>";
+								echo "'>Disciplina: " . $disciplina['dis_nome'] . " - Professor: " . $disciplina['pro_nome'] . "</option>";
 							}
 						}
-						else{*/
+						else{
 							echo "'>Disciplina: " . $disciplina['dis_nome'] . " - Professor: " . $disciplina['pro_nome'] . "</option>";
-						//}
+						}
 					}
 				?>
 			</select>
@@ -76,17 +84,17 @@
 				<?php
 					while($sala = mysqli_fetch_array($rSala)) {
 						echo "<option value='" . $sala['sal_cod'];
-						/*if(isset($_GET['id'])){
-							if($ppc['cur_cod'] == $curso['cur_cod']){
-								echo "' selected>" . $curso['cur_nome'] . "</option>";
+						if(isset($_GET['id'])){
+							if($aula['sal_cod'] == $sala['sal_cod']){
+								echo "' selected>" . $sala['sal_desc'] . "</option>";
 							}
 							else{
-								echo "'>" . $curso['cur_nome'] . "</option>";
+								echo "'>" . $sala['sal_desc'] . "</option>";
 							}
 						}
-						else{*/
+						else{
 							echo "'>" . $sala['sal_desc'] . "</option>";
-						//}
+						}
 					}
 				?>
 			</select>
@@ -94,12 +102,27 @@
 		<div class="form-group">
 			<label for="status">Status</label>
 			<select name="status" class="form-control" required>
-				<option value="Ativo">Ativo</option>
-				<option value="Inativo">Inativo</option>
+				<?php
+					if(isset($_GET['id'])){
+						if($aula['aula_status'] == 'Ativo'){
+							echo "<option value='Ativo' selected>Ativo</option>";
+							echo "<option value='Inativo'>Inativo</option>";
+						}
+						else{
+							echo "<option value='Ativo'>Ativo</option>";
+							echo "<option value='Inativo' selected>Inativo</option>";
+						}
+					}
+					else{
+						echo "<option value='Ativo'>Ativo</option>";
+						echo "<option value='Inativo'>Inativo</option>";
+					}
+				?>
 			</select>
 		</div>
 		<div class="form-group">
 			<input type="submit" value="Salvar" name="submit" class="btn btn-primary">
+			<p class="text-success"><?= $mensagem ?></p>
 		</div>
 		<div class="form-group">
 			<a href='?pag=horario' class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>

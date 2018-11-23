@@ -23,20 +23,29 @@
 	$check = 0;
 
 	while($valida1 = mysqli_fetch_array($result2)){ 
-		if($valida1['pro_cod'] == $pro_cod){
-			$check++;
-			$mensagem1 = "Professor está em aula nesse horário";
-		}
-		if($valida1['sal_cod'] == $sala){
-			$check++;
-			$mensagem2 = "Sala está em uso nesse horário";
+		if($valida1['aula_cod'] != $_GET['id']){
+			if($valida1['pro_cod'] == $pro_cod){
+				$check++;
+				$mensagem1 = "Professor está em aula nesse horário";
+			}
+			if($valida1['sal_cod'] == $sala){
+				$check++;
+				$mensagem2 = "Sala está em uso nesse horário";
+			}
 		}
 	}
 
 	if($check == 0){
-		$sql = "INSERT INTO aula(aula_status, sal_cod, hor_cod, ofe_cod) VALUES ('$status', $sala, $hor_cod, $disciplina)";
-		mysqli_query($con, $sql) or die('Falha ao adicionar aula');
-		$mensagem = "Aula adicionada com sucesso";
+		if(isset($_GET['id'])){
+			$sql = "UPDATE aula SET aula_status = '$status', sal_cod = $sala, hor_cod = $hor_cod, ofe_cod = $disciplina WHERE aula_cod = " . $_GET['id'];
+			mysqli_query($con,$sql) or die('Falha ao alterar aula');
+			$mensagem = "Aula alterado com sucesso";
+		}
+		else{
+			$sql = "INSERT INTO aula(aula_status, sal_cod, hor_cod, ofe_cod) VALUES ('$status', $sala, $hor_cod, $disciplina)";
+			mysqli_query($con, $sql) or die('Falha ao adicionar aula');
+			$mensagem = "Aula adicionada com sucesso";
+		}
 	}
 	else{
 		echo "<script type='text/javascript'>alert('Erro de validação: $mensagem1 $mensagem2');</script>";
