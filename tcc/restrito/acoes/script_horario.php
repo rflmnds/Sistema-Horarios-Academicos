@@ -61,8 +61,13 @@
 				if($qtd >= 1){
 					while($horario = mysqli_fetch_array($script2)){
 						if($horario['con_cod'] == $linha['con_cod'] &&  $horario['ds_cod'] == $j){
-							$aula = $url . "&id=" . $horario['aula_cod'];
-							echo "<a href='$aula' class='btn btn-info'>" . $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
+							if($tipoUsuario == 1){
+								$aula = $url . "&id=" . $horario['aula_cod'];
+								echo "<a href='$aula' class='btn btn-info'>" . $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
+							}
+							else{
+								echo $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
+							}
 							$count++;
 							break;
 						}
