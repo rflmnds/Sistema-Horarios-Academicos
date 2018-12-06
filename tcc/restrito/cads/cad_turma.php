@@ -51,6 +51,6 @@
 
 	<p class="text-success"><?= $mensagem ?></p>
 
-	<h2>Turmas:</h2>
+	<h2>Turmas cadastradas:</h2>
 	<?php include('restrito/grids/grid_turma.php') ?>
 </div>

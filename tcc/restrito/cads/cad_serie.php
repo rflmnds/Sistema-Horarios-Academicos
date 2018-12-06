@@ -13,7 +13,7 @@
 ?>
 
 <div>
-	<h1>Cadastro Série:</h1>
+	<h1>Cadastrar Série:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="modulo">Módulo</label>

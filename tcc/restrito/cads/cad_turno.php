@@ -29,6 +29,6 @@
 
 	<p class="text-success"><?= $mensagem ?></p>
 
-	<h2>Turmas:</h2>
+	<h2>Turnos cadastrados:</h2>
 	<?php include('restrito/grids/grid_turno.php') ?>
 </div>

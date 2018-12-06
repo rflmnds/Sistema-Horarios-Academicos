@@ -27,7 +27,7 @@
 ?>
 
 <div>
-	<h1>Adicionar Professor:</h1>
+	<h1>Cadastrar Professor:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Nome</label>
@@ -47,6 +47,6 @@
 
 	<p class="text-success"><?= $mensagem ?></p>
 
-	<h2>Professores:</h2>
+	<h2>Professores cadastrados:</h2>
 	<?php include('restrito/grids/grid_prof.php') ?>
 </div>
