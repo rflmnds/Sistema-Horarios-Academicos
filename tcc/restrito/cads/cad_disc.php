@@ -15,7 +15,7 @@
 ?>
 
 <div>
-	<h1>Cadastro de Disciplina:</h1>
+	<h1>Cadastrar Disciplina:</h1>
 	<form name="form1" id="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Nome</label>

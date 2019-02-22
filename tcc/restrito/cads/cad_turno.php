@@ -10,7 +10,7 @@
 ?>
 
 <div>
-	<h1>Adicionar Turno:</h1>
+	<h1>Cadastrar Turno:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="desc">Turno</label>
@@ -29,6 +29,6 @@
 
 	<p class="text-success"><?= $mensagem ?></p>
 
-	<h2>Turmas:</h2>
+	<h2>Turnos cadastrados:</h2>
 	<?php include('restrito/grids/grid_turno.php') ?>
 </div>

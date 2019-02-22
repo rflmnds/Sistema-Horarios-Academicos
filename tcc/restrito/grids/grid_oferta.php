@@ -15,7 +15,6 @@
 	<tr>
 		<th>Professor</th>
 		<th>Disciplina</th>
-		<th>Ações</th>
 	</tr>
 	<?php
 		while($serie = mysqli_fetch_array($result)){
@@ -30,7 +29,6 @@
 			echo "<tr>";
 			echo "	<td>" . $linha['pro_nome'] . "</td>";
 			echo "	<td>" . $linha['dis_nome'] . "</td>";
-			echo "	<td></td>";
 			echo "</tr>";
 		}
 	?>

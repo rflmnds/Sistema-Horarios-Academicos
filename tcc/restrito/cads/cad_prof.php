@@ -27,7 +27,7 @@
 ?>
 
 <div>
-	<h1>Adicionar Professor:</h1>
+	<h1>Cadastrar Professor:</h1>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Nome</label>
