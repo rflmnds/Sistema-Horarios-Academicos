@@ -60,6 +60,6 @@
 	
 	<p class="text-success"><?= $mensagem ?></p>
 
-	<h2>Disciplinas:</h2>
+	<h2>Disciplinas cadastradas:</h2>
 	<?php include('restrito/grids/grid_disc.php') ?>
 </div>

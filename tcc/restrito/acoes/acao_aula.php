@@ -23,15 +23,27 @@
 	$check = 0;
 
 	while($valida1 = mysqli_fetch_array($result2)){ 
-		if($valida1['aula_cod'] != $_GET['id']){
+		if(isset($_GET['id'])){
+			if($valida1['aula_cod'] != $_GET['id']){
+				if($valida1['pro_cod'] == $pro_cod){
+					$check++;
+					$mensagem1 = "Professor está em aula nesse horário";
+				}
+				if($valida1['sal_cod'] == $sala){
+					$check++;
+					$mensagem2 = "Sala está em uso nesse horário";
+				}
+			}
+		}
+		else{
 			if($valida1['pro_cod'] == $pro_cod){
-				$check++;
-				$mensagem1 = "Professor está em aula nesse horário";
-			}
-			if($valida1['sal_cod'] == $sala){
-				$check++;
-				$mensagem2 = "Sala está em uso nesse horário";
-			}
+					$check++;
+					$mensagem1 = "Professor está em aula nesse horário";
+				}
+				if($valida1['sal_cod'] == $sala){
+					$check++;
+					$mensagem2 = "Sala está em uso nesse horário";
+				}
 		}
 	}
 

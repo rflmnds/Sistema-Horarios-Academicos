@@ -22,6 +22,11 @@ CREATE TABLE IF NOT EXISTS `db_pdt`.`tipo_usuario` (
 ENGINE = InnoDB;
 
 
+INSERT INTO `tipo_usuario` (`tu_cod`, `tu_desc`) VALUES
+(1, 'Administrador'),
+(2, 'Professor');
+
+
 -- -----------------------------------------------------
 -- Table `db_pdt`.`professor`
 -- -----------------------------------------------------
@@ -57,6 +62,11 @@ CREATE TABLE IF NOT EXISTS `db_pdt`.`usuario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+INSERT INTO `usuario` (`usu_cod`, `usu_nome`, `usu_email`, `usu_senha`, `tu_cod`) VALUES
+(1, 'Administrador', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 1);
+
 
 -- -----------------------------------------------------
 -- Table `db_pdt`.`tipo_ativ`

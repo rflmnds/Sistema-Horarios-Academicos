@@ -47,6 +47,6 @@
 
 	<p class="text-success"><?= $mensagem ?></p>
 
-	<h2>Professores:</h2>
+	<h2>Professores cadastrados:</h2>
 	<?php include('restrito/grids/grid_prof.php') ?>
 </div>
