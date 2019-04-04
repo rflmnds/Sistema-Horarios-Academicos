@@ -24,7 +24,8 @@ ENGINE = InnoDB;
 
 INSERT INTO `tipo_usuario` (`tu_cod`, `tu_desc`) VALUES
 (1, 'Administrador'),
-(2, 'Professor');
+(2, 'Professor'),
+(3, 'Coordenador');
 
 
 -- -----------------------------------------------------
