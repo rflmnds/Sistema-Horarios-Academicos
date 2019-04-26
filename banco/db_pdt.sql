@@ -78,6 +78,10 @@ CREATE TABLE IF NOT EXISTS `db_pdt`.`tipo_ativ` (
   PRIMARY KEY (`ta_cod`))
 ENGINE = InnoDB;
 
+INSERT INTO `tipo_ativ` (`ta_cod`, `ta_nome`) VALUES
+(1, 'Manutenção de Ensino'),
+(2, 'Apoio ao Ensino');
+
 
 -- -----------------------------------------------------
 -- Table `db_pdt`.`ativ_complementares`
@@ -111,6 +115,10 @@ CREATE TABLE IF NOT EXISTS `db_pdt`.`tipo_projeto` (
   `tp_nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`tp_cod`))
 ENGINE = InnoDB;
+
+INSERT INTO `tipo_projeto` (`tp_cod`, `tp_nome`) VALUES
+(1, 'Projeto de Pesquisa'),
+(2, 'Ação de Extensão');
 
 
 -- -----------------------------------------------------

@@ -68,15 +68,21 @@
 		</div>
 	</div>
 	<div class="row">
-	<a class="btn btn-lg btn-info" data-toggle="collapse" href="#disciplinas" role="button" aria-expanded="false" aria-controls="disciplinas">
-		Disciplinas 
-	    <span class="glyphicon glyphicon-chevron-down"></span>
-	</a>
-	<a class="btn btn-lg btn-info" data-toggle="collapse" href="#horarios" role="button" aria-expanded="false" aria-controls="horarios">
-		Horários de aulas 
-	    <span class="glyphicon glyphicon-chevron-down"></span>
-	</a>
-		<div class="collapse" id="disciplinas">
+		<a class="btn btn-lg btn-info" data-toggle="collapse" href="#disciplinas" role="button" aria-expanded="false" aria-controls="disciplinas">
+			Disciplinas 
+		    <i class="fa fa-angle-down"></i>
+		</a>
+		<a class="btn btn-lg btn-info" data-toggle="collapse" href="#horarios" role="button" aria-expanded="false" aria-controls="horarios">
+			Horários de aulas 
+		    <i class="fa fa-angle-down"></i>
+		</a>
+		<a class="btn btn-lg btn-info" data-toggle="collapse" href="#projetos" role="button" aria-expanded="false" aria-controls="projetos">
+			Projetos
+		    <i class="fa fa-angle-down"></i>
+		</a>
+	</div>
+	<div class="row">
+		<div class="col collapse" id="disciplinas">
 			<table class="table table-hover">
 				<h4>Disciplinas</h4>
 				<?php
@@ -88,7 +94,9 @@
 				?>
 			</table>
 		</div>
-		<div class="collapse" id="horarios">
+	</div>
+	<div class="row">
+		<div class="col collapse" id="horarios">
 			<table class="table table-hover">
 				<h4>Horário</h4>
 				<tr>
@@ -110,6 +118,20 @@
 					}
 				?>
 			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col collapse" id="projetos">
+			<table class="table table-hover">
+				<h4>Projetos</h4>
+				<tr>
+					<th>Tipo</th>
+					<th>Número</th>
+					<th>Status</th>
+					<th>Ações</th>
+				</tr>
+			</table>
+			<a class='btn btn-sm btn-default' href='?pag=cadprojeto&id=<?= $pro_cod?>'>Criar Projeto</a>
 		</div>
 	</div>
 </div>

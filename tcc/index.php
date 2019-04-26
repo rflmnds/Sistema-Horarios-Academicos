@@ -91,6 +91,9 @@
           else if($link == 'cadnivel'){
             include('restrito/cads/cad_nivel.php');
           }
+          else if($link == 'cadprojeto'){
+            include('restrito/cads/cad_projeto.php');
+          }
           else if($link == 'profdisc'){
             include('restrito/operacoes/prof_disc.php');
           }

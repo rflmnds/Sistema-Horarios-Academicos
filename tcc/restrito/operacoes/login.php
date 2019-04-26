@@ -18,8 +18,8 @@
 				<label for="senha" class="sr-only">Senha:</label>
 				<div class="input-group">
 					<input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required>
-					<div class="input-group-addon">
-						<span id="toggle_view_senha" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+					<div class="input-group-append">
+						<button id="toggle_view_senha" class="btn btn-input-addon btn-outline-secondary"><span id="simbol" class="fa fa-eye-slash" aria-hidden="true"></span></button>
 					</div>
 				</div>
 			</div>

@@ -3,12 +3,12 @@ $(document).ready(function() {
         event.preventDefault();
         if($('#senha').attr("type") == "text"){
             $('#senha').attr('type', 'password');
-            $('#toggle_view_senha').addClass( "glyphicon-eye-close" );
-            $('#toggle_view_senha').removeClass( "glyphicon-eye-open" );
+            $('#simbol').addClass( "fa-eye-slash" );
+            $('#simbol').removeClass( "fa-eye" );
         }else if($('#senha').attr("type") == "password"){
             $('#senha').attr('type', 'text');
-            $('#toggle_view_senha').removeClass( "glyphicon-eye-close" );
-            $('#toggle_view_senha').addClass( "glyphicon-eye-open" );
+            $('#simbol').removeClass( "fa-eye-slash" );
+            $('#simbol').addClass( "fa-eye" );
         }
     });
 });
