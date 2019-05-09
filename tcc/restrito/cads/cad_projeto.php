@@ -22,7 +22,7 @@
 ?>
 
 <div>
-	<h2>Cadastro de projeto do Professor <?= $professor['pro_nome'] ?></h2>
+	<h2>Cadastro de projeto</h2>
 	<form name="form1" method="post">
 		<div class="form-group">
 			<label for="nome">Número do projeto</label>

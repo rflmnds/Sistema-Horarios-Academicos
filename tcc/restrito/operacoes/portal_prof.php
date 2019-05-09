@@ -17,7 +17,7 @@
 
 	$sqlHR = "SELECT * FROM aula as a
 			INNER JOIN horario as h ON a.hor_cod = h.hor_cod
-			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod		
+			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
 			INNER JOIN config_hora as ch ON h.con_cod = ch.con_cod
 			INNER JOIN oferta as o ON a.ofe_cod = o.ofe_cod
 			INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
@@ -30,6 +30,51 @@
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			WHERE p.pro_cod = " . $pro_cod . " ORDER BY h.ds_cod ";
 	$scriptHR = mysqli_query($con, $sqlHR) or die('Falha ao buscar horário de turma');
+
+	$tipoUsuario = $_SESSION['tipoUsuario'];
+
+	echo $sql1 = "SELECT ch.con_horaini, pr.pro_cod, ch.con_cod, ch.con_desc FROM config_hora as ch
+			INNER JOIN turno as tn ON ch.turno_cod = tn.turno_cod
+			INNER JOIN projeto as p
+			INNER JOIN hora_projeto as hp ON p.proj_cod = hp.proj_cod
+			INNER JOIN horario as h ON hp.hor_cod = h.hor_cod
+			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
+			INNER JOIN professor as pr ON p.pro_cod = pr.pro_cod
+			WHERE pr.pro_cod = $pro_cod
+			GROUP BY ch.con_horaini, pr.pro_cod, ch.con_cod, ch.con_desc
+			ORDER BY ch.con_horaini";
+	$script1 = mysqli_query($con, $sql1);
+
+	$turma = mysqli_fetch_array($script1);
+	mysqli_data_seek($script1, 0);
+
+	$qtd_rows = mysqli_num_rows($script1);
+
+ 	$sql2 = "SELECT * FROM aula as a
+			INNER JOIN horario as h ON a.hor_cod = h.hor_cod
+			INNER JOIN oferta as o ON a.ofe_cod = o.ofe_cod
+			INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
+			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
+			INNER JOIN serie as s ON st.ser_cod = s.ser_cod
+			INNER JOIN serie_turma_has_turno as stt ON stt.st_cod = st.st_cod
+			INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod
+			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
+			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
+			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
+			WHERE p.pro_cod = " . $pro_cod . " ORDER BY h.ds_cod ";
+	$script2 = mysqli_query($con, $sql2) or die('Falha ao buscar horário de aulas');
+
+	$sql3 = "SELECT * FROM projeto as p
+ 			INNER JOIN hora_projeto as hp ON p.proj_cod = hp.proj_cod
+			INNER JOIN horario as h ON hp.hor_cod = h.hor_cod
+			INNER JOIN config_hora as ch ON h.con_cod = ch.con_cod
+			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
+			INNER JOIN professor as pr ON p.pro_cod = pr.pro_cod
+			WHERE p.pro_cod = " . $pro_cod . " ORDER BY h.ds_cod ";
+	$script3 = mysqli_query($con, $sql3) or die('Falha ao buscar horário de projetos');
+
+	$qtd = mysqli_num_rows($script2);
+
 ?>
 
 <div>
@@ -122,14 +167,87 @@
 	</div>
 	<div class="row">
 		<div class="col collapse" id="projetos">
-			<table class="table table-hover">
+			<table class="table table-sm table-hover">
 				<h4>Projetos</h4>
 				<tr>
-					<th>Tipo</th>
-					<th>Número</th>
-					<th>Status</th>
-					<th>Ações</th>
+					<th>Horário</th>
+					<th style="text-align: center;">Domingo</th>
+					<th style="text-align: center;">Segunda</th>
+					<th style="text-align: center;">Terça</th>
+					<th style="text-align: center;">Quarta</th>
+					<th style="text-align: center;">Quinta</th>
+					<th style="text-align: center;">Sexta</th>
+					<th style="text-align: center;">Sábado</th>
 				</tr>
+				<?php
+					$i = 0;
+					while($linha= mysqli_fetch_array($script1)){
+						$i++;
+						echo "<tr>";
+						echo "<td>";
+						echo $linha["con_horaini"];
+						echo "</td>";
+						for($j = 1; $j <= 7; $j++){
+						 $url = "";
+							echo "<td style='text-align: center'>";
+							$count = 0;
+							if($qtd >= 1){
+								while($hAula = mysqli_fetch_array($script2)){
+									if($hAula['con_cod'] == $linha['con_cod'] &&  $hAula['ds_cod'] == $j){
+										if($tipoUsuario == 1){
+											$aula = $url . "&id=" . $hAula['aula_cod'];
+											echo "<a href='$aula' class='btn btn-outline-info'>" . $hAula['dis_nome'] . "</a>";
+										}
+										else{
+											echo "<p>". $hAula['dis_nome'] . "</p>";
+										}
+										$count++;
+										break;
+									}
+								}
+								while($hProjeto = mysqli_fetch_array($script3)){
+									if($hProjeto['con_cod'] == $linha['con_cod'] &&  $hProjeto['ds_cod'] == $j){
+										if($tipoUsuario == 1){
+											$aula = $url . "&id=" . $hProjeto['aula_cod'];
+											echo "<a href='$aula' class='btn btn-outline-info'>Projeto nº " . $hProjeto['proj_numero'] . "</a>";
+										}
+										else{
+											echo "<p>Projeto nº " . $hProjeto['proj_numero'] . "</p>";
+										}
+										$count++;
+										break;
+									}
+								}
+								if($linha['con_desc'] == 'Intervalo'){
+									echo "<p>--Intervalo--</p>";
+								}
+								else if($count==0){
+									if($tipoUsuario == 2 || $tipoUsuario == 3){
+										echo " <a href='$url' class='btn btn-sm btn-default'>Adicionar projeto</a>";
+									}
+									else {
+										echo "...";
+									}
+								}
+							}
+							else if($linha['con_desc'] == 'Intervalo'){
+								echo "<p>--Intervalo--</p>";
+							}
+							else{
+								if($tipoUsuario == 2 || $tipoUsuario == 3){
+										echo " <a href='$url' class='btn btn-default'>Adicionar projeto</a>";
+									}
+									else {
+										echo "...";
+									}
+							}
+							mysqli_data_seek($script2, 0);
+							mysqli_data_seek($script3, 0);
+							echo "</td>";
+						}
+						echo "</tr>";
+					}
+				?>
 			</table>
 			<a class='btn btn-sm btn-default' href='?pag=cadprojeto&id=<?= $pro_cod?>'>Criar Projeto</a>
 		</div>
