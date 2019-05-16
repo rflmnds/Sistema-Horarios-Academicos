@@ -35,70 +35,74 @@
 	$qtd = mysqli_num_rows($script2);
 ?>
 
-<table class="table table-hover">
-	<tr>
-		<th>Horário</th>
-		<th style="text-align: center;">Domingo</th>
-		<th style="text-align: center;">Segunda</th>
-		<th style="text-align: center;">Terça</th>
-		<th style="text-align: center;">Quarta</th>
-		<th style="text-align: center;">Quinta</th>
-		<th style="text-align: center;">Sexta</th>
-		<th style="text-align: center;">Sábado</th>
-	</tr>
-	<?php
-		$i = 0;
-		while($linha= mysqli_fetch_array($script1)){
-			$i++;
-			echo "<tr>";
-			echo "<td>";
-			echo $linha["con_horaini"];
-			echo "</td>";
-			for($j = 1; $j <= 7; $j++){
-			 $url = "?pag=addaula&turma=" . $tur_cod . "&ds=" . $j . "&period=" .  $linha['con_cod'];
-				echo "<td style='text-align: center'>";
-				$count = 0;
-				if($qtd >= 1){
-					while($horario = mysqli_fetch_array($script2)){
-						if($horario['con_cod'] == $linha['con_cod'] &&  $horario['ds_cod'] == $j){
-							if($tipoUsuario == 1){
-								$aula = $url . "&id=" . $horario['aula_cod'];
-								echo "<a href='$aula' class='btn btn-outline-info'>" . $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
+<div class="row">
+	<div class="col">
+		<table class="table table-hover">
+			<tr>
+				<th>Horário</th>
+				<th style="text-align: center;">Domingo</th>
+				<th style="text-align: center;">Segunda</th>
+				<th style="text-align: center;">Terça</th>
+				<th style="text-align: center;">Quarta</th>
+				<th style="text-align: center;">Quinta</th>
+				<th style="text-align: center;">Sexta</th>
+				<th style="text-align: center;">Sábado</th>
+			</tr>
+			<?php
+				$i = 0;
+				while($linha= mysqli_fetch_array($script1)){
+					$i++;
+					echo "<tr>";
+					echo "<td>";
+					echo $linha["con_horaini"];
+					echo "</td>";
+					for($j = 1; $j <= 7; $j++){
+					 $url = "?pag=addaula&turma=" . $tur_cod . "&ds=" . $j . "&period=" .  $linha['con_cod'];
+						echo "<td style='text-align: center'>";
+						$count = 0;
+						if($qtd >= 1){
+							while($horario = mysqli_fetch_array($script2)){
+								if($horario['con_cod'] == $linha['con_cod'] &&  $horario['ds_cod'] == $j){
+									if($tipoUsuario == 1 || $tipoUsuario == 3){
+										$aula = $url . "&id=" . $horario['aula_cod'];
+										echo "<a href='$aula' class='btn btn-outline-info'>" . $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
+									}
+									else{
+										echo $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
+									}
+									$count++;
+									break;
+								}
 							}
-							else{
-								echo $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
+							if($linha['con_desc'] == 'Intervalo'){
+								echo "<p>--Intervalo--</p>";
 							}
-							$count++;
-							break;
+							else if($count==0){
+								if($tipoUsuario == 1 || $tipoUsuario == 3){
+									echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
+								}
+								else {
+									echo "...";
+								}
+							}
 						}
+						else if($linha['con_desc'] == 'Intervalo'){
+							echo "<p>--Intervalo--</p>";
+						}
+						else{
+							if($tipoUsuario == 1 || $tipoUsuario == 3){
+									echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
+								}
+								else {
+									echo "...";
+								}
+						}
+						mysqli_data_seek($script2, 0);
+						echo "</td>";
 					}
-					if($linha['con_desc'] == 'Intervalo'){
-						echo "<p>--Intervalo--</p>";
-					}
-					else if($count==0){
-						if($tipoUsuario == 1){
-							echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
-						}
-						else {
-							echo "...";
-						}
-					}
+					echo "</tr>";
 				}
-				else if($linha['con_desc'] == 'Intervalo'){
-					echo "<p>--Intervalo--</p>";
-				}
-				else{
-					if($tipoUsuario == 1){
-							echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
-						}
-						else {
-							echo "...";
-						}
-				}
-				mysqli_data_seek($script2, 0);
-				echo "</td>";
-			}
-			echo "</tr>";
-		}
-	?>
-</table>
+			?>
+		</table>
+	</div>
+</div>

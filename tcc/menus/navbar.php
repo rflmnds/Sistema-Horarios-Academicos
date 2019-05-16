@@ -48,27 +48,29 @@
             </ul>
           </li>
         </ul>
-        <ul class="navbar-nav nav mr-right my-2 my-lg-0">
+        <ul class="navbar-nav nav mr-right">
+          <div class="btn-group">
             <?php
               if(isset($_SESSION['usuario'])){
                 if($_SESSION['tipoUsuario'] == 1){ // Administrador
-                  echo "<li class='nav-item " . $active['users'] . "''><a class='btn btn-outline-light' href='?pag=users'><i class='fa fa-list'></i> Gerenciar usuários</a></li>";
+                  echo "<li class='nav-item " . $active['users'] . " mx-1'><a class='btn btn-outline-light' href='?pag=users'><i class='fa fa-list'></i> Gerenciar usuários</a></li>";
                 }
                 else if($_SESSION['tipoUsuario'] == 2){ // Professorprimary
-                  echo "<li class='nav-item " . $active['portalprof'] . "'><a class='btn btn-outline-light' href='?pag=portalprof&id=$pro_cod'><i class='fa fa-user'></i> Portal do professor</a></li>";
+                  echo "<li class='nav-item " . $active['portalprof'] . " mx-1'><a class='btn btn-outline-light' href='?pag=portalprof&id=$pro_cod'><i class='fa fa-user'></i> Portal do professor</a></li>";
                 }
                 else if($_SESSION['tipoUsuario'] == 3){ // Professor Coordenador
-                  echo "<li class='nav-item " . $active['users'] . "''><a class='btn btn-outline-light' href='?pag=users'><i class='fa fa-list'></i> Gerenciar usuários</a></li>";
+                  echo "<li class='nav-item " . $active['users'] . " mx-1'><a class='btn btn-outline-light' href='?pag=users'><i class='fa fa-list'></i> Gerenciar usuários</a></li>";
 
-                  echo "<li class='nav-item " . $active['portalprof'] . "'><a class='btn btn-outline-light' href='?pag=portalprof&id=$pro_cod'><i class='fa fa-user'></i> Portal do professor</a></li>";
+                  echo "<li class='nav-item " . $active['portalprof'] . " mx-1'><a class='btn btn-outline-light' href='?pag=portalprof&id=$pro_cod'><i class='fa fa-user'></i> Portal do professor</a></li>";
                 }
-                echo "<li><a class='link btn btn-outline-light' href='restrito/operacoes/logout.php'><i class='fa fa-sign-out-alt'></i> Log Out</a></li>";
+                echo "<li class='nav-item mx-1'><a class='link btn btn-outline-light' href='restrito/operacoes/logout.php'><i class='fa fa-sign-out-alt'></i> Log Out</a></li>";
               }
               else{ 
-                echo "<li class='nav-item " . $active['login'] . "'><a class='btn btn-outline-light' href='?pag=login'><i class='fa fa-sign-in-alt'></i> Login</a></li>";
+                echo "<li class='nav-item mx-1" . $active['login'] . "'><a class='btn btn-outline-light' href='?pag=login'><i class='fa fa-sign-in-alt'></i> Login</a></li>";
               }
             ?>
-            <li class="nav-item"><a class="btn btn-outline-info" href="?pag=sobre"><i class="fa fa-info"></i></a></li>
+            <li class="nav-item mx-1"><a class="btn btn-outline-info" href="?pag=sobre"><i class="fa fa-info"></i></a></li>
+          </div>
         </ul>
       </div>
     </nav>
