@@ -124,6 +124,9 @@
           else if($link == 'addconfig'){
             include('restrito/cads/cad_config.php');
           }
+          else if($link == 'addproj'){
+            include('restrito/operacoes/add_proj.php');
+          }
           else if($link == 'home'){
             include('restrito/operacoes/home.php');
           }

@@ -15,21 +15,10 @@
 			WHERE p.pro_cod = $pro_cod";
 	$resultPD = mysqli_query($con, $sqlPD) or die("Falha ao buscar disciplinas do professor");
 
-	$sqlHR = "SELECT * FROM aula as a
-			INNER JOIN horario as h ON a.hor_cod = h.hor_cod
-			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
-			INNER JOIN config_hora as ch ON h.con_cod = ch.con_cod
-			INNER JOIN oferta as o ON a.ofe_cod = o.ofe_cod
-			INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
-			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
-			INNER JOIN serie as s ON st.ser_cod = s.ser_cod
-			INNER JOIN serie_turma_has_turno as stt ON stt.st_cod = st.st_cod
-			INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod
-			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
-			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
-			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
-			WHERE p.pro_cod = " . $pro_cod . " ORDER BY h.ds_cod ";
-	$scriptHR = mysqli_query($con, $sqlHR) or die('Falha ao buscar horário de turma');
+	$sqlPJ = "SELECT * FROM projeto as p
+			INNER JOIN professor as pr ON p.pro_cod = pr.pro_cod
+			WHERE p.pro_cod = " . $pro_cod;
+	$scriptPJ = mysqli_query($con, $sqlPJ) or die('Falha ao buscar projetos do professor');
 
 	$tipoUsuario = $_SESSION['tipoUsuario'];
 
@@ -141,26 +130,16 @@
 	<div class="row">
 		<div class="col collapse my-3" id="projetos">
 			<table class="table table-hover">
-				<h4>Horário</h4>
-				<tr>
-					<th>Dia da Semana</th>
-					<th>Horário de início</th>
-					<th>Horário de término</th>
-					<th>Turma</th>
-					<th>Disciplina</th>
-				</tr>
+				<h4>Projetos</h4>
 				<?php
-					while($horario = mysqli_fetch_array($scriptHR)){
+					while($projetoProf = mysqli_fetch_array($scriptPJ)){
 						echo "<tr>";
-						echo "	<td> " . $horario['ds_nome'] . "</td>";
-						echo "	<td> " . $horario['con_horaini'] . "</td>";
-						echo "	<td> " . $horario['con_horafin'] . "</td>";
-					 	echo "	<td> " . $horario['tur_nome'] ."</td>";
-					 	echo "	<td> " . $horario['dis_nome'] ."</td>";
+						echo "	<th>Projeto nº " . $projetoProf['proj_numero'] . "</th>";
 						echo "</tr>";
 					}
 				?>
 			</table>
+			<a class='btn btn-sm btn-default' href='?pag=cadprojeto&id=<?= $pro_cod?>'>Criar Projeto</a>
 		</div>
 	</div>
 	<div class="row">
@@ -186,7 +165,8 @@
 						echo $linha["con_horaini"];
 						echo "</td>";
 						for($j = 1; $j <= 7; $j++){
-						 $url = "?pag=addproj" . "&ds=" . $j . "&period=" .  $linha['con_cod'];
+						 	$urlp = "?pag=addproj&prof=" . $pro_cod .  "&ds=" . $j . "&period=" .  $linha['con_cod'];
+						 	$urla = "?pag=addativ" . "&ds=" . $j . "&period=" .  $linha['con_cod'];
 							echo "<td style='text-align: center'>";
 							$count = 0;
 							if($qtd >= 1){
@@ -206,8 +186,8 @@
 								while($hProjeto = mysqli_fetch_array($script3)){
 									if($hProjeto['con_cod'] == $linha['con_cod'] &&  $hProjeto['ds_cod'] == $j){
 										if($tipoUsuario == 1){
-											$aula = $url . "&id=" . $hProjeto['aula_cod'];
-											echo "<a href='$aula' class='btn btn-outline-info'>Projeto nº " . $hProjeto['proj_numero'] . "</a>";
+											$proj = $urlp . "&id=" . $hProjeto['aula_cod'];
+											echo "<a href='$proj' class='btn btn-outline-info'>Projeto nº " . $hProjeto['proj_numero'] . "</a>";
 										}
 										else{
 											echo "<p>Projeto nº " . $hProjeto['proj_numero'] . "</p>";
@@ -226,8 +206,8 @@
 														Adicionar
 													</button>
 													<div class='dropdown-menu' aria-labelledby='add'>
-														<a href='$url' class='dropdown-item'>Projeto</a>
-														<a href='$url' class='dropdown-item'>Apoio/Manutenção</a>
+														<a href='$urlp' class='dropdown-item'>Projeto</a>
+														<a href='$urla' class='dropdown-item'>Apoio/Manutenção</a>
 													</div>
 												</div>";
 									}
@@ -241,15 +221,19 @@
 							}
 							else{
 								if($tipoUsuario == 2 || $tipoUsuario == 3){
-										echo 	"<div class='btn-group'>
-													<div class='input-group-text'>Adicionar:</div>
-													<a href='$url' class='btn btn-default'>Projeto</a>
-													<a href='$url' class='btn btn-default'>Apoio/Manutenção de Ensino</a>
+										echo 	"<div class='btn-group' role='group'>
+													<button id='add' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>
+														Adicionar
+													</button>
+													<div class='dropdown-menu' aria-labelledby='add'>
+														<a href='$url' class='dropdown-item'>Projeto</a>
+														<a href='$url' class='dropdown-item'>Apoio/Manutenção</a>
+													</div>
 												</div>";
 									}
-									else {
-										echo "...";
-									}
+								else {
+									echo "...";
+								}
 							}
 							mysqli_data_seek($script2, 0);
 							mysqli_data_seek($script3, 0);
@@ -259,7 +243,6 @@
 					}
 				?>
 			</table>
-			<a class='btn btn-sm btn-default' href='?pag=cadprojeto&id=<?= $pro_cod?>'>Criar Projeto</a>
 		</div>
 	</div>
 </div>

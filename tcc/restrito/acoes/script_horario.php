@@ -37,7 +37,7 @@
 
 <div class="row">
 	<div class="col">
-		<table class="table table-hover">
+		<table class="table table-sm table-hover">
 			<tr>
 				<th>Horário</th>
 				<th style="text-align: center;">Domingo</th>
@@ -65,7 +65,7 @@
 								if($horario['con_cod'] == $linha['con_cod'] &&  $horario['ds_cod'] == $j){
 									if($tipoUsuario == 1 || $tipoUsuario == 3){
 										$aula = $url . "&id=" . $horario['aula_cod'];
-										echo "<a href='$aula' class='btn btn-outline-info'>" . $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
+										echo "<a href='$aula' class='btn btn-sm btn-outline-info'>" . $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
 									}
 									else{
 										echo $horario['dis_nome'] . " </br> Prof. " . $horario['pro_nome'];
@@ -79,7 +79,7 @@
 							}
 							else if($count==0){
 								if($tipoUsuario == 1 || $tipoUsuario == 3){
-									echo " <a href='$url' class='btn btn-default'>Adicionar aula</a>";
+									echo " <a href='$url' class='btn btn-sm btn-default'>Adicionar aula</a>";
 								}
 								else {
 									echo "...";
