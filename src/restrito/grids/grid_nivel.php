@@ -2,7 +2,7 @@
 	require('connection/conecta.php');
 
 	$sql = "SELECT * FROM nivel";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar os níveis de ensino");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar os níveis de ensino");
 
 ?>
 

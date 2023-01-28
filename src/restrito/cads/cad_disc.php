@@ -7,7 +7,7 @@
 	$sql = "SELECT * FROM serie as s 
 			INNER JOIN matriz as m ON s.mat_cod = m.mat_cod
 			INNER JOIN curso as c ON m.cur_cod = c.cur_cod";
-	$result = mysqli_query($con, $sql) or die ("Falha ao buscar Série");
+	$result = mysqli_query($conn,  $sql) or die ("Falha ao buscar Série");
 	
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_disc.php');

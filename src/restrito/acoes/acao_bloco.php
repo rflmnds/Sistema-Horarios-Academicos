@@ -5,13 +5,13 @@
 	
 	if(isset($_GET['id'])) {
 		$sql = "UPDATE bloco SET blo_desc = '$nome' WHERE blo_cod = " . $_GET['id'];
-		mysqli_query($con,$sql) or die('Falha ao alterar bloco');
+		mysqli_query($conn,$sql) or die('Falha ao alterar bloco');
 		
 		$mensagem = "Bloco alterado com sucesso";
 	}
 	else{
 		$sql = "INSERT INTO bloco(blo_desc) VALUES ('$nome')";
-		mysqli_query($con,$sql) or die('Falha ao inserir bloco');
+		mysqli_query($conn,$sql) or die('Falha ao inserir bloco');
 
 		$mensagem = "Bloco cadastrado com sucesso";
 	}

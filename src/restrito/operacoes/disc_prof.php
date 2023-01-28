@@ -9,14 +9,14 @@
 			INNER JOIN professor_has_disciplina as pd  ON d.dis_cod = pd.dis_cod
 			INNER JOIN professor as p ON  pd.pro_cod = p.pro_cod
 			WHERE d.dis_cod=$id";
-	$resultPD = mysqli_query($con, $sqlPD) or die("Falha ao buscar disciplinas do professor");
+	$resultPD = mysqli_query($conn,  $sqlPD) or die("Falha ao buscar disciplinas do professor");
 
 	$sql = "SELECT * FROM disciplina WHERE dis_cod = " . $id;
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar disciplina selecionada");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar disciplina selecionada");
 	$disciplina = mysqli_fetch_array($result);
 
 	$sqlAdd = "SELECT * FROM professor";
-	$resultAdd = mysqli_query($con, $sqlAdd) or die("Falha ao buscar professor");
+	$resultAdd = mysqli_query($conn,  $sqlAdd) or die("Falha ao buscar professor");
 
 	if(isset($_POST['submit'])) {
 		include('restrito/acoes/acao_dp.php');

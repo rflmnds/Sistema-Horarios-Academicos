@@ -12,14 +12,14 @@
 			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
 			INNER JOIN config_hora as c ON h.con_cod = c.con_cod
 			WHERE ds.ds_cod = $ds_cod AND h.con_cod = $con_cod";
-	$rHorario = mysqli_query($con, $sql)or die("Falha ao buscar horário de aula");
+	$rHorario = mysqli_query($conn,  $sql)or die("Falha ao buscar horário de aula");
 
 	$horario = mysqli_fetch_array($rHorario);
 	$hor_cod = $horario['hor_cod'];
 
 	if($hor_cod == null){
 		$sql = "INSERT INTO horario(con_cod, ds_cod) VALUES ($con_cod, $ds_cod)";
-		mysqli_query($con, $sql) or die("Falha ao cadastrar Período");
+		mysqli_query($conn,  $sql) or die("Falha ao cadastrar Período");
 		header('Refresh:0');
 	}
 
@@ -27,13 +27,13 @@
 	$dsNome = $horario['ds_nome'];
 
 	$sql = "SELECT * FROM turma WHERE tur_cod = $tur_cod";
-	$rTurma = mysqli_query($con, $sql)or die("Falha ao buscar turma");
+	$rTurma = mysqli_query($conn,  $sql)or die("Falha ao buscar turma");
 
 	$turma = mysqli_fetch_array($rTurma);
 	$nomeTurma = $turma['tur_nome'];
 
 	$sql = "SELECT * FROM sala";
-	$rSala = mysqli_query($con, $sql)or die("Falha ao buscar salas");
+	$rSala = mysqli_query($conn,  $sql)or die("Falha ao buscar salas");
 
 	$sql = "SELECT * FROM oferta as o 
 			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
@@ -41,11 +41,11 @@
 			INNER JOIN professor as p on pd.pro_cod = p.pro_cod
 			INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
 			WHERE st.tur_cod = $tur_cod";
-	$rDisciplina = mysqli_query($con, $sql)or die("Falha ao buscar disciplinas");
+	$rDisciplina = mysqli_query($conn,  $sql)or die("Falha ao buscar disciplinas");
 
 	if(isset($_GET['id'])){
 		$sql = "SELECT * FROM aula where aula_cod = " . $_GET['id'];
-		$result1 = mysqli_query($con, $sql) or die('Falha ao buscar curso');
+		$result1 = mysqli_query($conn,  $sql) or die('Falha ao buscar curso');
 		$aula = mysqli_fetch_array($result1);
 	}
 

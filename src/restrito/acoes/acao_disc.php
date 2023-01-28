@@ -9,7 +9,7 @@
 
 	$sql = "INSERT INTO disciplina(dis_nome, dis_carga, dis_ementa, dis_referencias, ser_cod) VALUES ('$nome', $carga, '$ementa', '$referencias', $serie)";
 
-	mysqli_query($con,$sql) or die('Falha ao inserir Disciplina');
+	mysqli_query($conn, $sql) or die('Falha ao inserir Disciplina');
 
 	$mensagem = "Disciplina cadastrado com sucesso";
 ?>

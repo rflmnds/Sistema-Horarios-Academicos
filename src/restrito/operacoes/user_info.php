@@ -11,7 +11,7 @@
 		require('connection/conecta.php');
 
 		$sql = "SELECT * FROM usuario where pro_cod = " . $_GET['id'];
-		$result = mysqli_query($con,$sql) or die('Falha ao buscar usuário');
+		$result = mysqli_query($conn, $sql) or die('Falha ao buscar usuário');
 		$user = mysqli_fetch_array($result);
 
 		$nome = $user['usu_nome'];

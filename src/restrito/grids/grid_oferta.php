@@ -8,7 +8,7 @@
 			INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
 			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
 			WHERE st.ser_cod = $ser_cod AND st.tur_cod = $tur_cod";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar disciplinas ofertadas");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar disciplinas ofertadas");
 ?>
 
 <table class="table table-hover">
@@ -23,7 +23,7 @@
 					INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 					INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
 					WHERE pd.pd_cod = $pd_cod";			
-			$result1 = mysqli_query($con, $sql);
+			$result1 = mysqli_query($conn,  $sql);
 			$linha = mysqli_fetch_array($result1);
 
 			echo "<tr>";

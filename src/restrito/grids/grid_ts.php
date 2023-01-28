@@ -7,7 +7,7 @@
 			INNER JOIN serie as s ON st.ser_cod = s.ser_cod
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 			WHERE t.tur_cod = $id";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar séries vinculadas");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar séries vinculadas");
 
 ?>
 

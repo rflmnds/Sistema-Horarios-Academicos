@@ -3,7 +3,7 @@
 
 	$sql = "SELECT * FROM curso as c INNER JOIN nivel as n ON c.niv_cod = n.niv_cod";
 
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar cursos");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar cursos");
 
 ?>
 

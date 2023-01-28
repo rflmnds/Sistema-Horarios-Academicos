@@ -5,11 +5,11 @@
 	$mensagem = null;
 
 	$sql = "SELECT niv_cod, niv_desc FROM nivel ORDER BY niv_desc";
-	$result = mysqli_query($con, $sql) or die('Falha ao buscar nivel');
+	$result = mysqli_query($conn,  $sql) or die('Falha ao buscar nivel');
 
 	if(isset($_GET['id'])){
 		$sql = "SELECT * FROM curso where cur_cod = " . $_GET['id'];
-		$result1 = mysqli_query($con, $sql) or die('Falha ao buscar curso');
+		$result1 = mysqli_query($conn,  $sql) or die('Falha ao buscar curso');
 		$curso = mysqli_fetch_array($result1);
 
 		$nome = $curso['cur_nome'];

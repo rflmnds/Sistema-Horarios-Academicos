@@ -11,7 +11,7 @@
 	$sql = "SELECT * FROM oferta as o
 			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
 			WHERE o.ofe_cod = $disciplina";
-	$result1 = mysqli_query($con, $sql);
+	$result1 = mysqli_query($conn, $sql);
 	$getProf = mysqli_fetch_array($result1);
 	$pro_cod = $getProf['pro_cod'];
 
@@ -19,7 +19,7 @@
 			INNER JOIN oferta as o ON a.ofe_cod = o.ofe_cod 
 			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
 			WHERE a.hor_cod = $hor_cod";
-	$result2 = mysqli_query($con, $sql);
+	$result2 = mysqli_query($conn, $sql);
 	$check = 0;
 
 	while($valida1 = mysqli_fetch_array($result2)){ 
@@ -50,12 +50,12 @@
 	if($check == 0){
 		if(isset($_GET['id'])){
 			$sql = "UPDATE aula SET aula_status = '$status', sal_cod = $sala, hor_cod = $hor_cod, ofe_cod = $disciplina WHERE aula_cod = " . $_GET['id'];
-			mysqli_query($con,$sql) or die('Falha ao alterar aula');
+			mysqli_query($conn,$sql) or die('Falha ao alterar aula');
 			$mensagem = "Aula alterado com sucesso";
 		}
 		else{
 			$sql = "INSERT INTO aula(aula_status, sal_cod, hor_cod, ofe_cod) VALUES ('$status', $sala, $hor_cod, $disciplina)";
-			mysqli_query($con, $sql) or die('Falha ao adicionar aula');
+			mysqli_query($conn, $sql) or die('Falha ao adicionar aula');
 			$mensagem = "Aula adicionada com sucesso";
 		}
 	}

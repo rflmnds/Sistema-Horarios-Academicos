@@ -6,19 +6,19 @@
 	$sql = "SELECT * FROM usuario as u 
 			INNER JOIN professor as p ON u.pro_cod = p.pro_cod
 			WHERE u.pro_cod = $pro_cod";
-	$result = mysqli_query($con, $sql) or die ('Falha ao buscar usuário');
+	$result = mysqli_query($conn,  $sql) or die ('Falha ao buscar usuário');
 	$professor = mysqli_fetch_array($result);
 
 	$sqlPD = "SELECT * FROM disciplina as d
 			INNER JOIN professor_has_disciplina as pd  ON d.dis_cod = pd.dis_cod
 			INNER JOIN professor as p ON  pd.pro_cod = p.pro_cod
 			WHERE p.pro_cod = $pro_cod";
-	$resultPD = mysqli_query($con, $sqlPD) or die("Falha ao buscar disciplinas do professor");
+	$resultPD = mysqli_query($conn,  $sqlPD) or die("Falha ao buscar disciplinas do professor");
 
 	$sqlPJ = "SELECT * FROM projeto as p
 			INNER JOIN professor as pr ON p.pro_cod = pr.pro_cod
 			WHERE p.pro_cod = " . $pro_cod;
-	$scriptPJ = mysqli_query($con, $sqlPJ) or die('Falha ao buscar projetos do professor');
+	$scriptPJ = mysqli_query($conn,  $sqlPJ) or die('Falha ao buscar projetos do professor');
 
 	$tipoUsuario = $_SESSION['tipoUsuario'];
 
@@ -28,7 +28,7 @@
 			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
 			GROUP BY ch.con_horaini, ch.con_cod, ch.con_desc
 			ORDER BY ch.con_horaini";
-	$script1 = mysqli_query($con, $sql1);
+	$script1 = mysqli_query($conn,  $sql1);
 
 	$turma = mysqli_fetch_array($script1);
 	mysqli_data_seek($script1, 0);
@@ -47,7 +47,7 @@
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			WHERE p.pro_cod = " . $pro_cod . " ORDER BY h.ds_cod ";
-	$script2 = mysqli_query($con, $sql2) or die('Falha ao buscar horário de aulas');
+	$script2 = mysqli_query($conn,  $sql2) or die('Falha ao buscar horário de aulas');
 
 	$sql3 = "SELECT * FROM projeto as p
  			INNER JOIN hora_projeto as hp ON p.proj_cod = hp.proj_cod
@@ -56,7 +56,7 @@
 			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
 			INNER JOIN professor as pr ON p.pro_cod = pr.pro_cod
 			WHERE p.pro_cod = " . $pro_cod . " ORDER BY h.ds_cod ";
-	$script3 = mysqli_query($con, $sql3) or die('Falha ao buscar horário de projetos');
+	$script3 = mysqli_query($conn,  $sql3) or die('Falha ao buscar horário de projetos');
 
 	$qtd = mysqli_num_rows($script2);
 

@@ -10,17 +10,17 @@
 			INNER JOIN serie_has_turma as st ON s.ser_cod = st.ser_cod
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 			WHERE t.tur_cod = $tur_cod AND s.ser_cod = $ser_cod";
-	$result1 = mysqli_query($con, $sql) or die("Falha ao buscar a turma");
+	$result1 = mysqli_query($conn,  $sql) or die("Falha ao buscar a turma");
 	$serie = mysqli_fetch_array($result1);
 	$modulo = $serie['ser_modulo'];
 	$ano = $serie['ser_ano'];
 	$turma = $serie['tur_nome'];
 
 	$sql = "SELECT * FROM turno";
-	$result2 = mysqli_query($con, $sql) or die("Falha ao buscar turno");
+	$result2 = mysqli_query($conn,  $sql) or die("Falha ao buscar turno");
 
 	$sql = "SELECT * FROM serie_has_turma WHERE tur_cod = $tur_cod";
-	$result3 = mysqli_query($con, $sql) or die("Falha ao verificar se já está vinculado");
+	$result3 = mysqli_query($conn,  $sql) or die("Falha ao verificar se já está vinculado");
 
 	if(isset($_POST['submit'])) {
 		include('restrito/acoes/acao_vincturno.php');

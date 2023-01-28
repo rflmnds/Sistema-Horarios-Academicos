@@ -5,11 +5,11 @@
 	$mensagem = null;
 
 	$sql= "SELECT * FROM curso";
-	$result = mysqli_query($con, $sql) or die ("Falha ao buscar curso");
+	$result = mysqli_query($conn,  $sql) or die ("Falha ao buscar curso");
 	
 	if(isset($_GET['id'])){
 		$sql = "SELECT * FROM matriz where mat_cod = " . $_GET['id'];
-		$result1 = mysqli_query($con, $sql) or die('Falha ao buscar curso');
+		$result1 = mysqli_query($conn,  $sql) or die('Falha ao buscar curso');
 		$matriz = mysqli_fetch_array($result1);
 
 		$info = $matriz['mat_info'];

@@ -11,7 +11,7 @@
 		require('connection/conecta.php');
 
 		$sql = "SELECT * FROM nivel where niv_cod = " . $_GET['id'];
-		$result = mysqli_query($con,$sql) or die('Falha ao buscar nivel');
+		$result = mysqli_query($conn, $sql) or die('Falha ao buscar nivel');
 		$nivel = mysqli_fetch_array($result);
 
 		$desc = $nivel['niv_desc'];

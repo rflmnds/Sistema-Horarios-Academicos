@@ -7,7 +7,7 @@
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 			INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod
 			WHERE s.ser_cod = $ser_cod AND t.tur_cod = $tur_cod";
-	$result1 = mysqli_query($con, $sql) or die("Falha ao buscar turnos vinculados");
+	$result1 = mysqli_query($conn,  $sql) or die("Falha ao buscar turnos vinculados");
 
 	$getCod = mysqli_fetch_array($result1);
 	$st_cod = $getCod['st_cod']; 
@@ -18,18 +18,18 @@
 		$turno_cod = $_GET['turno'];
 
 		$sql = "SELECT * FROM serie_turma_has_turno WHERE st_cod = $st_cod AND turno_cod = $turno_cod";
-		$result2 = mysqli_query($con, $sql)or die('Falha ao buscar status atual do turno');
+		$result2 = mysqli_query($conn,  $sql)or die('Falha ao buscar status atual do turno');
 		$array = mysqli_fetch_array($result2);
 		$status = $array['stt_status'];
 		$stt_cod = $array['stt_cod'];
 
 		if($status == "Ativo"){
 			$sql = "UPDATE serie_turma_has_turno SET stt_status = 'Desativo' WHERE stt_cod = $stt_cod"; 
-			mysqli_query($con, $sql)or die('Falha ao alterar status atual');
+			mysqli_query($conn,  $sql)or die('Falha ao alterar status atual');
 		}
 		else{
 			$sql = "UPDATE serie_turma_has_turno SET stt_status = 'Ativo' WHERE stt_cod = $stt_cod"; 
-			mysqli_query($con, $sql)or die('Falha ao alterar status atual');
+			mysqli_query($conn,  $sql)or die('Falha ao alterar status atual');
 		}
 		header("Location: $link");
 	}

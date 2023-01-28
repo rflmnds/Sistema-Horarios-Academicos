@@ -7,7 +7,7 @@
 
 	$sql = "INSERT INTO config_hora(con_desc, con_horaini, con_horafin, turno_cod) VALUES ('$desc', '$horaIni', '$horaFin', $turno_cod)";
 
-	mysqli_query($con,$sql) or die('Falha ao configurar horário(Cadastro de hora)');
+	mysqli_query($conn,$sql) or die('Falha ao configurar horário(Cadastro de hora)');
 
 	$mensagem = "Configuração adicionada com sucesso";
 ?>

@@ -4,7 +4,7 @@
 
 	$sql = "SELECT * FROM usuario as u
 			INNER JOIN tipo_usuario as tu ON u.tu_cod = tu.tu_cod";
-	$result1 = mysqli_query($con, $sql) or die("Falha ao buscar usuários");
+	$result1 = mysqli_query($conn,  $sql) or die("Falha ao buscar usuários");
 ?>
 <div>
 	<h2>Usuários do sistema:</h2>

@@ -5,7 +5,7 @@
 	$mensagem = null;
 
 	$sql= "SELECT * FROM matriz as m INNER JOIN curso as c ON m.cur_cod = c.cur_cod";
-	$result = mysqli_query($con, $sql) or die ("Falha ao buscar matriz");
+	$result = mysqli_query($conn,  $sql) or die ("Falha ao buscar matriz");
 
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_turma.php');

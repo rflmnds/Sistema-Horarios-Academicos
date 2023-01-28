@@ -20,7 +20,7 @@
 
 	$sql = "INSERT INTO projeto(tp_cod, pro_cod, proj_status, proj_numero, proj_data_ini, proj_data_fim) VALUES ($tipo, $pro_cod, '$status', $numero, $dataIni, $dataFim)";
 
-	mysqli_query($con,$sql) or die('Falha ao criar projeto');
+	mysqli_query($conn, $sql) or die('Falha ao criar projeto');
 
 	$mensagem = "Projeto criado com sucesso";
 ?>

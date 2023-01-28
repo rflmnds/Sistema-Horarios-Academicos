@@ -11,7 +11,7 @@
 			INNER JOIN serie_has_turma as st ON s.ser_cod = st.ser_cod
 			INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 			WHERE t.tur_cod = $tur_cod AND s.ser_cod = $ser_cod"; 
-	$result1 = mysqli_query($con, $sql);
+	$result1 = mysqli_query($conn,  $sql);
 	$serie = mysqli_fetch_array($result1);
 	$st_cod = $serie['st_cod'];
 	$modulo = $serie['ser_modulo'];
@@ -20,7 +20,7 @@
 	$sql = "SELECT * FROM professor_has_disciplina as pd 
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod ";
-	$result2 = mysqli_query($con, $sql);
+	$result2 = mysqli_query($conn,  $sql);
 
 	if(isset($_POST['submit'])){
 		require('restrito/acoes/acao_oferta.php');

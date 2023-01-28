@@ -6,7 +6,7 @@
 
 	$sql = "INSERT INTO turno(turno_desc, turno_status) VALUES ('$desc', '$status')";
 
-	mysqli_query($con,$sql) or die('Falha ao cadastrar turno');
+	mysqli_query($conn, $sql) or die('Falha ao cadastrar turno');
 
 	$mensagem = "Turno cadastrada com sucesso";
 ?>

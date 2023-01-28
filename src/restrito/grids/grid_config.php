@@ -5,7 +5,7 @@
 
 	$turno_cod = $_GET['id'];
 	$sql = "SELECT * FROM turno WHERE turno_cod = $turno_cod";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar turno");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar turno");
 
 	$turno = mysqli_fetch_array($result);
 	$desc = $turno['turno_desc'];
@@ -14,7 +14,7 @@
 			INNER JOIN turno as t ON c.turno_cod = t.turno_cod
 			WHERE t.turno_cod = $id
 			ORDER BY c.con_horaini";
-	$result1 = mysqli_query($con, $sql) or die("Falha ao buscar séries vinculadas");
+	$result1 = mysqli_query($conn,  $sql) or die("Falha ao buscar séries vinculadas");
 ?>
 <div>
 	<h2>Configuração de horários do turno "<?= $desc ?>"</h2>

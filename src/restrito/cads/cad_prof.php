@@ -12,7 +12,7 @@
 		require('connection/conecta.php');
 
 		$sql = "SELECT * FROM professor where pro_cod = " . $_GET['id'];
-		$result = mysqli_query($con,$sql) or die('Falha ao buscar bloco');
+		$result = mysqli_query($conn, $sql) or die('Falha ao buscar bloco');
 		$professor = mysqli_fetch_array($result);
 
 		$nome = $professor['pro_nome'];

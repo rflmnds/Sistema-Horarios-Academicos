@@ -4,13 +4,13 @@
 	$tipoUsuario = $_POST['tipoUsuario'];
 	$stt_cod = $_POST['turma'];
 
-	$sql1 = "SELECT ch.con_cod, ch.con_horaini, st.tur_cod, ch.con_desc FROM config_hora as ch
+	echo $sql1 = "SELECT ch.con_cod, ch.con_horaini, st.tur_cod, ch.con_desc FROM config_hora as ch
 			INNER JOIN turno as tn ON ch.turno_cod = tn.turno_cod
 			INNER JOIN serie_turma_has_turno as stt ON stt.turno_cod = tn.turno_cod
 			INNER JOIN serie_has_turma as st ON stt.st_cod = st.st_cod
 			WHERE stt.stt_cod = $stt_cod
 			ORDER BY ch.con_horaini";
-	$script1 = mysqli_query($con, $sql1);
+	$script1 = mysqli_query($conn, $sql1);
 
 	$turma = mysqli_fetch_array($script1);
 	$tur_cod = $turma['tur_cod'];
@@ -30,7 +30,7 @@
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
 			WHERE t.tur_cod = " . $tur_cod . " ORDER BY h.ds_cod ";
-	$script2 = mysqli_query($con, $sql2) or die('Falha ao buscar horário de turma');
+	$script2 = mysqli_query($conn,  $sql2) or die('Falha ao buscar horário de turma');
 
 	$qtd = mysqli_num_rows($script2);
 ?>

@@ -12,7 +12,7 @@
 		$sql = "INSERT INTO sala(sal_desc, blo_cod) VALUES ('$desc', $bloco)";
 	}
 
-	mysqli_query($con,$sql) or die('Falha ao cadastrar Sala');
+	mysqli_query($conn, $sql) or die('Falha ao cadastrar Sala');
 
 	$mensagem = "Sala cadastrada com sucesso";
 ?>

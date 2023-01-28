@@ -5,10 +5,10 @@
 	$mensagem = null;
 
 	$sqlBloco = "SELECT * FROM bloco";
-	$resultBloco = mysqli_query($con, $sqlBloco) or die ("Falha ao buscar Blocos");
+	$resultBloco = mysqli_query($conn,  $sqlBloco) or die ("Falha ao buscar Blocos");
 
 	$sqlDisc = "SELECT * FROM disciplina";
-	$resultDisc = mysqli_query($con, $sqlDisc) or die ("Falha ao buscar Disciplinas");
+	$resultDisc = mysqli_query($conn,  $sqlDisc) or die ("Falha ao buscar Disciplinas");
 	
 	if(isset($_POST['desc'])){
 	 	require('restrito/acoes/acao_sala.php');

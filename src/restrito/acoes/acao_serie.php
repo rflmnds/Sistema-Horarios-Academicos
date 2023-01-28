@@ -7,7 +7,7 @@
 
 	$sql = "INSERT INTO serie(ser_modulo, ser_ano, mat_cod) VALUES ('$modulo', $ano, $matriz)";
 
-	mysqli_query($con, $sql) or die('Falha ao cadastrar série');
+	mysqli_query($conn,  $sql) or die('Falha ao cadastrar série');
 
 	$mensagem = "Série cadastrado com sucesso";
 ?>

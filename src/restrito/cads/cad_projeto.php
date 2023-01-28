@@ -5,11 +5,11 @@
 	$pro_cod = $_GET['id'];
 
 	$sql = "SELECT * FROM professor WHERE pro_cod = $pro_cod";
-	$resultProf = mysqli_query($con, $sql) or die ('Falha ao buscar professor');
+	$resultProf = mysqli_query($conn,  $sql) or die ('Falha ao buscar professor');
 	$professor = mysqli_fetch_array($resultProf);
 
 	$sql = "SELECT * FROM tipo_projeto";
-	$resultTipo = mysqli_query($con, $sql) or die ('Falha ao buscar tipos de projeto');
+	$resultTipo = mysqli_query($conn,  $sql) or die ('Falha ao buscar tipos de projeto');
 
 	if(isset($_POST['submit'])){
 	 	require('restrito/acoes/acao_projeto.php');

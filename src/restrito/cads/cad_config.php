@@ -6,7 +6,7 @@
 	
 	$turno_cod = $_GET['turno'];
 	$sql = "SELECT * FROM turno WHERE turno_cod = $turno_cod";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar turno");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar turno");
 
 	$turno = mysqli_fetch_array($result);
 	$desc = $turno['turno_desc'];

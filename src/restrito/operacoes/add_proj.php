@@ -11,14 +11,14 @@
 			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
 			INNER JOIN config_hora as c ON h.con_cod = c.con_cod
 			WHERE ds.ds_cod = $ds_cod AND h.con_cod = $con_cod";
-	$rHorario = mysqli_query($con, $sql)or die("Falha ao buscar horário de aula");
+	$rHorario = mysqli_query($conn,  $sql)or die("Falha ao buscar horário de aula");
 
 	$horario = mysqli_fetch_array($rHorario);
 	$hor_cod = $horario['hor_cod'];
 
 	if($hor_cod == null){
 		$sql = "INSERT INTO horario(con_cod, ds_cod) VALUES ($con_cod, $ds_cod)";
-		mysqli_query($con, $sql) or die("Falha ao cadastrar Período");
+		mysqli_query($conn,  $sql) or die("Falha ao cadastrar Período");
 		header('Refresh:0');
 	}
 
@@ -26,11 +26,11 @@
 	$dsNome = $horario['ds_nome'];
 
 	$sql = "SELECT * FROM projeto WHERE pro_cod = $pro_cod";
-	$rProjeto = mysqli_query($con, $sql) or die("Falha ao cadastrar Período");
+	$rProjeto = mysqli_query($conn,  $sql) or die("Falha ao cadastrar Período");
 
 	if(isset($_GET['id'])){
 		$sql = "SELECT * FROM hora_projeto where hp_cod = " . $_GET['id'];
-		$result1 = mysqli_query($con, $sql) or die('Falha ao buscar curso');
+		$result1 = mysqli_query($conn,  $sql) or die('Falha ao buscar curso');
 		$hora = mysqli_fetch_array($result1);
 	}
 

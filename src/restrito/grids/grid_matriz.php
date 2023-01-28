@@ -2,7 +2,7 @@
 	require('connection/conecta.php');
 
 	$sql = "SELECT * FROM matriz";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar matrizes");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar matrizes");
 ?>
 
 <table class="table table-hover">

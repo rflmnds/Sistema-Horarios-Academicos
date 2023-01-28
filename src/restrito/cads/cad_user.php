@@ -5,10 +5,10 @@
 	$mensagem = null;
 
 	$sql = "SELECT * FROM tipo_usuario";
-	$rNivel = mysqli_query($con,$sql) or die('Falha ao buscar nivel');
+	$rNivel = mysqli_query($conn, $sql) or die('Falha ao buscar nivel');
 
 	$sql = "SELECT * FROM professor";
-	$rProf = mysqli_query($con, $sql) or die("Falha ao buscar professor");
+	$rProf = mysqli_query($conn,  $sql) or die("Falha ao buscar professor");
 
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_user.php');
@@ -18,7 +18,7 @@
 		require('connection/conecta.php');
 
 		$sql = "SELECT * FROM usuario where usu_cod = " . $_GET['id'];
-		$result = mysqli_query($con,$sql) or die('Falha ao buscar usuário');
+		$result = mysqli_query($conn, $sql) or die('Falha ao buscar usuário');
 		$user = mysqli_fetch_array($result);
 
 		$nome = $user['usu_nome'];

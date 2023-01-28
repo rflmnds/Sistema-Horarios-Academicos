@@ -8,7 +8,7 @@
 		INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod 
 		WHERE stt.stt_status = 'Ativo'
 		GROUP by stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo";
-	$result = mysqli_query($con, $sql) or die('Falha');
+	$result = mysqli_query($conn, $sql) or die('Falha');
 
 	$tipoUsuario = null;
 

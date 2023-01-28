@@ -12,7 +12,7 @@
 		require('connection/conecta.php');
 
 		$sql = "SELECT * FROM bloco where blo_cod = " . $_GET['id'];
-		$result = mysqli_query($con,$sql) or die('Falha ao buscar bloco');
+		$result = mysqli_query($conn, $sql) or die('Falha ao buscar bloco');
 		$bloco = mysqli_fetch_array($result);
 
 		$desc = $bloco['blo_desc'];

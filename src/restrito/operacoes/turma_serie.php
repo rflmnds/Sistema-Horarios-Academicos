@@ -6,16 +6,16 @@
 	$mensagem = null;
 	
 	$sql = "SELECT * FROM turma WHERE tur_cod = $id";
-	$result1 = mysqli_query($con, $sql) or die("Falha ao buscar a turma");
+	$result1 = mysqli_query($conn,  $sql) or die("Falha ao buscar a turma");
 	$turma = mysqli_fetch_array($result1);
 	$tur_nome = $turma['tur_nome'];
 	$matriz = $turma['mat_cod'];
 
 	$sql = "SELECT * FROM serie ORDER BY ser_modulo";
-	$result2 = mysqli_query($con, $sql) or die("Falha ao buscar serie");
+	$result2 = mysqli_query($conn,  $sql) or die("Falha ao buscar serie");
 
 	$sql = "SELECT * FROM serie_has_turma WHERE tur_cod = $id";
-	$result3 = mysqli_query($con, $sql) or die("Falha ao verificar se já está vinculado");
+	$result3 = mysqli_query($conn,  $sql) or die("Falha ao verificar se já está vinculado");
 
 	if(isset($_POST['submit'])) {
 		include('restrito/acoes/acao_ts.php');

@@ -2,7 +2,7 @@
 	require('connection/conecta.php');
 
 	$sql = "SELECT * FROM turno";
-	$result = mysqli_query($con, $sql) or die("Falha ao buscar turnos");
+	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar turnos");
 
 ?>
 
