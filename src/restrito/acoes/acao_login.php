@@ -19,10 +19,13 @@
             $_SESSION['professor'] = $usuario['pro_cod'];
             header('location: ?pag=home');
         }
+        else{
+            $_SESSION['erro'] = "Informações inválidas";
+		    header('location: ?pag=login');   
+        }   
     }
     catch(PDOException $e){
         echo 'Erro: ' . $e->getMessage();  
-        $_SESSION['erro'] = "Informações inválidas";
-		header('location: ?pag=login');
+        
     }
 ?>
