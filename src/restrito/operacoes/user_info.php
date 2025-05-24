@@ -8,12 +8,16 @@
 	}
 
 	if(isset($_GET['id'])){
-		require('connection/conecta.php');
-
-		$sql = "SELECT * FROM usuario where pro_cod = " . $_GET['id'];
-		$result = mysqli_query($conn, $sql) or die('Falha ao buscar usuário');
-		$user = mysqli_fetch_array($result);
-
+		try{
+			$stmt = $conn->prepare("SELECT * FROM usuario where pro_cod = :idProf");
+			$stmt->bindValue(':idProf', $_GET['id']);
+			$stmt->execute();
+			$user = $stmt->fetch(PDO::FETCH_ASSOC);
+		}
+		catch(PDOException $e){
+			echo 'Erro: ' . $e->getMessage();
+		}
+		
 		$nome = $user['usu_nome'];
 		$email = $user['usu_email'];
 	}

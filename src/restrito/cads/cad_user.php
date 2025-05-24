@@ -4,22 +4,28 @@
 
 	$mensagem = null;
 
-	$sql = "SELECT * FROM tipo_usuario";
-	$rNivel = mysqli_query($conn, $sql) or die('Falha ao buscar nivel');
-
-	$sql = "SELECT * FROM professor";
-	$rProf = mysqli_query($conn,  $sql) or die("Falha ao buscar professor");
-
+	try{
+		$listTipo = $conn->query("SELECT * FROM tipo_usuario");
+		$listProf = $conn->query("SELECT * FROM professor");
+		}
+	catch(PDOException $e){
+		echo 'Erro: ' . $e->getMessage();  
+	}
+	
 	if(isset($_POST['nome'])){
 	 	require('restrito/acoes/acao_user.php');
 	}
 
 	if(isset($_GET['id'])){
-		require('connection/conecta.php');
-
-		$sql = "SELECT * FROM usuario where usu_cod = " . $_GET['id'];
-		$result = mysqli_query($conn, $sql) or die('Falha ao buscar usuário');
-		$user = mysqli_fetch_array($result);
+		try{
+			$stmt = $conn->prepare("SELECT * FROM usuario where usu_cod = :idUser"); 
+			$stmt->bindValue(':idUser', $_GET['id']);
+			$stmt->execute();
+			$user = $stmt->fetch(PDO::FETCH_ASSOC);
+		}
+		catch(PDOException $e){
+			echo 'Erro: ' . $e->getMessage();
+		}
 
 		$nome = $user['usu_nome'];
 		$email = $user['usu_email'];
@@ -58,7 +64,7 @@
 			<label for="tipo">Tipo de Usuário</label>
 			<select class="form-control" name="tipo">
 				<?php
-					while($tipo = mysqli_fetch_array($rNivel)) {
+					foreach($listTipo as $tipo) {
 						echo "<option value='" . $tipo['tu_cod'];
 						if(isset($_GET['id'])){
 							if($user['tu_cod'] == $tipo['tu_cod']){
@@ -80,7 +86,7 @@
 			<select class="form-control" name="prof">
 				<option value="null">Nenhum</option>
 				<?php
-					while($prof = mysqli_fetch_array($rProf)) {
+					foreach($listProf as $prof) {
 						echo "<option value='" . $prof['pro_cod'];
 						if(isset($_GET['id'])){
 							if($user['pro_cod'] == $prof['pro_cod']){

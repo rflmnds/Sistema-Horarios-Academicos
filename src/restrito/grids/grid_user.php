@@ -2,9 +2,13 @@
 	require('connection/conecta.php');
 	include('restrito/operacoes/valida.php');
 
-	$sql = "SELECT * FROM usuario as u
-			INNER JOIN tipo_usuario as tu ON u.tu_cod = tu.tu_cod";
-	$result1 = mysqli_query($conn,  $sql) or die("Falha ao buscar usuários");
+	try{
+		$stmt = $conn->query("SELECT * FROM usuario as u INNER JOIN tipo_usuario as tu ON u.tu_cod = tu.tu_cod");
+	}
+	catch(PDOException $e){
+		echo 'Erro: ' . $e->getMessage();  
+	}
+
 ?>
 <div>
 	<h2>Usuários do sistema:</h2>
@@ -16,7 +20,7 @@
 			<th>Ações</th>
 		</tr>
 		<?php
-			while($user = mysqli_fetch_array($result1)){
+			foreach($stmt as $user){
 				$id = $user['usu_cod'];
 				$url = "?pag=caduser&id=$id";
 
