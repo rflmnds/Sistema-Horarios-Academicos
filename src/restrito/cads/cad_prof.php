@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 	include('restrito/operacoes/valida.php');
 
 	$mensagem = null;
@@ -9,7 +9,7 @@
 	}
 
 	if(isset($_GET['id'])){
-		require('connection/conecta.php');
+		require('../src/connection/conecta.php');
 
 		$sql = "SELECT * FROM professor where pro_cod = " . $_GET['id'];
 		$result = mysqli_query($conn, $sql) or die('Falha ao buscar bloco');

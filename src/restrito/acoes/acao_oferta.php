@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$disciplina = $_POST['disc'];
 	$ano = $_POST['ano'];

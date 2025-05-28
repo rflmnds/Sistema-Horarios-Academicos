@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$sql = "SELECT * FROM serie as s 
 			INNER JOIN matriz as m ON s.mat_cod = m.mat_cod

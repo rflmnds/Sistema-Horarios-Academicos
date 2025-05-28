@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$ds_cod = $_GET['ds'];
 	$con_cod = $_GET['period'];

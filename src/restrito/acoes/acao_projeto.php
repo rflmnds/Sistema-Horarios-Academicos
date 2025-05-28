@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$tipo = $_POST['tipo'];
 	$numero = $_POST['numero'];

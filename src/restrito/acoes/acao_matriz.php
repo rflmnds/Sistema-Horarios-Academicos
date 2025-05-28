@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$info = $_POST['info'];
 	$curso = $_POST['curso'];

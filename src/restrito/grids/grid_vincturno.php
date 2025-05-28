@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$sql = "SELECT * FROM serie_turma_has_turno as stt
 			INNER JOIN serie_has_turma as st ON stt.st_cod = st.st_cod

@@ -1,14 +1,16 @@
 <?php
-	require('connection/conecta.php');	
-	$sql = "SELECT stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo FROM oferta as o 
+	require('../src/connection/conecta.php');	
+
+	$stmt = $conn->prepare("SELECT stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo FROM oferta as o 
 		INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
 		INNER JOIN turma as t ON st.tur_cod = t.tur_cod
 		INNER JOIN serie as s ON st.ser_cod = s.ser_cod
 		INNER JOIN serie_turma_has_turno as stt ON stt.st_cod = st.st_cod
 		INNER JOIN turno as tn ON stt.turno_cod = tn.turno_cod 
 		WHERE stt.stt_status = 'Ativo'
-		GROUP by stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo";
-	$result = mysqli_query($conn, $sql) or die('Falha');
+		GROUP by stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo");
+	$stmt->execute();
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	$tipoUsuario = null;
 
@@ -27,7 +29,7 @@
 			<select name="turma" id="turma" class="form-control">
 				<option value="0">Selecione a Turma - Série - Turno</option>
 				<?php 
-					while($tst = mysqli_fetch_array($result)) {
+					foreach($result as $tst) {
 						echo "<option value='" . $tst['stt_cod'];
 						/*if(isset($_GET['id'])){
 							if($ppc['cur_cod'] == $curso['cur_cod']){

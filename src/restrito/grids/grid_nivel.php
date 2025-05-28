@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$sql = "SELECT * FROM nivel";
 	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar os níveis de ensino");

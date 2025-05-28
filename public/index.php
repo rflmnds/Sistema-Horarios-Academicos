@@ -11,7 +11,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../tcc/favicon.png">
+    <link rel="icon" href="assets/images/favicon.png">
 
     <title>AMS</title>
 
@@ -36,7 +36,7 @@
 
   <body>
   
-  	<?php include('menus/navbar.php') ?>
+  	<?php include('../src/menus/navbar.php') ?>
 
     <div class="container">
       <?php
@@ -44,94 +44,94 @@
       		$link = $_GET['pag'];
       		
           if($link == 'login'){
-            include('restrito/operacoes/login.php');
+            include('../src/restrito/operacoes/login.php');
           }
           else if($link == 'logout'){
-            include('restrito/operacoes/logout.php');
+            include('../src/restrito/operacoes/logout.php');
           }
           else if($link == 'erro'){
-            include('restrito/operacoes/erro.php');
+            include('../src/restrito/operacoes/erro.php');
           }
           else if($link == 'portalprof'){
-            include('restrito/operacoes/portal_prof.php');
+            include('../src/restrito/operacoes/portal_prof.php');
           }
           else if($link == 'users'){
-            include('restrito/grids/grid_user.php');
+            include('../src/restrito/grids/grid_user.php');
           }
           else if($link == 'changeuser'){
-            include('restrito/operacoes/user_info.php');
+            include('../src/restrito/operacoes/user_info.php');
           }
           else if($link == 'caduser'){
-            include('restrito/cads/cad_user.php');
+            include('../src/restrito/cads/cad_user.php');
           }
           else if($link == 'cadcurso'){
-            include('restrito/cads/cad_curso.php');
+            include('../src/restrito/cads/cad_curso.php');
           }
           else if($link == 'cadprof'){
-            include('restrito/cads/cad_prof.php');
+            include('../src/restrito/cads/cad_prof.php');
           }
           else if($link == 'caddisc'){
-            include('restrito/cads/cad_disc.php');
+            include('../src/restrito/cads/cad_disc.php');
           }
           else if($link == 'cadserie'){
-            include('restrito/cads/cad_serie.php');
+            include('../src/restrito/cads/cad_serie.php');
           }
           else if($link == 'cadbloco'){
-            include('restrito/cads/cad_bloco.php');
+            include('../src/restrito/cads/cad_bloco.php');
           }
           else if($link == 'cadsala'){
-            include('restrito/cads/cad_sala.php');
+            include('../src/restrito/cads/cad_sala.php');
           }
           else if($link == 'cadmatriz'){
-            include('restrito/cads/cad_matriz.php');
+            include('../src/restrito/cads/cad_matriz.php');
           }
           else if($link == 'cadturma'){
-            include('restrito/cads/cad_turma.php');
+            include('../src/restrito/cads/cad_turma.php');
           }
           else if($link == 'cadnivel'){
-            include('restrito/cads/cad_nivel.php');
+            include('../src/restrito/cads/cad_nivel.php');
           }
           else if($link == 'cadprojeto'){
-            include('restrito/cads/cad_projeto.php');
+            include('../src/restrito/cads/cad_projeto.php');
           }
           else if($link == 'profdisc'){
-            include('restrito/operacoes/prof_disc.php');
+            include('../src/restrito/operacoes/prof_disc.php');
           }
           else if($link == 'discprof'){
-            include('restrito/operacoes/disc_prof.php');
+            include('../src/restrito/operacoes/disc_prof.php');
           }
           else if($link == 'oferta'){
-            include('restrito/operacoes/oferta.php');
+            include('../src/restrito/operacoes/oferta.php');
           }
           else if($link == 'turmaserie'){
-            include('restrito/operacoes/turma_serie.php');
+            include('../src/restrito/operacoes/turma_serie.php');
           }
           else if($link == 'horario'){
-            include('restrito/operacoes/horario.php');
+            include('../src/restrito/operacoes/horario.php');
           }
           else if($link == 'addaula'){
-            include('restrito/operacoes/aula.php');
+            include('../src/restrito/operacoes/aula.php');
           }
           else if($link == 'cadturno'){
-            include('restrito/cads/cad_turno.php');
+            include('../src/restrito/cads/cad_turno.php');
           }
           else if($link == 'vincturno'){
-            include('restrito/operacoes/vinc_turno.php');
+            include('../src/restrito/operacoes/vinc_turno.php');
           }
           else if($link == 'config'){
-            include('restrito/grids/grid_config.php');
+            include('../src/restrito/grids/grid_config.php');
           }
           else if($link == 'addconfig'){
-            include('restrito/cads/cad_config.php');
+            include('../src/restrito/cads/cad_config.php');
           }
           else if($link == 'addproj'){
-            include('restrito/operacoes/add_proj.php');
+            include('../src/restrito/operacoes/add_proj.php');
           }
           else if($link == 'home'){
-            include('restrito/operacoes/home.php');
+            include('../src/restrito/operacoes/home.php');
           }
           else {
-            include('restrito/operacoes/home.php');
+            include('../src/restrito/operacoes/home.php');
           }
       	}
       ?>
