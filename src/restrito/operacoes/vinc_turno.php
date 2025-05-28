@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 	include('restrito/operacoes/valida.php');
 
 	$tur_cod = $_GET['tur'];

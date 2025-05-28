@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$sql = "SELECT * FROM curso as c INNER JOIN nivel as n ON c.niv_cod = n.niv_cod";
 

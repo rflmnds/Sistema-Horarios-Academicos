@@ -8,7 +8,7 @@
 	}
 
 	if(isset($_GET['id'])){
-		require('connection/conecta.php');
+		require('../src/connection/conecta.php');
 
 		$sql = "SELECT * FROM nivel where niv_cod = " . $_GET['id'];
 		$result = mysqli_query($conn, $sql) or die('Falha ao buscar nivel');

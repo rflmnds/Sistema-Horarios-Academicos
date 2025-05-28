@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$nome = $_POST['nome'];
 	$hrtotal = $_POST['hrtotal'];

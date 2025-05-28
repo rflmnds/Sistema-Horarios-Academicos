@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$tur_cod = $_GET['tur'];
 	$ser_cod = $_GET['ser'];

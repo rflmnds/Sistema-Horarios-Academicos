@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$sql = "SELECT * FROM professor";
 	$result = mysqli_query($conn,  $sql) or die("Falha ao buscar professor");

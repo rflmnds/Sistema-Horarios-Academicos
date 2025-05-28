@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$pro_cod = $_SESSION['professor'];
 	$tipoUsuario = $_SESSION['tipoUsuario'];

@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');
+	require('../src/connection/conecta.php');
 
 	$modulo = $_POST['modulo'];
 	$ano = $_POST['ano'];

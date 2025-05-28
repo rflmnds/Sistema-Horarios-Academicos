@@ -1,5 +1,5 @@
 <?php
-	require('connection/conecta.php');	
+	require('../src/connection/conecta.php');	
 
 	$stmt = $conn->prepare("SELECT stt.stt_cod, stt.stt_status, t.tur_nome, s.ser_cod, tn.turno_desc, s.ser_modulo FROM oferta as o 
 		INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
