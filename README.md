@@ -8,6 +8,7 @@ And I'm getting back to it after some years working in Project Management to try
 
 - Currently
     - Improving the SQL operations from using MySQLi to PDO
+    - Improving Project Structure
 
 - 1.0 (?) 
     - User Registration
