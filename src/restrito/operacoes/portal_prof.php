@@ -2,40 +2,42 @@
 	require('connection/conecta.php');
 
 	$pro_cod = $_SESSION['professor'];
-
-	$sql = "SELECT * FROM usuario as u 
-			INNER JOIN professor as p ON u.pro_cod = p.pro_cod
-			WHERE u.pro_cod = $pro_cod";
-	$result = mysqli_query($conn,  $sql) or die ('Falha ao buscar usuário');
-	$professor = mysqli_fetch_array($result);
-
-	$sqlPD = "SELECT * FROM disciplina as d
-			INNER JOIN professor_has_disciplina as pd  ON d.dis_cod = pd.dis_cod
-			INNER JOIN professor as p ON  pd.pro_cod = p.pro_cod
-			WHERE p.pro_cod = $pro_cod";
-	$resultPD = mysqli_query($conn,  $sqlPD) or die("Falha ao buscar disciplinas do professor");
-
-	$sqlPJ = "SELECT * FROM projeto as p
-			INNER JOIN professor as pr ON p.pro_cod = pr.pro_cod
-			WHERE p.pro_cod = " . $pro_cod;
-	$scriptPJ = mysqli_query($conn,  $sqlPJ) or die('Falha ao buscar projetos do professor');
-
 	$tipoUsuario = $_SESSION['tipoUsuario'];
 
-	$sql1 = "SELECT ch.con_horaini, ch.con_cod, ch.con_desc FROM config_hora as ch
+	try{
+		$stmt = $conn->prepare("SELECT * FROM usuario as u 
+				INNER JOIN professor as p ON u.pro_cod = p.pro_cod
+				WHERE u.pro_cod = :codProf");
+		$stmt->bindValue(':codProf', $pro_cod);
+		$stmt->execute();
+		$professor = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$stmt = $conn->prepare("SELECT * FROM disciplina as d
+			INNER JOIN professor_has_disciplina as pd  ON d.dis_cod = pd.dis_cod
+			INNER JOIN professor as p ON  pd.pro_cod = p.pro_cod
+			WHERE p.pro_cod = :codProf");
+		$stmt->bindValue(":codProf", $pro_cod);
+		$stmt->execute();
+		$disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$stmt = $conn->prepare("SELECT * FROM projeto as p
+			INNER JOIN professor as pr ON p.pro_cod = pr.pro_cod
+			WHERE p.pro_cod = :codProf");
+		$stmt->bindValue(":codProf", $pro_cod);
+		$stmt->execute();
+		$projetos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$stmt = $conn->prepare("SELECT ch.con_horaini, ch.con_cod, ch.con_desc FROM config_hora as ch
 			INNER JOIN turno as tn ON ch.turno_cod = tn.turno_cod
 			INNER JOIN horario as h ON ch.con_cod = h.con_cod
 			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
 			GROUP BY ch.con_horaini, ch.con_cod, ch.con_desc
-			ORDER BY ch.con_horaini";
-	$script1 = mysqli_query($conn,  $sql1);
-
-	$turma = mysqli_fetch_array($script1);
-	mysqli_data_seek($script1, 0);
-
-	$qtd_rows = mysqli_num_rows($script1);
-
-	$sql2 = "SELECT * FROM aula as a
+			ORDER BY ch.con_horaini");
+		$stmt->execute();	
+		$horario = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$qtd_rows = $stmt->rowCount();
+		
+		$stmt = $conn->prepare("SELECT * FROM aula as a
 			INNER JOIN horario as h ON a.hor_cod = h.hor_cod
 			INNER JOIN oferta as o ON a.ofe_cod = o.ofe_cod
 			INNER JOIN serie_has_turma as st ON o.st_cod = st.st_cod
@@ -46,20 +48,26 @@
 			INNER JOIN professor_has_disciplina as pd ON o.pd_cod = pd.pd_cod
 			INNER JOIN disciplina as d ON pd.dis_cod = d.dis_cod
 			INNER JOIN professor as p ON pd.pro_cod = p.pro_cod
-			WHERE p.pro_cod = " . $pro_cod . " ORDER BY h.ds_cod ";
-	$script2 = mysqli_query($conn,  $sql2) or die('Falha ao buscar horário de aulas');
+			WHERE p.pro_cod = :codProf ORDER BY h.ds_cod ");
+		$stmt->bindValue(":codProf", $pro_cod);
+		$stmt->execute();
+		$aulas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$qtd = $stmt->rowCount();
 
-	$sql3 = "SELECT * FROM projeto as p
+		$stmt = $conn->prepare("SELECT * FROM projeto as p
  			INNER JOIN hora_projeto as hp ON p.proj_cod = hp.proj_cod
 			INNER JOIN horario as h ON hp.hor_cod = h.hor_cod
 			INNER JOIN config_hora as ch ON h.con_cod = ch.con_cod
 			INNER JOIN dia_semana as ds ON h.ds_cod = ds.ds_cod
 			INNER JOIN professor as pr ON p.pro_cod = pr.pro_cod
-			WHERE p.pro_cod = " . $pro_cod . " ORDER BY h.ds_cod ";
-	$script3 = mysqli_query($conn,  $sql3) or die('Falha ao buscar horário de projetos');
-
-	$qtd = mysqli_num_rows($script2);
-
+			WHERE p.pro_cod = :codProf ORDER BY h.ds_cod ");
+		$stmt->bindValue(":codProf", $pro_cod);
+		$stmt->execute();
+		$projetos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $e){
+		echo 'Erro: ' . $e->getMessage();
+	}
 ?>
 
 <div>
@@ -118,9 +126,9 @@
 			<table class="table table-hover">
 				<h4>Disciplinas</h4>
 				<?php
-					while($disciplinaProf = mysqli_fetch_array($resultPD)){
+					foreach($disciplinas as $disciplina){
 						echo "<tr>";
-						echo "	<th>" . $disciplinaProf['dis_nome'] . "</td>";
+						echo "	<th>" . $disciplina['dis_nome'] . "</td>";
 						echo "</tr>";
 					}
 				?>
@@ -132,9 +140,9 @@
 			<table class="table table-hover">
 				<h4>Projetos</h4>
 				<?php
-					while($projetoProf = mysqli_fetch_array($scriptPJ)){
+					foreach($projetos as $projeto){
 						echo "<tr>";
-						echo "	<th>Projeto nº " . $projetoProf['proj_numero'] . "</th>";
+						echo "	<th>Projeto nº " . $projeto['proj_numero'] . "</th>";
 						echo "</tr>";
 					}
 				?>
@@ -158,45 +166,45 @@
 				</tr>
 				<?php
 					$i = 0;
-					while($linha= mysqli_fetch_array($script1)){
+					foreach($horario as $hora){
 						$i++;
 						echo "<tr>";
 						echo "<td>";
-						echo $linha["con_horaini"];
+						echo $hora["con_horaini"];
 						echo "</td>";
 						for($j = 1; $j <= 7; $j++){
-						 	$urlp = "?pag=addproj&prof=" . $pro_cod .  "&ds=" . $j . "&period=" .  $linha['con_cod'];
-						 	$urla = "?pag=addativ" . "&ds=" . $j . "&period=" .  $linha['con_cod'];
+						 	$urlProj = "?pag=addproj&prof=" . $pro_cod .  "&ds=" . $j . "&period=" .  $hora['con_cod'];
+						 	$urlAdd = "?pag=addativ" . "&ds=" . $j . "&period=" .  $hora['con_cod'];
 							echo "<td style='text-align: center'>";
 							$count = 0;
 							if($qtd >= 1){
-								while($hAula = mysqli_fetch_array($script2)){
-									if($hAula['con_cod'] == $linha['con_cod'] &&  $hAula['ds_cod'] == $j){
+								foreach($aulas as $aula){
+									if($aula['con_cod'] == $hora['con_cod'] &&  $aula['ds_cod'] == $j){
 										if($tipoUsuario == 1){
-											$aula = $url . "&id=" . $hAula['aula_cod'];
-											echo "<a href='$aula' class='btn btn-outline-info'>" . $hAula['dis_nome'] . "</a>";
+											$urlAula = $url . "&id=" . $aula['aula_cod'];
+											echo "<a href='$urlAula' class='btn btn-outline-info'>" . $aula['dis_nome'] . "</a>";
 										}
 										else{
-											echo "<p>". $hAula['dis_nome'] . "</p>";
+											echo "<p>". $aula['dis_nome'] . "</p>";
 										}
 										$count++;
 										break;
 									}
 								}
-								while($hProjeto = mysqli_fetch_array($script3)){
-									if($hProjeto['con_cod'] == $linha['con_cod'] &&  $hProjeto['ds_cod'] == $j){
+								foreach($projetos as $projeto){
+									if($projeto['con_cod'] == $hora['con_cod'] &&  $projeto['ds_cod'] == $j){
 										if($tipoUsuario == 1){
-											$proj = $urlp . "&id=" . $hProjeto['aula_cod'];
-											echo "<a href='$proj' class='btn btn-outline-info'>Projeto nº " . $hProjeto['proj_numero'] . "</a>";
+											$proj = $urlProj . "&id=" . $projeto['aula_cod'];
+											echo "<a href='$proj' class='btn btn-outline-info'>Projeto nº " . $projeto['proj_numero'] . "</a>";
 										}
 										else{
-											echo "<p>Projeto nº " . $hProjeto['proj_numero'] . "</p>";
+											echo "<p>Projeto nº " . $projeto['proj_numero'] . "</p>";
 										}
 										$count++;
 										break;
 									}
 								}
-								if($linha['con_desc'] == 'Intervalo'){
+								if($hora['con_desc'] == 'Intervalo'){
 									echo "<p>--Intervalo--</p>";
 								}
 								else if($count==0){
@@ -206,8 +214,8 @@
 														Adicionar
 													</button>
 													<div class='dropdown-menu' aria-labelledby='add'>
-														<a href='$urlp' class='dropdown-item'>Projeto</a>
-														<a href='$urla' class='dropdown-item'>Apoio/Manutenção</a>
+														<a href='$urlProj' class='dropdown-item'>Projeto</a>
+														<a href='$urlAdd' class='dropdown-item'>Apoio/Manutenção</a>
 													</div>
 												</div>";
 									}
@@ -216,7 +224,7 @@
 									}
 								}
 							}
-							else if($linha['con_desc'] == 'Intervalo'){
+							else if($hora['con_desc'] == 'Intervalo'){
 								echo "<p>--Intervalo--</p>";
 							}
 							else{
@@ -226,8 +234,8 @@
 														Adicionar
 													</button>
 													<div class='dropdown-menu' aria-labelledby='add'>
-														<a href='$url' class='dropdown-item'>Projeto</a>
-														<a href='$url' class='dropdown-item'>Apoio/Manutenção</a>
+														<a href='$urlProj' class='dropdown-item'>Projeto</a>
+														<a href='$urlAdd' class='dropdown-item'>Apoio/Manutenção</a>
 													</div>
 												</div>";
 									}
@@ -235,8 +243,6 @@
 									echo "...";
 								}
 							}
-							mysqli_data_seek($script2, 0);
-							mysqli_data_seek($script3, 0);
 							echo "</td>";
 						}
 						echo "</tr>";
